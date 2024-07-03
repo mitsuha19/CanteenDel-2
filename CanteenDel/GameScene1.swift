@@ -24,7 +24,7 @@ class GameScene1: SKScene {
     var ompreng: SKSpriteNode!
     var omprengPressed = false
     
-    var makananReady = SKSpriteNode()
+    var isGameOver = false
     
     override func didMove(to view: SKView) {
         print("Hello")
@@ -34,9 +34,7 @@ class GameScene1: SKScene {
         char3 = self.childNode(withName: "//char3") as? SKSpriteNode
         
         // Panggil fungsi untuk menampilkan popup
-               showPopup()
-        
-        
+        showStartPopup()
         
         // Inisialisasi dan tambahkan label waktu
         timeLabel = SKLabelNode(text: "01:00")
@@ -46,50 +44,25 @@ class GameScene1: SKScene {
         timeLabel.zPosition = 10
         addChild(timeLabel)
         
-        // Mulai hitung mundur
-        startCountdown()
-        
         // Inisialisasi ompreng node
         if let omprengNode = self.childNode(withName: "//ompreng") as? SKSpriteNode {
-            ompreng = omprengNode
-        } else {
-            print("Ompreng node not found")
-        }
-        
-        if let ayam = self.childNode(withName: "//ayam") as? SKSpriteNode {
-            draggableNodes.append(ayam)
-            initialPositions[ayam] = ayam.position
-            print("Ayam node found")
-        }
-        if let ikan = self.childNode(withName: "//ikan") as? SKSpriteNode {
-            draggableNodes.append(ikan)
-            initialPositions[ikan] = ikan.position
-            print("ikan node found")
-        }
-        if let telur = self.childNode(withName: "//telur") as? SKSpriteNode {
-            draggableNodes.append(telur)
-            initialPositions[telur] = telur.position
-            print("Telur node found")
-        }
-        if let semangka = self.childNode(withName: "//semangka") as? SKSpriteNode {
-            draggableNodes.append(semangka)
-            initialPositions[semangka] = semangka.position
-            print("semangka node found")
-        }
-        if let jeruk = self.childNode(withName: "//jeruk") as? SKSpriteNode {
-            draggableNodes.append(jeruk)
-            initialPositions[jeruk] = jeruk.position
-            print("jeruk node found")
-        }
-        if let apel = self.childNode(withName: "//apel") as? SKSpriteNode {
-            draggableNodes.append(apel)
-            initialPositions[apel] = apel.position
-            print("apel node found")
-        }
-    }
+                    ompreng = omprengNode
+                } else {
+                    print("Ompreng node not found")
+                }
+                
+                let draggableNodeNames = ["ayam", "ikan", "telur", "semangka", "jeruk", "apel"]
+                for nodeName in draggableNodeNames {
+                    if let node = self.childNode(withName: "//\(nodeName)") as? SKSpriteNode {
+                        draggableNodes.append(node)
+                        initialPositions[node] = node.position
+                        print("\(nodeName) node found")
+                    }
+                }
+            }
     
     // Fungsi untuk menampilkan popup
-       func showPopup() {
+       func showStartPopup() {
            // Buat background node
            let background = SKSpriteNode(color: SKColor.white, size: CGSize(width: 300, height: 200))
            background.position = CGPoint(x: frame.midX, y: frame.midY)
@@ -124,6 +97,54 @@ class GameScene1: SKScene {
            addChild(background)
        }
     
+    func gameOverPopup() {
+        let background = SKSpriteNode(color: SKColor.white, size: CGSize(width: 300, height: 200))
+        background.position = CGPoint(x: frame.midX, y: frame.midY)
+        background.zPosition = 100 // Letakkan di atas semua node lain
+        
+        // Buat label teks
+        let timeOverlabel = SKLabelNode(text: "Timer Over")
+        timeOverlabel.fontSize = 20
+        timeOverlabel.fontColor = SKColor.black
+        timeOverlabel.position = CGPoint(x: 0, y: 70)
+        
+        // buat label teks
+        // Hands On in here buat score
+        
+        //buat bintang dan perhitungan bintang
+        // Hands On in here buat perhitungan animasi dan munculnya bintang
+        
+        // Buat tombol OK
+        let playAgainButton = SKLabelNode(text: "Play Again")
+        playAgainButton.fontColor = SKColor.black
+        playAgainButton.fontSize = 20
+        playAgainButton.name = "playAgainButton"
+        playAgainButton.position = CGPoint(x: -50, y: -80)
+        
+        // Buat tombol Cancel
+        let homeButton = SKLabelNode(text: "Home")
+        homeButton.fontColor = SKColor.black
+        homeButton.fontSize = 20
+        homeButton.name = "homeButton"
+        homeButton.position = CGPoint(x: 50, y: -80)
+        
+        // Tambahkan semua node ke popup
+        background.addChild(timeOverlabel)
+        background.addChild(playAgainButton)
+        background.addChild(homeButton)
+        
+        // Tambahkan popup ke scene
+        addChild(background)
+    }
+    
+    func restartGame() {
+        if let scene = SKScene(fileNamed: "GameScene1") {
+            scene.scaleMode = .aspectFill
+            
+            let transition = SKTransition.fade(with: .white, duration: 1)
+            view?.presentScene(scene, transition: transition)
+        }
+    }
 
     func createDraggableNode(named name: String) {
         if let nodeTemplate = self.childNode(withName: "//\(name)") as? SKSpriteNode {
@@ -157,25 +178,31 @@ class GameScene1: SKScene {
             SKAction.run { [weak self] in
                 self?.updateCountdown()
             },
-            SKAction.wait(forDuration: 1.0)
+            SKAction.wait(forDuration: 0.1)
         ])
         
         run(SKAction.repeat(countdownAction, count: Int(countdownTime)))
     }
 
     func updateCountdown() {
+        
         if countdownTime > 0 {
             countdownTime -= 1
             
             let minutes = Int(countdownTime) / 60
             let seconds = Int(countdownTime) % 60
             timeLabel.text = String(format: "%02d:%02d", minutes, seconds)
-        } else {
-            // Waktu habis, lakukan sesuatu
-            timeLabel.text = "00:00"
-            // Misalnya, Anda bisa memanggil metode game over di sini
+            
+            if seconds == 0 {
+                isGameOver = true
+                gameOverPopup()
+                self.isPaused = true
+            }
         }
     }
+            
+        
+    
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
@@ -201,6 +228,7 @@ class GameScene1: SKScene {
                 // Jika tombol OK ditekan, panggil fungsi untuk memulai gerakan karakter
                 if touchedNode.name == "okButton" {
                     moveCharacterToCenter()
+                    startCountdown()
                     touchedNode.parent?.removeFromParent() // Hapus popup setelah tombol OK ditekan
                     isTouchHandled = true
                 }
@@ -208,6 +236,18 @@ class GameScene1: SKScene {
                 // Jika tombol Cancel ditekan, cukup hapus popup
                 if touchedNode.name == "cancelButton" {
                     touchedNode.parent?.removeFromParent()
+                    isTouchHandled = true
+                }
+                
+                // Jika tombol Play Again ditekan, dia akan kembali ke pertama
+                if touchedNode.name == "playAgainButton" {
+                    restartGame()
+                    isTouchHandled = true
+                }
+                
+                // Jika tombol Home ditekan, maka dia akan pergi ke levelViewController
+                if touchedNode.name == "homeButton" {
+                    // Hands On HomeButton
                     isTouchHandled = true
                 }
             }
