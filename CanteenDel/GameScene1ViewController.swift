@@ -12,7 +12,9 @@ class GameScene1ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(goToLevelScreen), name: NSNotification.Name(rawValue: "GoToLevelScreen"), object: nil)
+        
         self.navigationItem.setHidesBackButton(true, animated: true)
         if let view = self.view as! SKView? {
             
@@ -26,6 +28,10 @@ class GameScene1ViewController: UIViewController {
             view.showsNodeCount = true
             view.showsFPS = true
         }
+    }
+    
+    @objc func goToLevelScreen() {
+        navigationController?.popViewController(animated: true)
     }
     
 

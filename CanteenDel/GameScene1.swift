@@ -249,6 +249,8 @@ class GameScene1: SKScene {
                 if touchedNode.name == "homeButton" {
                     // Hands On HomeButton
                     isTouchHandled = true
+                    //ini mengunakan notification
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GoToLevelScreen"), object: nil)
                 }
             }
         }
