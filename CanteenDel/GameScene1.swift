@@ -150,11 +150,13 @@ class GameScene1: SKScene {
         if let nodeTemplate = self.childNode(withName: "//\(name)") as? SKSpriteNode {
             let node = nodeTemplate.copy() as! SKSpriteNode
             node.position = initialPositions[nodeTemplate] ?? nodeTemplate.position
-            node.zPosition = nodeTemplate.zPosition
+            node.zPosition = 1
             node.name = name
-            addChild(node)
+            //self.ompreng.addChild(nodeTemplate)
+            self.addChild(node)
             draggableNodes.append(node)
             initialPositions[node] = node.position
+            
         }
     }
     
@@ -210,6 +212,7 @@ class GameScene1: SKScene {
             if ompreng.contains(touchLocation) && !omprengPressed {
                 updateOmprengPosition()
                 omprengPressed = true
+               // giveHompreng()
             }
             
             for node in draggableNodes {
@@ -251,6 +254,10 @@ class GameScene1: SKScene {
         }
     }
     
+    
+    func giveHompreng() {
+        makananReady.run(SKAction.scale(by: 5, duration: 1))
+    }
     
     func moveCharacterToCenter() {
         // Memastikan char1 dan char2 tidak nil
@@ -312,9 +319,11 @@ class GameScene1: SKScene {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             if let node = activeTouches[touch] {
+                //makananReady.addChild(node)
                 createDraggableNode(named: node.name!)
                 activeTouches.removeValue(forKey: touch)
             }
+            
         }
     }
     
