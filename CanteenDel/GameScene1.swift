@@ -17,8 +17,8 @@ class GameScene1: SKScene {
     var countdownAction: SKAction!
 
     // Inisiasi ompreng
-       var ompreng: SKSpriteNode!
-       var omprengPosition = 1
+    var ompreng: SKSpriteNode!
+    var omprengPressed = false
     
     override func didMove(to view: SKView) {
         print("Hello")
@@ -73,6 +73,27 @@ class GameScene1: SKScene {
         }
     }
 
+    func createDraggableNode(named name: String) {
+        if let nodeTemplate = self.childNode(withName: "//\(name)") as? SKSpriteNode {
+            let node = nodeTemplate.copy() as! SKSpriteNode
+            node.position = initialPositions[nodeTemplate] ?? nodeTemplate.position
+            node.zPosition = nodeTemplate.zPosition
+            node.name = name
+            addChild(node)
+            draggableNodes.append(node)
+            initialPositions[node] = node.position
+        }
+    }
+    
+    func creatInitialNodes() {
+        createDraggableNode(named: "ayam")
+        createDraggableNode(named: "ikan")
+        createDraggableNode(named: "telur")
+        createDraggableNode(named: "semangka")
+        createDraggableNode(named: "jeruk")
+        createDraggableNode(named: "apel")
+    }
+    
     func updateOmprengPosition(){
         ompreng.run(SKAction.moveBy(x: 0, y: 170, duration: 0.5))
     }
@@ -106,8 +127,9 @@ class GameScene1: SKScene {
         for touch in touches {
             let touchLocation = touch.location(in: self)
             
-            if ompreng.contains(touchLocation) {
+            if ompreng.contains(touchLocation) && !omprengPressed {
                 updateOmprengPosition()
+                omprengPressed = true
             }
             
             for node in draggableNodes {
@@ -129,7 +151,10 @@ class GameScene1: SKScene {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
-            activeTouches.removeValue(forKey: touch)
+            if let node = activeTouches[touch] {
+                createDraggableNode(named: node.name!)
+                activeTouches.removeValue(forKey: touch)
+            }
         }
     }
     
