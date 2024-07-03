@@ -178,7 +178,7 @@ class GameScene1: SKScene {
             SKAction.run { [weak self] in
                 self?.updateCountdown()
             },
-            SKAction.wait(forDuration: 0.1)
+            SKAction.wait(forDuration: 1.0)
         ])
         
         run(SKAction.repeat(countdownAction, count: Int(countdownTime)))
@@ -254,10 +254,6 @@ class GameScene1: SKScene {
         }
     }
     
-    
-    func giveHompreng() {
-        makananReady.run(SKAction.scale(by: 5, duration: 1))
-    }
     
     func moveCharacterToCenter() {
         // Memastikan char1 dan char2 tidak nil
