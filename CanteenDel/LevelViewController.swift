@@ -9,7 +9,6 @@ import UIKit
 
 class LevelViewController: UIViewController {
 
-    
     @IBOutlet weak var Username: UILabel!
     var name = "-"
         
@@ -24,6 +23,11 @@ class LevelViewController: UIViewController {
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             
         }
+    
+    
+    @IBAction func goHomePage(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     // branch test
     
