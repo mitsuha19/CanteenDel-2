@@ -15,6 +15,10 @@ class GameScene1: SKScene {
     
     var countdownTime: TimeInterval = 60
     var countdownAction: SKAction!
+    
+    var char1: SKSpriteNode?
+    var char2: SKSpriteNode?
+    var char3: SKSpriteNode?
 
     // Inisiasi ompreng
        var ompreng: SKSpriteNode!
@@ -22,6 +26,15 @@ class GameScene1: SKScene {
     
     override func didMove(to view: SKView) {
         print("Hello")
+        
+        char1 = self.childNode(withName: "//char1") as? SKSpriteNode
+        char2 = self.childNode(withName: "//char2") as? SKSpriteNode
+        char3 = self.childNode(withName: "//char3") as? SKSpriteNode
+        
+        // Panggil fungsi untuk menampilkan popup
+               showPopup()
+        
+        
         
         // Inisialisasi dan tambahkan label waktu
         timeLabel = SKLabelNode(text: "01:00")
@@ -72,6 +85,43 @@ class GameScene1: SKScene {
             print("apel node found")
         }
     }
+    
+    // Fungsi untuk menampilkan popup
+       func showPopup() {
+           // Buat background node
+           let background = SKSpriteNode(color: SKColor.white, size: CGSize(width: 300, height: 200))
+           background.position = CGPoint(x: frame.midX, y: frame.midY)
+           background.zPosition = 100 // Letakkan di atas semua node lain
+           
+           // Buat label teks
+           let label = SKLabelNode(text: "Target 8 Mahasiswa")
+           label.fontSize = 20
+           label.fontColor = SKColor.black
+           label.position = CGPoint(x: 0, y: 20)
+           
+           // Buat tombol OK
+           let okButton = SKLabelNode(text: "OK")
+           okButton.fontColor = SKColor.blue
+           okButton.fontSize = 20
+           okButton.name = "okButton"
+           okButton.position = CGPoint(x: -50, y: -40)
+           
+           // Buat tombol Cancel
+           let cancelButton = SKLabelNode(text: "Cancel")
+           cancelButton.fontColor = SKColor.red
+           cancelButton.fontSize = 20
+           cancelButton.name = "cancelButton"
+           cancelButton.position = CGPoint(x: 50, y: -40)
+           
+           // Tambahkan semua node ke popup
+           background.addChild(label)
+           background.addChild(okButton)
+           background.addChild(cancelButton)
+           
+           // Tambahkan popup ke scene
+           addChild(background)
+       }
+    
 
     func updateOmprengPosition(){
         ompreng.run(SKAction.moveBy(x: 0, y: 170, duration: 0.5))
@@ -104,6 +154,7 @@ class GameScene1: SKScene {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
+            var isTouchHandled = false
             let touchLocation = touch.location(in: self)
             
             if ompreng.contains(touchLocation) {
@@ -115,8 +166,75 @@ class GameScene1: SKScene {
                     activeTouches[touch] = node
                 }
             }
+            
+            // Jika sentuhan tidak ditemukan di draggableNodes, cek di tombol popup
+            if !isTouchHandled {
+                let touchedNode = atPoint(touchLocation)
+                
+                // Jika tombol OK ditekan, panggil fungsi untuk memulai gerakan karakter
+                if touchedNode.name == "okButton" {
+                    moveCharacterToCenter()
+                    touchedNode.parent?.removeFromParent() // Hapus popup setelah tombol OK ditekan
+                    isTouchHandled = true
+                }
+                
+                // Jika tombol Cancel ditekan, cukup hapus popup
+                if touchedNode.name == "cancelButton" {
+                    touchedNode.parent?.removeFromParent()
+                    isTouchHandled = true
+                }
+            }
         }
     }
+    
+    
+    func moveCharacterToCenter() {
+        // Memastikan char1 dan char2 tidak nil
+        guard let char1 = char1, let char2 = char2, let char3 = char3 else { return }
+
+        // Menentukan posisi awal dan akhir untuk char1 dan char2
+        let startPositionChar1 = CGPoint(x: frame.minX - char1.size.width / 2, y: char1.position.y)
+        let centerPosition = CGPoint(x: frame.midX, y: char1.position.y)
+        
+        // Memindahkan char1 ke posisi awal
+        char1.position = startPositionChar1
+        
+        // Membuat aksi untuk menggerakkan char1 ke tengah
+        let moveToCenterChar1 = SKAction.move(to: centerPosition, duration: 3.0)
+        
+        // Menjalankan aksi pada char1
+        char1.run(moveToCenterChar1)
+        
+        // Mengatur posisi char2 agar berada di samping kiri char1
+        let distanceApart = CGFloat(-200.0)  // Jarak antara char1 dan char2
+        let char2XPosition = centerPosition.x - char1.size.width / 2 - char2.size.width / 2 - distanceApart
+        let char2YPosition = char2.position.y
+        let char2FinalPosition = CGPoint(x: char2XPosition, y: char2YPosition)
+        
+        // Membuat aksi untuk menggerakkan char2 ke posisi samping kiri char1
+        let moveToSideChar2 = SKAction.move(to: char2FinalPosition, duration: 3.0)
+        
+        // Menjalankan aksi pada char2 setelah char1 selesai bergerak ke tengah
+        let delayAction = SKAction.wait(forDuration: 5.0)
+        let sequenceChar2 = SKAction.sequence([delayAction, moveToSideChar2])
+        char2.run(sequenceChar2)
+        
+        // Mengatur posisi char3 agar berada di samping kiri char2
+           let distanceApart2 = CGFloat(-200.0)  // Jarak antara char2 dan char3
+           let char3XPosition = char2FinalPosition.x - char2.size.width / 2 - char3.size.width / 2 - distanceApart2
+           let char3YPosition = char3.position.y
+           let char3FinalPosition = CGPoint(x: char3XPosition, y: char3YPosition)
+           
+           // Membuat aksi untuk menggerakkan char3 ke posisi samping kiri char2
+           let moveToSideChar3 = SKAction.move(to: char3FinalPosition, duration: 3.0)
+        
+        // Menjalankan aksi pada char3 setelah char2 selesai bergerak ke posisi akhir
+           let delayActionChar3 = SKAction.wait(forDuration: 9.0)
+           let sequenceChar3 = SKAction.sequence([delayActionChar3, moveToSideChar3])
+           char3.run(sequenceChar3)
+    }
+    
+    
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
