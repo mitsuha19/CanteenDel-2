@@ -4,6 +4,7 @@ class GameScene1: SKScene {
 
     var draggableNodes = [SKSpriteNode]()
     var activeTouches = [UITouch: SKSpriteNode]()
+    var alreadyDragNodes = [SKSpriteNode]()
     var initialPositions = [SKSpriteNode: CGPoint]()
     
     var settingsButton: SKSpriteNode?
@@ -201,62 +202,6 @@ class GameScene1: SKScene {
         }
     }
             
-        
-    
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            var isTouchHandled = false
-            let touchLocation = touch.location(in: self)
-            
-            if ompreng.contains(touchLocation) && !omprengPressed {
-                updateOmprengPosition()
-                omprengPressed = true
-               // giveHompreng()
-            }
-            
-            for node in draggableNodes {
-                if node.contains(touchLocation) {
-                    activeTouches[touch] = node
-                }
-            }
-            
-            // Jika sentuhan tidak ditemukan di draggableNodes, cek di tombol popup
-            if !isTouchHandled {
-                let touchedNode = atPoint(touchLocation)
-                
-                // Jika tombol OK ditekan, panggil fungsi untuk memulai gerakan karakter
-                if touchedNode.name == "okButton" {
-                    moveCharacterToCenter()
-                    startCountdown()
-                    touchedNode.parent?.removeFromParent() // Hapus popup setelah tombol OK ditekan
-                    isTouchHandled = true
-                }
-                
-                // Jika tombol Cancel ditekan, cukup hapus popup
-                if touchedNode.name == "cancelButton" {
-                    touchedNode.parent?.removeFromParent()
-                    isTouchHandled = true
-                }
-                
-                // Jika tombol Play Again ditekan, dia akan kembali ke pertama
-                if touchedNode.name == "playAgainButton" {
-                    restartGame()
-                    isTouchHandled = true
-                }
-                
-                // Jika tombol Home ditekan, maka dia akan pergi ke levelViewController
-                if touchedNode.name == "homeButton" {
-                    // Hands On HomeButton
-                    isTouchHandled = true
-                    //ini mengunakan notification
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GoToLevelScreen"), object: nil)
-                }
-            }
-        }
-    }
-    
-    
     func moveCharacterToCenter() {
         // Memastikan char1 dan char2 tidak nil
         guard let char1 = char1, let char2 = char2, let char3 = char3 else { return }
@@ -303,6 +248,75 @@ class GameScene1: SKScene {
            char3.run(sequenceChar3)
     }
     
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            var isTouchHandled = false
+            let touchLocation = touch.location(in: self)
+            
+            if ompreng.contains(touchLocation) && !omprengPressed {
+                updateOmprengPosition()
+                omprengPressed = true
+               // giveHompreng()
+            }
+            
+            for node in draggableNodes {
+                if node.contains(touchLocation) {
+                    activeTouches[touch] = node
+                }
+            }
+            
+            let scaleAction = SKAction.scale(by: 0, duration: 1)
+            let movetoYAction = SKAction.moveTo(y: 50, duration: 0.5)
+            let deleteNote = SKAction.removeFromParent()
+            
+            let sequence = SKAction.sequence([movetoYAction,scaleAction,deleteNote])
+            
+            if ((char1?.contains(touchLocation)) == true) {
+                for node in alreadyDragNodes {
+                    node.run(sequence)
+                }
+                
+                ompreng.run(sequence)
+            }
+            
+            
+            
+            // Jika sentuhan tidak ditemukan di draggableNodes, cek di tombol popup
+            if !isTouchHandled {
+                let touchedNode = atPoint(touchLocation)
+                
+                // Jika tombol OK ditekan, panggil fungsi untuk memulai gerakan karakter
+                if touchedNode.name == "okButton" {
+                    moveCharacterToCenter()
+                    startCountdown()
+                    touchedNode.parent?.removeFromParent() // Hapus popup setelah tombol OK ditekan
+                    isTouchHandled = true
+                }
+                
+                // Jika tombol Cancel ditekan, cukup hapus popup
+                if touchedNode.name == "cancelButton" {
+                    touchedNode.parent?.removeFromParent()
+                    isTouchHandled = true
+                }
+                
+                // Jika tombol Play Again ditekan, dia akan kembali ke pertama
+                if touchedNode.name == "playAgainButton" {
+                    restartGame()
+                    isTouchHandled = true
+                }
+                
+                // Jika tombol Home ditekan, maka dia akan pergi ke levelViewController
+                if touchedNode.name == "homeButton" {
+                    // Hands On HomeButton
+                    isTouchHandled = true
+                    //ini mengunakan notification
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GoToLevelScreen"), object: nil)
+                }
+            }
+        }
+    }
+    
     
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -317,8 +331,8 @@ class GameScene1: SKScene {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             if let node = activeTouches[touch] {
-                //makananReady.addChild(node)
                 createDraggableNode(named: node.name!)
+                alreadyDragNodes.append(node)
                 activeTouches.removeValue(forKey: touch)
             }
             
@@ -352,6 +366,3 @@ class GameScene1: SKScene {
     }
 }
 
-
-// Add your code here
-// testing branch otniel
