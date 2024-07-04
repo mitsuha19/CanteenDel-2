@@ -20,6 +20,7 @@ class GameScene1: SKScene {
     var char1: SKSpriteNode?
     var char2: SKSpriteNode?
     var char3: SKSpriteNode?
+    var btnPause: SKSpriteNode?
 
     // Inisiasi ompreng
     var omprengs = [SKSpriteNode]()
@@ -27,8 +28,17 @@ class GameScene1: SKScene {
     var omprengPressed = false
     
     var isGameOver = false
+    var gamePaused = false
     
     override func didMove(to view: SKView) {
+        btnPause = SKSpriteNode(imageNamed: "resume.png")
+        btnPause?.name = "btnPause"
+        btnPause?.position = CGPoint(x: 580, y: 230)
+        btnPause?.setScale(0.5)
+        btnPause?.size = CGSize(width: btnPause!.size.width * 0.6, height: btnPause!.size.height * 0.6)
+        addChild(btnPause!)
+        
+        
         print("Hello")
         
         char1 = self.childNode(withName: "//char1") as? SKSpriteNode
@@ -170,32 +180,44 @@ class GameScene1: SKScene {
     }
     
     func startCountdown() {
-        countdownAction = SKAction.sequence([
-            SKAction.run { [weak self] in
-                self?.updateCountdown()
-            },
-            SKAction.wait(forDuration: 0.1)
-        ])
+            countdownAction = SKAction.sequence([
+                SKAction.wait(forDuration: 1.0),
+                SKAction.run { [weak self] in
+                    self?.updateCountdown()
+                }
+            ])
+            
+            let repeatAction = SKAction.repeatForever(countdownAction)
+            run(repeatAction, withKey: "countdown")
+        }
         
-        run(SKAction.repeat(countdownAction, count: Int(countdownTime)))
-    }
+        func pauseCount() {
+            removeAction(forKey: "countdown")
+            let remainingTime = countdownTime
+            gamePaused = true
+            print("Game Paused at \(remainingTime) seconds remaining")
+            btnPause?.texture = SKTexture(imageNamed: "pause.png")
+        }
+        
+        func continueCount() {
+            startCountdown()
+            gamePaused = false
+            btnPause?.texture = SKTexture(imageNamed: "resume.png")
+        }
 
-    func updateCountdown() {
-        
-        if countdownTime > 0 {
-            countdownTime -= 1
-            
-            let minutes = Int(countdownTime) / 60
-            let seconds = Int(countdownTime) % 60
-            timeLabel.text = String(format: "%02d:%02d", minutes, seconds)
-            
-            if seconds == 0 {
-                isGameOver = true
-                gameOverPopup()
-                self.isPaused = true
+        func updateCountdown() {
+            if countdownTime > 0 {
+                countdownTime -= 1
+                
+                let minutes = Int(countdownTime) / 60
+                let seconds = Int(countdownTime) % 60
+                timeLabel.text = String(format: "%02d:%02d", minutes, seconds)
+            } else {
+                // Waktu habis, lakukan sesuatu
+                timeLabel.text = "00:00"
+                // Misalnya, Anda bisa memanggil metode game over di sini
             }
         }
-    }
             
     func moveCharacterToCenter() {
         // Memastikan char1 dan char2 tidak nil
@@ -328,6 +350,18 @@ class GameScene1: SKScene {
                     //ini mengunakan notification
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GoToLevelScreen"), object: nil)
                 }
+                
+                // Periksa apakah sentuhan terjadi di dalam btnPause
+                                    if let btnPause = btnPause, btnPause.contains(touchLocation) {
+                                        if gamePaused {
+                                            self.isPaused = false
+                                            continueCount()  // Jika game sedang di-pause, lanjutkan
+                                        } else {
+                                            pauseCount()  // Jika game sedang berjalan, pause
+                                            self.isPaused = true
+                                        }
+                                        return  // Keluar dari loop setelah menemukan sentuhan yang valid
+                                    }
             }
         }
     }
