@@ -22,7 +22,8 @@ class GameScene1: SKScene {
     var char3: SKSpriteNode?
 
     // Inisiasi ompreng
-    var ompreng: SKSpriteNode!
+    var omprengs = [SKSpriteNode]()
+    //var ompreng: SKSpriteNode!
     var omprengPressed = false
     
     var isGameOver = false
@@ -47,17 +48,18 @@ class GameScene1: SKScene {
         
         // Inisialisasi ompreng node
         if let omprengNode = self.childNode(withName: "//ompreng") as? SKSpriteNode {
-                    ompreng = omprengNode
-                } else {
-                    print("Ompreng node not found")
-                }
+            omprengs.append(omprengNode)
+            initialPositions[omprengNode] = omprengNode.position
+        } else {
+            print("Ompreng node not found")
+        }
                 
-                let draggableNodeNames = ["ayam", "ikan", "telur", "semangka", "jeruk", "apel"]
-                for nodeName in draggableNodeNames {
-                    if let node = self.childNode(withName: "//\(nodeName)") as? SKSpriteNode {
-                        draggableNodes.append(node)
-                        initialPositions[node] = node.position
-                        print("\(nodeName) node found")
+        let draggableNodeNames = ["ayam", "ikan", "telur", "semangka", "jeruk", "apel"]
+            for nodeName in draggableNodeNames {
+                if let node = self.childNode(withName: "//\(nodeName)") as? SKSpriteNode {
+                    draggableNodes.append(node)
+                    initialPositions[node] = node.position
+                    print("\(nodeName) node found")
                     }
                 }
             }
@@ -157,21 +159,14 @@ class GameScene1: SKScene {
             self.addChild(node)
             draggableNodes.append(node)
             initialPositions[node] = node.position
-            
         }
     }
     
-    func creatInitialNodes() {
-        createDraggableNode(named: "ayam")
-        createDraggableNode(named: "ikan")
-        createDraggableNode(named: "telur")
-        createDraggableNode(named: "semangka")
-        createDraggableNode(named: "jeruk")
-        createDraggableNode(named: "apel")
-    }
-    
     func updateOmprengPosition(){
-        ompreng.run(SKAction.moveBy(x: 0, y: 170, duration: 0.5))
+        for ompreng in omprengs {
+            ompreng.run(SKAction.moveBy(x: 0, y: 170, duration: 0.5))
+        }
+        
     }
     
     func startCountdown() {
@@ -254,11 +249,19 @@ class GameScene1: SKScene {
             var isTouchHandled = false
             let touchLocation = touch.location(in: self)
             
-            if ompreng.contains(touchLocation) && !omprengPressed {
-                updateOmprengPosition()
-                omprengPressed = true
-               // giveHompreng()
+            for ompreng in omprengs {
+                if ompreng.contains(touchLocation) && !omprengPressed {
+                    let newOmpreng = ompreng.copy() as! SKSpriteNode
+                    newOmpreng.zPosition = 1
+                    newOmpreng.name = name
+                    self.addChild(newOmpreng)
+                    initialPositions[newOmpreng] = newOmpreng.position
+                    updateOmprengPosition()
+                    omprengs.append(newOmpreng)
+                    omprengPressed = true
+                }
             }
+            
             
             for node in draggableNodes {
                 if node.contains(touchLocation) {
@@ -268,16 +271,28 @@ class GameScene1: SKScene {
             
             let scaleAction = SKAction.scale(by: 0, duration: 1)
             let movetoYAction = SKAction.moveTo(y: 50, duration: 0.5)
-            let deleteNote = SKAction.removeFromParent()
+            let deleteAction = SKAction.removeFromParent()
             
-            let sequence = SKAction.sequence([movetoYAction,scaleAction,deleteNote])
+            let sequence = SKAction.sequence([movetoYAction,scaleAction])
+            let sequence1 = SKAction.sequence([movetoYAction,scaleAction,deleteAction])
             
-            if ((char1?.contains(touchLocation)) == true) {
+            if ((char1?.contains(touchLocation)) == true && omprengPressed) {
                 for node in alreadyDragNodes {
-                    node.run(sequence)
+                    node.run(sequence1)
                 }
                 
-                ompreng.run(sequence)
+                if !omprengs.isEmpty {
+                    let firstOmpreng = omprengs[0]
+                    omprengs.remove(at: 0)
+                    firstOmpreng.run(sequence)
+                    omprengPressed = false
+                    
+                }
+//                for ompreng in omprengs {
+//                    ompreng.run(sequence)
+//                    omprengPressed = false
+//                }
+                
             }
             
             
