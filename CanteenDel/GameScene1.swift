@@ -19,10 +19,13 @@ class GameScene1: SKScene {
     var char1: SKSpriteNode?
     var char2: SKSpriteNode?
     var char3: SKSpriteNode?
+    var btnPause: SKSpriteNode?
 
     // Inisiasi ompreng
     var ompreng: SKSpriteNode!
     var omprengPressed = false
+    
+    var gamePaused = false
     
     override func didMove(to view: SKView) {
         print("Hello")
@@ -84,6 +87,26 @@ class GameScene1: SKScene {
             initialPositions[apel] = apel.position
             print("apel node found")
         }
+        
+        
+        
+        btnPause = SKSpriteNode(imageNamed: "resume.png")
+        btnPause?.name = "btnPause"
+        btnPause?.position = CGPoint(x: 580, y: 230)
+        btnPause?.setScale(0.5)  // Mengubah skala node
+
+        // Menyesuaikan ukuran fisik dengan skala yang diberikan
+        btnPause?.size = CGSize(width: btnPause!.size.width * 0.6, height: btnPause!.size.height * 0.6)
+
+        addChild(btnPause!)
+
+//      btnPause = SKSpriteNode(imageNamed: "resume.png")
+//      btnPause?.name = "btnPause"
+//      btnPause?.position = CGPoint(x: 550, y: 200)
+//      addChild(btnPause!)
+
+        
+        
     }
     
     // Fungsi untuk menampilkan popup
@@ -150,13 +173,28 @@ class GameScene1: SKScene {
     
     func startCountdown() {
         countdownAction = SKAction.sequence([
+            SKAction.wait(forDuration: 1.0),
             SKAction.run { [weak self] in
                 self?.updateCountdown()
-            },
-            SKAction.wait(forDuration: 1.0)
+            }
         ])
         
-        run(SKAction.repeat(countdownAction, count: Int(countdownTime)))
+        let repeatAction = SKAction.repeatForever(countdownAction)
+        run(repeatAction, withKey: "countdown")
+    }
+    
+    func pauseCount() {
+        removeAction(forKey: "countdown")
+        let remainingTime = countdownTime
+        gamePaused = true
+        print("Game Paused at \(remainingTime) seconds remaining")
+        btnPause?.texture = SKTexture(imageNamed: "pause.png")
+    }
+    
+    func continueCount() {
+        startCountdown()
+        gamePaused = false
+        btnPause?.texture = SKTexture(imageNamed: "resume.png")
     }
 
     func updateCountdown() {
@@ -206,6 +244,18 @@ class GameScene1: SKScene {
                     isTouchHandled = true
                 }
             }
+            
+            // Periksa apakah sentuhan terjadi di dalam btnPause
+                    if let btnPause = btnPause, btnPause.contains(touchLocation) {
+                        if gamePaused {
+                            self.isPaused = false
+                            continueCount()  // Jika game sedang di-pause, lanjutkan
+                        } else {
+                            pauseCount()  // Jika game sedang berjalan, pause
+                            self.isPaused = true
+                        }
+                        return  // Keluar dari loop setelah menemukan sentuhan yang valid
+                    }
         }
     }
     
