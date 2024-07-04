@@ -179,7 +179,7 @@ class GameScene1: SKScene {
             SKAction.run { [weak self] in
                 self?.updateCountdown()
             },
-            SKAction.wait(forDuration: 1.0)
+            SKAction.wait(forDuration: 0.1)
         ])
         
         run(SKAction.repeat(countdownAction, count: Int(countdownTime)))
@@ -296,7 +296,7 @@ class GameScene1: SKScene {
                 
                 // Jika tombol Cancel ditekan, cukup hapus popup
                 if touchedNode.name == "cancelButton" {
-                    touchedNode.parent?.removeFromParent()
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GoToLevelScreen"), object: nil)
                     isTouchHandled = true
                 }
                 
