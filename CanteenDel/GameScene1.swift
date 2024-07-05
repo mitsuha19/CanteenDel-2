@@ -156,6 +156,7 @@ class GameScene1: SKScene {
             SKAction.run { [weak self] in
                 self?.updateCountdown()
             },
+
             SKAction.wait(forDuration: 1.0)
         ])
         
@@ -215,7 +216,7 @@ class GameScene1: SKScene {
             }
             
             for node in draggableNodes {
-                if node.contains(touchLocation) {
+                if node.contains(touchLocation) &&  omprengPressed{
                     activeTouches[touch] = node
                 }
             }
@@ -304,8 +305,17 @@ class GameScene1: SKScene {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             if let node = activeTouches[touch] {
-                createDraggableNode(named: node.name!)
-                alreadyDragNodes.append(node)
+                let dropLocation = node.position
+                let forbiddenXRange = -125...125
+                let forbiddenYRange = -198 ... -93
+                if forbiddenXRange.contains(Int(dropLocation.x)) && forbiddenYRange.contains(Int(dropLocation.y)) {
+                        // Jika drop di area yang diperbolehkan, buat salinan node
+                        createDraggableNode(named: node.name!)
+                        alreadyDragNodes.append(node)
+                        } else {
+                            // Kembalikan node ke posisi awal jika drop di area terlarang
+                            node.position = initialPositions[node] ?? CGPoint.zero
+                        }
                 activeTouches.removeValue(forKey: touch)
             }
         }
