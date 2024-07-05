@@ -20,25 +20,15 @@ class GameScene1: SKScene {
     var char1: SKSpriteNode?
     var char2: SKSpriteNode?
     var char3: SKSpriteNode?
-
     var char4: SKSpriteNode?
 
     var omprengs = [SKSpriteNode]()
     var omprengPressed = false
     
     var isGameOver = false
-
     var currentCharIndex = 0
     
     override func didMove(to view: SKView) {
-        btnPause = SKSpriteNode(imageNamed: "resume.png")
-        btnPause?.name = "btnPause"
-        btnPause?.position = CGPoint(x: 580, y: 230)
-        btnPause?.setScale(0.5)
-        btnPause?.size = CGSize(width: btnPause!.size.width * 0.6, height: btnPause!.size.height * 0.6)
-        addChild(btnPause!)
-        
-        
         print("Hello")
         
         char1 = self.childNode(withName: "//char1") as? SKSpriteNode
@@ -162,18 +152,13 @@ class GameScene1: SKScene {
     }
     
     func startCountdown() {
-            countdownAction = SKAction.sequence([
-                SKAction.wait(forDuration: 1.0),
-                SKAction.run { [weak self] in
-                    self?.updateCountdown()
-                }
-            ])
-            
-            let repeatAction = SKAction.repeatForever(countdownAction)
-            run(repeatAction, withKey: "countdown")
-        }
+        countdownAction = SKAction.sequence([
+            SKAction.run { [weak self] in
+                self?.updateCountdown()
+            },
+            SKAction.wait(forDuration: 1.0)
+        ])
         
-
         run(SKAction.repeat(countdownAction, count: Int(countdownTime)))
     }
 
@@ -189,9 +174,9 @@ class GameScene1: SKScene {
                 isGameOver = true
                 gameOverPopup()
                 self.isPaused = true
-
             }
         }
+    }
             
     func moveCharacterToCenter(characters: [SKSpriteNode], delayBetweenCharacters: TimeInterval = 1.0) {
         guard !characters.isEmpty else { return }
@@ -256,7 +241,7 @@ class GameScene1: SKScene {
                     omprengPressed = false
                     
                     // Move current character to the right after receiving ompreng
-                    let moveRight = SKAction.moveBy(x: 800, y: 0, duration: 5.0)
+                    let moveRight = SKAction.moveBy(x: 750, y: 0, duration: 5.0)
                     
                     // Delay before moving the current character to the right
                     let delayAction = SKAction.wait(forDuration: 1.5) // Ubah durasi jeda sesuai kebutuhan
@@ -290,7 +275,7 @@ class GameScene1: SKScene {
                 }
                 
                 if touchedNode.name == "cancelButton" {
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GoToLevelScreen"), object: nil)
+                    touchedNode.parent?.removeFromParent()
                     isTouchHandled = true
                 }
                 
@@ -303,18 +288,6 @@ class GameScene1: SKScene {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GoToLevelScreen"), object: nil)
                     isTouchHandled = true
                 }
-                
-                // Periksa apakah sentuhan terjadi di dalam btnPause
-                                    if let btnPause = btnPause, btnPause.contains(touchLocation) {
-                                        if gamePaused {
-                                            self.isPaused = false
-                                            continueCount()  // Jika game sedang di-pause, lanjutkan
-                                        } else {
-                                            pauseCount()  // Jika game sedang berjalan, pause
-                                            self.isPaused = true
-                                        }
-                                        return  // Keluar dari loop setelah menemukan sentuhan yang valid
-                                    }
             }
         }
     }
@@ -362,4 +335,3 @@ class GameScene1: SKScene {
         }
     }
 }
-
