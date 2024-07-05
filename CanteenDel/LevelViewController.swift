@@ -9,7 +9,6 @@ import UIKit
 
 class LevelViewController: UIViewController {
 
-    
     @IBOutlet weak var Username: UILabel!
     var name = "-"
         
@@ -17,13 +16,23 @@ class LevelViewController: UIViewController {
             super.viewDidLoad()
             print("levelViewController \(self.name)")
             
-            Username.text = "Welcome " + name
+            
+            
+            if let storedName = UserDefaults.standard.string(forKey: "USER_NAME") {
+                Username.text = "Welcome " + storedName
+            }
+            
             // Do any additional setup after loading the view.
         }
         
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             
         }
+    
+    
+    @IBAction func goHomePage(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     // branch test
     
