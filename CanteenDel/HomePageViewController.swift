@@ -26,6 +26,8 @@ class HomePageViewController: UIViewController {
                 self.name = textField.text ?? ""
                 
                 print("HomeViewController \(self.name)")
+                // Simpan ke user default
+                UserDefaults.standard.set(self.name, forKey: "USER_NAME")
                 
                 // Logic Segue
                 self.performSegue(withIdentifier: "goToLevel", sender: self)
