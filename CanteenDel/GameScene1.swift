@@ -52,7 +52,7 @@ class GameScene1: SKScene {
             print("Ompreng node not found")
         }
         
-        let draggableNodeNames = ["ayam", "ikan", "telur", "semangka", "jeruk", "apel"]
+        let draggableNodeNames = ["ayam", "ikan", "telur", "semangka", "jeruk", "apel","nasi","selada", "brokoli"]
         for nodeName in draggableNodeNames {
             if let node = self.childNode(withName: "//\(nodeName)") as? SKSpriteNode {
                 draggableNodes.append(node)
@@ -184,7 +184,7 @@ class GameScene1: SKScene {
 
         let centerPosition = CGPoint(x: frame.midX, y: characters.first!.position.y)
         var previousPosition = centerPosition
-        let distanceApart: CGFloat = -30.0
+        let distanceApart: CGFloat = 60.0
 
         for (index, char) in characters.enumerated() {
             let delayDuration = delayBetweenCharacters * Double(index)
