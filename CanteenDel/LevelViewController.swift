@@ -16,7 +16,12 @@ class LevelViewController: UIViewController {
             super.viewDidLoad()
             print("levelViewController \(self.name)")
             
-            Username.text = "Welcome " + name
+            
+            
+            if let storedName = UserDefaults.standard.string(forKey: "USER_NAME") {
+                Username.text = "Welcome " + storedName
+            }
+            
             // Do any additional setup after loading the view.
         }
         
