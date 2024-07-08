@@ -25,6 +25,19 @@ class GameScene1: SKScene {
     var omprengs = [SKSpriteNode]()
     var omprengPressed = false
     
+    var pesanans = [SKSpriteNode]()
+    var pesanan: SKSpriteNode?
+//    let forbidden1xRange = -125 ... -40
+//    let forbidden1yRange = -150 ... -93
+//    let forbidden2xRange = 0
+//    let forbidden2yRange = 0
+//    let forbidden3xRange = 0
+//    let forbidden3yRange = 0
+//    let forbidden4xRange = 0
+//    let forbidden4yRange = 0
+//    let forbidden5xRange = 0
+//    let forbidden5yRange = 0
+    
     var isGameOver = false
     var currentCharIndex = 0
     
@@ -100,7 +113,7 @@ class GameScene1: SKScene {
         background.position = CGPoint(x: frame.midX, y: frame.midY)
         background.zPosition = 100
         
-        let timeOverlabel = SKLabelNode(text: "Timer Over")
+        let timeOverlabel = SKLabelNode(text: "Times Over")
         timeOverlabel.fontSize = 20
         timeOverlabel.fontColor = SKColor.black
         timeOverlabel.position = CGPoint(x: 0, y: 70)
@@ -178,6 +191,22 @@ class GameScene1: SKScene {
             }
         }
     }
+    
+    func showPesanan(for character: SKSpriteNode) {
+        if pesanan == nil {
+            pesanan = SKSpriteNode(imageNamed: "pesanan\(currentCharIndex + 1)")
+            pesanan?.size = CGSize(width: 150, height: 150)
+            pesanan?.position = CGPoint(x: 80, y: 137.265)
+            pesanan?.zPosition = 10
+            addChild(pesanan!)
+            pesanans.append(pesanan!)
+        }
+    }
+    
+    func hidePesanan(){
+        pesanan?.removeFromParent()
+        pesanan = nil
+    }
             
     func moveCharacterToCenter(characters: [SKSpriteNode], delayBetweenCharacters: TimeInterval = 1.0) {
         guard !characters.isEmpty else { return }
@@ -191,7 +220,9 @@ class GameScene1: SKScene {
             let moveToCenter = SKAction.move(to: previousPosition, duration: 3.0)
             let delayAction = SKAction.wait(forDuration: delayDuration)
             let sequence = SKAction.sequence([delayAction, moveToCenter])
-            char.run(sequence)
+            char.run(sequence) { [weak self] in
+                self?.showPesanan(for: char)
+            }
 
             previousPosition = CGPoint(x: previousPosition.x - char.size.width / 2 - distanceApart, y: char.position.y)
         }
@@ -231,9 +262,25 @@ class GameScene1: SKScene {
             let characters = [char1, char2, char3, char4].compactMap { $0 }
 
             if currentCharIndex < characters.count && characters[currentCharIndex].contains(touchLocation) && omprengPressed {
+                
+//                switch currentCharIndex {
+//                case 0:
+//                    for node in alreadyDragNodes {
+//                        if node.name == "ayam" {
+//                            if forbidden1xRange.contains(node.position.x) && forbidden1yRange.contains(node.position.y) {
+//                                
+//                            }
+//                        }
+//                    }
+//                default:
+//                    print()
+//                }
+                
                 for node in alreadyDragNodes {
                     node.run(sequence1)
                 }
+                
+                hidePesanan()
                 
                 if !omprengs.isEmpty {
                     let firstOmpreng = omprengs[0]

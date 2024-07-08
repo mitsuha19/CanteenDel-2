@@ -45,7 +45,7 @@
                                 </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Halo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Azh-IR-hWA">
-                                <rect key="frame" x="43" y="44" width="132" height="39"/>
+                                <rect key="frame" x="43" y="44" width="321" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -79,7 +79,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="867" y="-2004"/>
+            <point key="canvasLocation" x="866.90140845070425" y="-2005.3435114503816"/>
         </scene>
         <!--Home Page View Controller-->
         <scene sceneID="PiK-qT-Hk1">
