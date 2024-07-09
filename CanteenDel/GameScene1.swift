@@ -45,7 +45,7 @@ class GameScene1: SKScene {
     var isOrderCorrect4 = false;
     var isOrderCorrect5 = false;
     
-    var isGameOver = false
+    var isWinning = false
     var currentCharIndex = 0
     
     override func didMove(to view: SKView) {
@@ -79,6 +79,16 @@ class GameScene1: SKScene {
                 initialPositions[node] = node.position
                 print("\(nodeName) node found")
             }
+        }
+        
+        //winningGame()
+    }
+    
+    
+    
+    func winningGame () {
+        if currentCharIndex > 1 {
+            isWinning = true
         }
     }
     
@@ -152,6 +162,35 @@ class GameScene1: SKScene {
         addChild(background)
     }
     
+    func winningPopup() {
+        let background = SKSpriteNode(color: SKColor.white, size: CGSize(width: 300, height: 200))
+        background.position = CGPoint(x: frame.midX, y: frame.midY)
+        background.zPosition = 100
+        
+        let winnerLabel = SKLabelNode(text: "Winner")
+        winnerLabel.fontSize = 20
+        winnerLabel.fontColor = SKColor.black
+        winnerLabel.position = CGPoint(x: 0, y: 70)
+        
+        let nextButton = SKLabelNode(text: "Next")
+        nextButton.fontColor = SKColor.black
+        nextButton.fontSize = 20
+        nextButton.name = "nextButton"
+        nextButton.position = CGPoint(x: -50, y: -80)
+        
+        let playAgainButton = SKLabelNode(text: "Play Again")
+        playAgainButton.fontColor = SKColor.black
+        playAgainButton.fontSize = 20
+        playAgainButton.name = "playAgainButton"
+        playAgainButton.position = CGPoint(x: 50, y: -80)
+        
+        background.addChild(winnerLabel)
+        background.addChild(playAgainButton)
+        background.addChild(nextButton)
+        
+        addChild(background)
+    }
+    
     func restartGame() {
         if let scene = SKScene(fileNamed: "GameScene1") {
             scene.scaleMode = .aspectFill
@@ -200,9 +239,16 @@ class GameScene1: SKScene {
             timeLabel.text = String(format: "%02d:%02d", minutes, seconds)
             
             if seconds == 0 {
-                isGameOver = true
-                gameOverPopup()
-                self.isPaused = true
+                if isWinning == false {
+                    gameOverPopup()
+                    self.isPaused = true
+                } else if isWinning == true {
+                    winningPopup()
+                    self.isPaused = true
+                }
+               
+                
+                
             }
         }
     }
@@ -241,6 +287,10 @@ class GameScene1: SKScene {
 
             previousPosition = CGPoint(x: previousPosition.x - char.size.width / 2 - distanceApart, y: char.position.y)
         }
+        
+//        if currentCharIndex >= 3 {
+//            isWinning = true
+//        }
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -495,7 +545,7 @@ class GameScene1: SKScene {
                 }
                 
                 if touchedNode.name == "cancelButton" {
-                    touchedNode.parent?.removeFromParent()
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GoToLevelScreen"), object: nil)
                     isTouchHandled = true
                 }
                 
@@ -554,6 +604,8 @@ class GameScene1: SKScene {
     }
 
     override func update(_ currentTime: TimeInterval) {
+        winningGame()
+        
         if reverseTimeEnabled {
             for (node, initialPosition) in initialPositions {
                 node.position = CGPoint(
