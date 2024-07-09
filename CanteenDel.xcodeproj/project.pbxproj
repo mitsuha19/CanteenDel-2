@@ -179,7 +179,8 @@
 				81B5DF8A2C33A83B003F6B1F /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
+			path = "/Users/foundation-027/Documents/Sotargoda---CanteenDel/CanteenDel";
+			sourceTree = "<absolute>";
 		};
 		81B5DF8E2C33A83C003F6B1F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
