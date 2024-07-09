@@ -10,6 +10,9 @@ import UIKit
 class HomePageViewController: UIViewController {
 
     var name = ""
+    
+    //nama
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
