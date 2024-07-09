@@ -4,6 +4,12 @@ class HomePageViewController: UIViewController {
 
     var name = ""
 
+    
+    //nama
+    
+
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         AudioManager.shared.playBackgroundMusic(fileName: "bgmusic", fileType: "wav")
