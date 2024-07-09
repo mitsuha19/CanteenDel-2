@@ -60,6 +60,9 @@ class GameScene1: SKScene {
                 print("\(nodeName) node found")
             }
         }
+        
+        // Memutar musik latar saat scene dimuat
+        AudioManager.shared.playBackgroundMusic(fileName: "bgmusic", fileType: "wav")
     }
     
     func showStartPopup() {
@@ -212,12 +215,18 @@ class GameScene1: SKScene {
                     updateOmprengPosition()
                     omprengs.append(newOmpreng)
                     omprengPressed = true
+
+                    // Memutar efek suara saat ompreng dipegang
+                    AudioManager.shared.playSoundEffect(fileName: "clickSound", fileType: "wav")
                 }
             }
             
             for node in draggableNodes {
                 if node.contains(touchLocation) &&  omprengPressed{
                     activeTouches[touch] = node
+
+                    // Memutar efek suara saat node draggable disentuh
+                    AudioManager.shared.playSoundEffect(fileName: "clickSound", fileType: "wav")
                 }
             }
             
@@ -250,11 +259,14 @@ class GameScene1: SKScene {
                     characters[currentCharIndex].run(SKAction.sequence([delayAction, moveRight]))
                     
                     // Move next character to the center with delay
-                       if currentCharIndex + 1 < characters.count {
-                           moveCharacterToCenter(characters: Array(characters[(currentCharIndex + 1)...]), delayBetweenCharacters: 3.0)
-                       }
+                    if currentCharIndex + 1 < characters.count {
+                        moveCharacterToCenter(characters: Array(characters[(currentCharIndex + 1)...]), delayBetweenCharacters: 3.0)
+                    }
 
-                       currentCharIndex += 1
+                    currentCharIndex += 1
+
+                    // Memutar efek suara saat karakter menerima ompreng
+                    AudioManager.shared.playSoundEffect(fileName: "clickSound", fileType: "wav")
                 }
             }
             
@@ -273,21 +285,33 @@ class GameScene1: SKScene {
                     
                     startCountdown()
                     isTouchHandled = true
+
+                    // Memutar efek suara saat tombol OK ditekan
+                    AudioManager.shared.playSoundEffect(fileName: "clickSound", fileType: "wav")
                 }
                 
                 if touchedNode.name == "cancelButton" {
                     touchedNode.parent?.removeFromParent()
                     isTouchHandled = true
+
+                    // Memutar efek suara saat tombol Cancel ditekan
+                    AudioManager.shared.playSoundEffect(fileName: "clickSound", fileType: "wav")
                 }
                 
                 if touchedNode.name == "playAgainButton" {
                     restartGame()
                     isTouchHandled = true
+
+                    // Memutar efek suara saat tombol Play Again ditekan
+                    AudioManager.shared.playSoundEffect(fileName: "clickSound", fileType: "wav")
                 }
                 
                 if touchedNode.name == "homeButton" {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GoToLevelScreen"), object: nil)
                     isTouchHandled = true
+
+                    // Memutar efek suara saat tombol Home ditekan
+                    AudioManager.shared.playSoundEffect(fileName: "clickSound", fileType: "wav")
                 }
             }
         }
@@ -309,13 +333,16 @@ class GameScene1: SKScene {
                 let forbiddenXRange = -125...125
                 let forbiddenYRange = -198 ... -93
                 if forbiddenXRange.contains(Int(dropLocation.x)) && forbiddenYRange.contains(Int(dropLocation.y)) {
-                        // Jika drop di area yang diperbolehkan, buat salinan node
-                        createDraggableNode(named: node.name!)
-                        alreadyDragNodes.append(node)
-                        } else {
-                            // Kembalikan node ke posisi awal jika drop di area terlarang
-                            node.position = initialPositions[node] ?? CGPoint.zero
-                        }
+                    // Jika drop di area yang diperbolehkan, buat salinan node
+                    createDraggableNode(named: node.name!)
+                    alreadyDragNodes.append(node)
+                    
+                    // Memutar efek suara saat node draggable dilepas di area yang diperbolehkan
+                    AudioManager.shared.playSoundEffect(fileName: "dropSound", fileType: "wav")
+                } else {
+                    // Kembalikan node ke posisi awal jika drop di area terlarang
+                    node.position = initialPositions[node] ?? CGPoint.zero
+                }
                 activeTouches.removeValue(forKey: touch)
             }
         }
