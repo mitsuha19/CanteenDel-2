@@ -7,6 +7,7 @@ class GameScene1: SKScene {
     var activeTouches = [UITouch: SKSpriteNode]()
     var alreadyDragNodes = [SKSpriteNode]()
     var initialPositions = [SKSpriteNode: CGPoint]()
+    var positionInOmpreng = [SKSpriteNode: CGPoint]()
     
     var settingsButton: SKSpriteNode?
     var settingsPopup: SKSpriteNode?
@@ -22,6 +23,12 @@ class GameScene1: SKScene {
     var char2: SKSpriteNode?
     var char3: SKSpriteNode?
     var char4: SKSpriteNode?
+    
+    var targetCount: Int = 4
+    var currentTargetCount: Int = 0
+    var targetLabel: SKLabelNode!
+
+
 
     var omprengs = [SKSpriteNode]()
     var omprengPressed = false
@@ -45,7 +52,7 @@ class GameScene1: SKScene {
     var isOrderCorrect4 = false;
     var isOrderCorrect5 = false;
     
-    var isGameOver = false
+    var isWinning = false
     var currentCharIndex = 0
     
     override func didMove(to view: SKView) {
@@ -65,6 +72,14 @@ class GameScene1: SKScene {
         timeLabel.zPosition = 10
         addChild(timeLabel)
         
+        
+        targetLabel = SKLabelNode(text: " Target : \(currentTargetCount)/\(targetCount)")
+           targetLabel.fontSize = 36
+           targetLabel.fontColor = .black
+           targetLabel.position = CGPoint(x: -600, y: 270)
+           targetLabel.zPosition = 10
+           addChild(targetLabel)
+        
         if let omprengNode = self.childNode(withName: "//ompreng") as? SKSpriteNode {
             omprengs.append(omprengNode)
             initialPositions[omprengNode] = omprengNode.position
@@ -79,6 +94,16 @@ class GameScene1: SKScene {
                 initialPositions[node] = node.position
                 print("\(nodeName) node found")
             }
+        }
+        
+        //winningGame()
+    }
+    
+    
+    
+    func winningGame () {
+        if currentCharIndex > 1 {
+            isWinning = true
         }
     }
     
@@ -98,7 +123,7 @@ class GameScene1: SKScene {
         background.position = CGPoint(x: frame.midX, y: frame.midY)
         background.zPosition = 100
         
-        let label = SKLabelNode(text: "Target 8 Mahasiswa")
+        let label = SKLabelNode(text: "Target 6 Mahasiswa")
         label.fontSize = 20
         label.fontColor = SKColor.black
         label.position = CGPoint(x: 0, y: 20)
@@ -152,6 +177,35 @@ class GameScene1: SKScene {
         addChild(background)
     }
     
+    func winningPopup() {
+        let background = SKSpriteNode(color: SKColor.white, size: CGSize(width: 300, height: 200))
+        background.position = CGPoint(x: frame.midX, y: frame.midY)
+        background.zPosition = 100
+        
+        let winnerLabel = SKLabelNode(text: "Winner")
+        winnerLabel.fontSize = 20
+        winnerLabel.fontColor = SKColor.black
+        winnerLabel.position = CGPoint(x: 0, y: 70)
+        
+        let nextButton = SKLabelNode(text: "Next")
+        nextButton.fontColor = SKColor.black
+        nextButton.fontSize = 20
+        nextButton.name = "nextButton"
+        nextButton.position = CGPoint(x: -50, y: -80)
+        
+        let playAgainButton = SKLabelNode(text: "Play Again")
+        playAgainButton.fontColor = SKColor.black
+        playAgainButton.fontSize = 20
+        playAgainButton.name = "playAgainButton"
+        playAgainButton.position = CGPoint(x: 50, y: -80)
+        
+        background.addChild(winnerLabel)
+        background.addChild(playAgainButton)
+        background.addChild(nextButton)
+        
+        addChild(background)
+    }
+    
     func restartGame() {
         if let scene = SKScene(fileNamed: "GameScene1") {
             scene.scaleMode = .aspectFill
@@ -200,9 +254,16 @@ class GameScene1: SKScene {
             timeLabel.text = String(format: "%02d:%02d", minutes, seconds)
             
             if seconds == 0 {
-                isGameOver = true
-                gameOverPopup()
-                self.isPaused = true
+                if isWinning == false {
+                    gameOverPopup()
+                    self.isPaused = true
+                } else if isWinning == true {
+                    winningPopup()
+                    self.isPaused = true
+                }
+               
+                
+                
             }
         }
     }
@@ -215,6 +276,8 @@ class GameScene1: SKScene {
             pesanan?.zPosition = 10
             addChild(pesanan!)
             pesanans.append(pesanan!)
+            
+          
         }
     }
     
@@ -237,10 +300,15 @@ class GameScene1: SKScene {
             let sequence = SKAction.sequence([delayAction, moveToCenter])
             char.run(sequence) { [weak self] in
                 self?.showPesanan(for: char)
+              
             }
 
             previousPosition = CGPoint(x: previousPosition.x - char.size.width / 2 - distanceApart, y: char.position.y)
         }
+        
+//        if currentCharIndex >= 3 {
+//            isWinning = true
+//        }
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -263,6 +331,12 @@ class GameScene1: SKScene {
             
             for node in draggableNodes {
                 if node.contains(touchLocation) &&  omprengPressed{
+                    activeTouches[touch] = node
+                }
+            }
+            
+            for node in alreadyDragNodes {
+                if node.contains(touchLocation) {
                     activeTouches[touch] = node
                 }
             }
@@ -471,6 +545,8 @@ class GameScene1: SKScene {
                            }
 
                            currentCharIndex += 1
+                        // Tambahkan target setelah ompreng diberikan
+                              updateTargetCount()
                     }
                 } else {
                     AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
@@ -495,7 +571,7 @@ class GameScene1: SKScene {
                 }
                 
                 if touchedNode.name == "cancelButton" {
-                    touchedNode.parent?.removeFromParent()
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GoToLevelScreen"), object: nil)
                     isTouchHandled = true
                 }
                 
@@ -522,23 +598,48 @@ class GameScene1: SKScene {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            if let node = activeTouches[touch] {
-                let dropLocation = node.position
-                let forbiddenXRange = -125...125
-                let forbiddenYRange = -198 ... -93
-                if forbiddenXRange.contains(Int(dropLocation.x)) && forbiddenYRange.contains(Int(dropLocation.y)) {
-                        // Jika drop di area yang diperbolehkan, buat salinan node
-                        createDraggableNode(named: node.name!)
-                        alreadyDragNodes.append(node)
-                        } else {
-                            // Kembalikan node ke posisi awal jika drop di area terlarang
-                            node.position = initialPositions[node] ?? CGPoint.zero
+            for touch in touches {
+                if let node = activeTouches[touch] {
+                    let dropLocation = node.position
+                    // daerah ompreng
+                    let forbiddenXRange = -125...125
+                    let forbiddenYRange = -198 ... -93
+                    // daerah tempat sampah
+                    let forbiddenxSampahRange = 320 ... 560
+                    let forbiddenySampahRange = -320 ... -240
+                    if forbiddenXRange.contains(Int(dropLocation.x)) && forbiddenYRange.contains(Int(dropLocation.y)) {
+                        if draggableNodes.contains(node) {
+                            // Jika drop di area yang diperbolehkan, buat salinan node
+                            createDraggableNode(named: node.name!)
+                            if let index = draggableNodes.firstIndex(of: node) {
+                                draggableNodes.remove(at: index)
+                            }
+                            alreadyDragNodes.append(node)
+                            positionInOmpreng[node] = node.position
+                        } else if alreadyDragNodes.contains(node) {
+                            // Kembalikan node ke posisi awal jika already dragged node
+                            node.position = positionInOmpreng[node] ?? CGPoint.zero
                         }
-                activeTouches.removeValue(forKey: touch)
+                    } else {
+                        // Jika drop di luar area yang diperbolehkan
+                        if draggableNodes.contains(node) {
+                            // Kembalikan node ke posisi awal jika draggable node
+                            node.position = initialPositions[node] ?? CGPoint.zero
+                        } else if alreadyDragNodes.contains(node) {
+                            // Kembalikan node ke posisi awal jika already dragged node
+                            node.position = positionInOmpreng[node] ?? CGPoint.zero
+                        }
+                    }
+                    
+                    if forbiddenxSampahRange.contains(Int(dropLocation.x)) && forbiddenySampahRange.contains(Int(dropLocation.y)) {
+                        if alreadyDragNodes.contains(node) {
+                            node.removeFromParent()
+                        }
+                    }
+                    activeTouches.removeValue(forKey: touch)
+                }
             }
         }
-    }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
@@ -554,6 +655,8 @@ class GameScene1: SKScene {
     }
 
     override func update(_ currentTime: TimeInterval) {
+        winningGame()
+        
         if reverseTimeEnabled {
             for (node, initialPosition) in initialPositions {
                 node.position = CGPoint(
@@ -563,4 +666,15 @@ class GameScene1: SKScene {
             }
         }
     }
+    
+    func updateTargetCount() {
+        currentTargetCount += 1
+        targetLabel.text = " Target : \(currentTargetCount)/\(targetCount)"
+
+        if currentTargetCount >= targetCount {
+            winningPopup()
+            self.isPaused = true
+        }
+    }
+
 }
