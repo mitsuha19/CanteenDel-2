@@ -14,10 +14,10 @@
             filePath = "CanteenDel/GameScene1.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
-            landmarkName = "GameScene1"
-            landmarkType = "3">
+            startingLineNumber = "224"
+            endingLineNumber = "224"
+            landmarkName = "gameOverPopup()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -30,9 +30,9 @@
             filePath = "CanteenDel/GameScene1.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
-            landmarkName = "winningPopup()"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
+            landmarkName = "gameOverPopup()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
