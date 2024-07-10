@@ -61,7 +61,8 @@ class GameScene1: SKScene {
     var currentCharIndex = 0
     
     override func didMove(to view: SKView) {
-        
+        super.didMove(to: view)
+                
         char1 = self.childNode(withName: "//char1") as? SKSpriteNode
         char2 = self.childNode(withName: "//char2") as? SKSpriteNode
         char3 = self.childNode(withName: "//char3") as? SKSpriteNode
@@ -72,6 +73,7 @@ class GameScene1: SKScene {
         showStartPopup()
         
         timeLabel = SKLabelNode(text: "01:00")
+        timeLabel.fontName = "Helvetica-bold"
         timeLabel.fontSize = 36
         timeLabel.fontColor = .black
         timeLabel.position = CGPoint(x: 0, y: 270)
@@ -80,7 +82,8 @@ class GameScene1: SKScene {
         
         
         targetLabel = SKLabelNode(text: " Target : \(currentTargetCount)")
-        targetLabel.fontSize = 36
+        targetLabel.fontName = "Helvetica-Bold"
+        targetLabel.fontSize = 25
         targetLabel.fontColor = .black
         targetLabel.position = CGPoint(x: -450, y: 270)
         targetLabel.zPosition = 10
@@ -106,12 +109,13 @@ class GameScene1: SKScene {
             if let node = self.childNode(withName: "//\(nodeName)") as? SKSpriteNode {
                 draggableNodes.append(node)
                 initialPositions[node] = node.position
-                print("\(nodeName) node found")
             }
         }
         
         //winningGame()
     }
+    
+    
     
     func resetOrder() {
         isOrderCorrect1 = false;
@@ -129,27 +133,46 @@ class GameScene1: SKScene {
         background.position = CGPoint(x: frame.midX, y: frame.midY)
         background.zPosition = 100
         
-        let label = SKLabelNode(text: "Target 6 Mahasiswa")
+        let outline = SKShapeNode(rectOf: CGSize(width: 300, height: 200))
+        outline.position = CGPoint(x: frame.midX, y: frame.midY)
+        outline.strokeColor = SKColor.black // Set the color of the outline
+        outline.lineWidth = 2 // Set the thickness of the outline
+        outline.zPosition = 101 // Ensure the outline is above the background
+        
+        let title = SKLabelNode(text: "Target")
+        title.fontSize = 40
+        title.fontName = "Helvetica-Bold"
+        title.fontColor = SKColor.black
+        title.position = CGPoint(x: 0, y: 40)
+        
+        let label = SKLabelNode(text: "5 Mahasiswa")
         label.fontSize = 20
+        label.fontName = "Helvetica-Bold"
         label.fontColor = SKColor.black
-        label.position = CGPoint(x: 0, y: 20)
+        label.position = CGPoint(x: 0, y: -20)
         
         let okButton = SKLabelNode(text: "OK")
         okButton.fontColor = SKColor.blue
         okButton.fontSize = 20
+        okButton.fontName = "Helvetica-Bold"
         okButton.name = "okButton"
-        okButton.position = CGPoint(x: -50, y: -40)
+        okButton.position = CGPoint(x: 50, y: -80)
+        okButton.zPosition = 102
         
         let cancelButton = SKLabelNode(text: "Cancel")
         cancelButton.fontColor = SKColor.red
         cancelButton.fontSize = 20
+        cancelButton.fontName = "Helvetica-Bold"
         cancelButton.name = "cancelButton"
-        cancelButton.position = CGPoint(x: 50, y: -40)
+        cancelButton.position = CGPoint(x: -50, y: -80)
+        cancelButton.zPosition = 103
         
         popupContainer.addChild(background)
         background.addChild(label)
         background.addChild(okButton)
         background.addChild(cancelButton)
+        background.addChild(outline)
+        background.addChild(title)
         
         addChild(popupContainer)
     }
@@ -159,22 +182,33 @@ class GameScene1: SKScene {
         background.position = CGPoint(x: frame.midX, y: frame.midY)
         background.zPosition = 100
         
+        let outline = SKShapeNode(rectOf: CGSize(width: 300, height: 200))
+        outline.position = CGPoint(x: frame.midX, y: frame.midY)
+        outline.strokeColor = SKColor.black // Set the color of the outline
+        outline.lineWidth = 2 // Set the thickness of the outline
+        outline.zPosition = 101 // Ensure the outline is above the background
+        
         let timeOverlabel = SKLabelNode(text: "Times Over")
+        timeOverlabel.fontName = "Helvetica-Bold"
         timeOverlabel.fontSize = 20
         timeOverlabel.fontColor = SKColor.black
         timeOverlabel.position = CGPoint(x: 0, y: 70)
         
         let playAgainButton = SKLabelNode(text: "Play Again")
-        playAgainButton.fontColor = SKColor.black
+        playAgainButton.fontColor = SKColor.red
+        playAgainButton.fontName = "Helvetica-Bold"
         playAgainButton.fontSize = 20
         playAgainButton.name = "playAgainButton"
         playAgainButton.position = CGPoint(x: -50, y: -80)
+        playAgainButton.zPosition = 102
         
         let homeButton = SKLabelNode(text: "Home")
-        homeButton.fontColor = SKColor.black
+        homeButton.fontColor = SKColor.blue
+        homeButton.fontName = "Helvetica-Bold"
         homeButton.fontSize = 20
         homeButton.name = "homeButton"
         homeButton.position = CGPoint(x: 50, y: -80)
+        homeButton.zPosition = 103
         
         // Tambahkan bintang-bintang berdasarkan jumlah target yang tercapai
         let star1 = SKSpriteNode(imageNamed: coloredStarCount >= 1 ? "coloredStar" : "bintangKosong1")
@@ -191,6 +225,7 @@ class GameScene1: SKScene {
         
         let scoreButton = SKLabelNode(text: "Score: \(score)")
         scoreButton.fontColor = SKColor.black
+        scoreButton.fontName = "Helvetica-Bold"
         scoreButton.fontSize = 20
         scoreButton.name = "scoreButton"
         scoreButton.position = CGPoint(x: 0, y: -45)
@@ -291,7 +326,7 @@ class GameScene1: SKScene {
                 self?.updateCountdown()
             },
 
-            SKAction.wait(forDuration: 1.0)
+            SKAction.wait(forDuration: 0.01)
         ])
         
         run(SKAction.repeat(countdownAction, count: Int(countdownTime)))

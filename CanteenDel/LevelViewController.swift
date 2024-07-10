@@ -10,6 +10,8 @@ class LevelViewController: UIViewController {
         
         override func viewDidLoad() {
             super.viewDidLoad()
+            NotificationCenter.default.addObserver(self, selector: #selector(goToLevelScreen), name: NSNotification.Name(rawValue: "GoToLevelScreen"), object: nil)
+            
             print("levelViewController \(self.name)")
             
             if let storedName = UserDefaults.standard.string(forKey: "USER_NAME") {
@@ -19,7 +21,7 @@ class LevelViewController: UIViewController {
         
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         }
-    
+        
     @IBAction func Next(_ sender: Any) {
         if level == 1 {
             ImageView.image = UIImage(named: "level2lock")
@@ -49,4 +51,8 @@ class LevelViewController: UIViewController {
     @IBAction func goHomePage(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+    @objc func goToLevelScreen() {
+            navigationController?.popViewController(animated: true)
+        }
 }
