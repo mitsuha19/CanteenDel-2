@@ -23,8 +23,9 @@ class GameScene1: SKScene {
     var char2: SKSpriteNode?
     var char3: SKSpriteNode?
     var char4: SKSpriteNode?
+    var char5: SKSpriteNode?
     
-    var targetCount: Int = 4
+    var targetCount: Int = 3
     var currentTargetCount: Int = 0
     var targetLabel: SKLabelNode!
 
@@ -62,6 +63,8 @@ class GameScene1: SKScene {
         char2 = self.childNode(withName: "//char2") as? SKSpriteNode
         char3 = self.childNode(withName: "//char3") as? SKSpriteNode
         char4 = self.childNode(withName: "//char4") as? SKSpriteNode
+        char5 = self.childNode(withName: "//char5") as? SKSpriteNode
+        
         
         showStartPopup()
         
@@ -76,7 +79,7 @@ class GameScene1: SKScene {
         targetLabel = SKLabelNode(text: " Target : \(currentTargetCount)/\(targetCount)")
            targetLabel.fontSize = 36
            targetLabel.fontColor = .black
-           targetLabel.position = CGPoint(x: -600, y: 270)
+           targetLabel.position = CGPoint(x: -450, y: 270)
            targetLabel.zPosition = 10
            addChild(targetLabel)
         
@@ -102,7 +105,7 @@ class GameScene1: SKScene {
     
     
     func winningGame () {
-        if currentCharIndex > 1 {
+        if currentCharIndex > 2 {
             isWinning = true
         }
     }
@@ -348,7 +351,7 @@ class GameScene1: SKScene {
             let sequence = SKAction.sequence([movetoYAction, scaleAction])
             let sequence1 = SKAction.sequence([movetoYAction, scaleAction, deleteAction])
             
-            let characters = [char1, char2, char3, char4].compactMap { $0 }
+            let characters = [char1, char2, char3, char4, char5].compactMap { $0 }
 
             if currentCharIndex < characters.count && characters[currentCharIndex].contains(touchLocation) && omprengPressed {
                 
@@ -510,6 +513,45 @@ class GameScene1: SKScene {
                         }
                         
                     }
+                case 4:
+                    for node in alreadyDragNodes {
+                        if node.name == "selada" {
+                            if forbidden1xRange.contains(node.position.x) && forbidden1yRange.contains(node.position.y) {
+                                isOrderCorrect1 = true
+                            } else {
+                                isOrderCorrect1 = false
+                            }
+                        }
+                        if node.name == "ayam" {
+                            if forbidden2xRange.contains(node.position.x) && forbidden2yRange.contains(node.position.y) {
+                                isOrderCorrect2 = true
+                            } else {
+                                isOrderCorrect2 = false
+                            }
+                        }
+                        if node.name == "semangka" {
+                            if forbidden3xRange.contains(node.position.x) && forbidden3yRange.contains(node.position.y) {
+                                isOrderCorrect3 = true
+                            } else {
+                                isOrderCorrect3 = false
+                            }
+                        }
+                        if node.name == "telur" {
+                            if forbidden4xRange.contains(node.position.x) && forbidden4yRange.contains(node.position.y) {
+                                isOrderCorrect4 = true
+                            } else {
+                                isOrderCorrect4 = false
+                            }
+                        }
+                        if node.name == "nasi" {
+                            if forbidden5xRange.contains(node.position.x) && forbidden5yRange.contains(node.position.y) {
+                                isOrderCorrect5 = true
+                            } else {
+                                isOrderCorrect5 = false
+                            }
+                        }
+                        
+                    }
                 default:
                     print()
                 }
@@ -561,8 +603,8 @@ class GameScene1: SKScene {
                         popup.removeFromParent()
                     }
                     
-                    if let char1 = char1, let char2 = char2, let char3 = char3 , let char4 = char4{
-                        let characters = [char1, char2, char3, char4]
+                    if let char1 = char1, let char2 = char2, let char3 = char3 , let char4 = char4 , let char5 = char5{
+                        let characters = [char1, char2, char3, char4, char5]
                         moveCharacterToCenter(characters: characters)
                     }
                     
