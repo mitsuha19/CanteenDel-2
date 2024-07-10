@@ -53,11 +53,14 @@ class GameScene1: SKScene {
     var isOrderCorrect4 = false;
     var isOrderCorrect5 = false;
     
+    let price = [25000, 18000, 30000,15000, 25000 ]
+    var profitLabel: SKLabelNode!
+    var score: Int = 0
+    
     var isWinning = false
     var currentCharIndex = 0
     
     override func didMove(to view: SKView) {
-        print("Hello")
         
         char1 = self.childNode(withName: "//char1") as? SKSpriteNode
         char2 = self.childNode(withName: "//char2") as? SKSpriteNode
@@ -77,11 +80,19 @@ class GameScene1: SKScene {
         
         
         targetLabel = SKLabelNode(text: " Target : \(currentTargetCount)")
-           targetLabel.fontSize = 36
-           targetLabel.fontColor = .black
-           targetLabel.position = CGPoint(x: -450, y: 270)
-           targetLabel.zPosition = 10
-           addChild(targetLabel)
+        targetLabel.fontSize = 36
+        targetLabel.fontColor = .black
+        targetLabel.position = CGPoint(x: -450, y: 270)
+        targetLabel.zPosition = 10
+        addChild(targetLabel)
+        
+        profitLabel = SKLabelNode(text: "Profit: Rp.\(score)")
+        profitLabel.fontSize = 25
+        profitLabel.fontName = "Helvetica-Bold"
+        profitLabel.fontColor = .black
+        profitLabel.position = CGPoint(x: 450, y: 270)
+        profitLabel.zPosition = 10
+        addChild(profitLabel)
         
         if let omprengNode = self.childNode(withName: "//ompreng") as? SKSpriteNode {
             omprengs.append(omprengNode)
@@ -178,12 +189,19 @@ class GameScene1: SKScene {
         star3.size = CGSize(width: 30, height: 30)
         star3.position = CGPoint(x: 50, y: 30)
         
+        let scoreButton = SKLabelNode(text: "Score: \(score)")
+        scoreButton.fontColor = SKColor.black
+        scoreButton.fontSize = 20
+        scoreButton.name = "scoreButton"
+        scoreButton.position = CGPoint(x: 0, y: -45)
+        
         background.addChild(timeOverlabel)
         background.addChild(playAgainButton)
         background.addChild(homeButton)
         background.addChild(star1)
         background.addChild(star2)
         background.addChild(star3)
+        background.addChild(scoreButton)
         
         addChild(background)
     }
@@ -223,11 +241,11 @@ class GameScene1: SKScene {
         star3.size = CGSize(width: 30, height: 30)
         star3.position = CGPoint(x: 50, y: 30)
 
-        let scoreButton = SKLabelNode(text: "Score:")
+        let scoreButton = SKLabelNode(text: "Score: \(score)")
         scoreButton.fontColor = SKColor.black
         scoreButton.fontSize = 20
         scoreButton.name = "scoreButton"
-        scoreButton.position = CGPoint(x: -50, y: -45)
+        scoreButton.position = CGPoint(x: 0, y: -45)
 
         background.addChild(winnerLabel)
         background.addChild(playAgainButton)
@@ -273,7 +291,7 @@ class GameScene1: SKScene {
                 self?.updateCountdown()
             },
 
-            SKAction.wait(forDuration: 0.1)
+            SKAction.wait(forDuration: 0.001)
         ])
         
         run(SKAction.repeat(countdownAction, count: Int(countdownTime)))
@@ -583,6 +601,27 @@ class GameScene1: SKScene {
                 }
                 
                 if isOrderCorrect1 && isOrderCorrect2 && isOrderCorrect3 && isOrderCorrect4 && isOrderCorrect5{
+                    
+                    let scoreValue = price[currentCharIndex]
+                    score += scoreValue
+                    
+                    profitLabel.text = "Profit: Rp.\(score)"
+                    
+                    let scoreText = "+ \(scoreValue)"
+                    let scoreLabel = SKLabelNode(text: scoreText)
+                    scoreLabel.fontSize = 20
+                    scoreLabel.fontColor = SKColor.red
+                    scoreLabel.fontName = "Helvetica-Bold"
+                    scoreLabel.position = CGPoint(x: 0, y: 0)
+                    self.addChild(scoreLabel)
+                    
+                    let scaleUpAction = SKAction.scale(to: 1.5, duration: 0.3)
+                    let waitAction = SKAction.wait(forDuration: 1)
+                    let scaleDownAction = SKAction.scale(to: 0, duration: 0.3)
+                    let removeAction = SKAction.removeFromParent()
+                    let sequenceLabel = SKAction.sequence([scaleUpAction, waitAction, scaleDownAction, removeAction])
+                    
+                    scoreLabel.run(sequenceLabel)
                     
                     resetOrder()
                     
