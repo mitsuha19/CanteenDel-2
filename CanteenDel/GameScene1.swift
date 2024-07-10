@@ -25,9 +25,20 @@ class GameScene1: SKScene {
     var char4: SKSpriteNode?
     var char5: SKSpriteNode?
     
-    var targetCount: Int = 3
+    // Tabel Target Mahasiswa
+    var targetCount: Int = 5
     var currentTargetCount: Int = 0
+    var coloredStarCount: Int = 0
+    
+
     var targetLabel: SKLabelNode!
+    
+    
+    
+    
+    
+    
+    
 
 
 
@@ -76,7 +87,7 @@ class GameScene1: SKScene {
         addChild(timeLabel)
         
         
-        targetLabel = SKLabelNode(text: " Target : \(currentTargetCount)/\(targetCount)")
+        targetLabel = SKLabelNode(text: " Target : \(currentTargetCount)")
            targetLabel.fontSize = 36
            targetLabel.fontColor = .black
            targetLabel.position = CGPoint(x: -450, y: 270)
@@ -104,11 +115,7 @@ class GameScene1: SKScene {
     
     
     
-    func winningGame () {
-        if currentCharIndex > 2 {
-            isWinning = true
-        }
-    }
+   
     
     func resetOrder() {
         isOrderCorrect1 = false;
@@ -173,41 +180,84 @@ class GameScene1: SKScene {
         homeButton.name = "homeButton"
         homeButton.position = CGPoint(x: 50, y: -80)
         
+        // Tambahkan bintang-bintang berdasarkan jumlah target yang tercapai
+        let star1 = SKSpriteNode(imageNamed: coloredStarCount >= 1 ? "coloredStar" : "bintangKosong1")
+        star1.size = CGSize(width: 30, height: 30)
+        star1.position = CGPoint(x: -50, y: 30)
+        
+        let star2 = SKSpriteNode(imageNamed: coloredStarCount >= 2 ? "coloredStar" : "bintangKosong2")
+        star2.size = CGSize(width: 60, height: 60)
+        star2.position = CGPoint(x: 0, y: 30)
+        
+        let star3 = SKSpriteNode(imageNamed: coloredStarCount >= 3 ? "coloredStar" : "bintangKosong3")
+        star3.size = CGSize(width: 30, height: 30)
+        star3.position = CGPoint(x: 50, y: 30)
+        
         background.addChild(timeOverlabel)
         background.addChild(playAgainButton)
         background.addChild(homeButton)
+        background.addChild(star1)
+        background.addChild(star2)
+        background.addChild(star3)
         
         addChild(background)
     }
+
+    
+   
     
     func winningPopup() {
         let background = SKSpriteNode(color: SKColor.white, size: CGSize(width: 300, height: 200))
         background.position = CGPoint(x: frame.midX, y: frame.midY)
         background.zPosition = 100
-        
+
         let winnerLabel = SKLabelNode(text: "Winner")
         winnerLabel.fontSize = 20
         winnerLabel.fontColor = SKColor.black
         winnerLabel.position = CGPoint(x: 0, y: 70)
-        
+
         let nextButton = SKLabelNode(text: "Next")
         nextButton.fontColor = SKColor.black
         nextButton.fontSize = 20
         nextButton.name = "nextButton"
         nextButton.position = CGPoint(x: -50, y: -80)
-        
+
         let playAgainButton = SKLabelNode(text: "Play Again")
         playAgainButton.fontColor = SKColor.black
         playAgainButton.fontSize = 20
         playAgainButton.name = "playAgainButton"
         playAgainButton.position = CGPoint(x: 50, y: -80)
-        
+
+        // Tambahkan bintang-bintang berdasarkan jumlah target yang tercapai
+        let star1 = SKSpriteNode(imageNamed: coloredStarCount >= 1 ? "coloredStar" : "bintangKosong1")
+        star1.size = CGSize(width: 30, height: 30)
+        star1.position = CGPoint(x: -50, y: 30)
+
+        let star2 = SKSpriteNode(imageNamed: coloredStarCount >= 2 ? "coloredStar" : "bintangKosong2")
+        star2.size = CGSize(width: 60, height: 60)
+        star2.position = CGPoint(x: 0, y: 30)
+
+        let star3 = SKSpriteNode(imageNamed: coloredStarCount >= 3 ? "coloredStar" : "bintangKosong3")
+        star3.size = CGSize(width: 30, height: 30)
+        star3.position = CGPoint(x: 50, y: 30)
+
+        let scoreButton = SKLabelNode(text: "Score:")
+        scoreButton.fontColor = SKColor.black
+        scoreButton.fontSize = 20
+        scoreButton.name = "scoreButton"
+        scoreButton.position = CGPoint(x: -50, y: -45)
+
         background.addChild(winnerLabel)
         background.addChild(playAgainButton)
         background.addChild(nextButton)
-        
+        background.addChild(star1)
+        background.addChild(star2)
+        background.addChild(star3)
+        background.addChild(scoreButton)
+
         addChild(background)
     }
+
     
     func restartGame() {
         if let scene = SKScene(fileNamed: "GameScene1") {
@@ -242,7 +292,7 @@ class GameScene1: SKScene {
                 self?.updateCountdown()
             },
 
-            SKAction.wait(forDuration: 1.0)
+            SKAction.wait(forDuration: 1)
         ])
         
         run(SKAction.repeat(countdownAction, count: Int(countdownTime)))
@@ -711,11 +761,23 @@ class GameScene1: SKScene {
     
     func updateTargetCount() {
         currentTargetCount += 1
-        targetLabel.text = " Target : \(currentTargetCount)/\(targetCount)"
+        targetLabel.text = " Target : \(currentTargetCount)"
 
-        if currentTargetCount >= targetCount {
+        if currentTargetCount >= 3 {
+            coloredStarCount = 1
+        }
+        if currentTargetCount >= 4 {
+            coloredStarCount = 2
+        }
+        if currentTargetCount >= 5{
+            coloredStarCount = 3
+        }
+    }
+    
+    func winningGame () {
+        if currentCharIndex > 4 {
+            isWinning = true
             winningPopup()
-            self.isPaused = true
         }
     }
 
