@@ -30,18 +30,7 @@ class GameScene1: SKScene {
     var currentTargetCount: Int = 0
     var coloredStarCount: Int = 0
     
-
     var targetLabel: SKLabelNode!
-    
-    
-    
-    
-    
-    
-    
-
-
-
     var omprengs = [SKSpriteNode]()
     var omprengPressed = false
     
@@ -112,10 +101,6 @@ class GameScene1: SKScene {
         
         //winningGame()
     }
-    
-    
-    
-   
     
     func resetOrder() {
         isOrderCorrect1 = false;
@@ -203,9 +188,6 @@ class GameScene1: SKScene {
         addChild(background)
     }
 
-    
-   
-    
     func winningPopup() {
         let background = SKSpriteNode(color: SKColor.white, size: CGSize(width: 300, height: 200))
         background.position = CGPoint(x: frame.midX, y: frame.midY)
@@ -258,7 +240,6 @@ class GameScene1: SKScene {
         addChild(background)
     }
 
-    
     func restartGame() {
         if let scene = SKScene(fileNamed: "GameScene1") {
             scene.scaleMode = .aspectFill
@@ -292,7 +273,7 @@ class GameScene1: SKScene {
                 self?.updateCountdown()
             },
 
-            SKAction.wait(forDuration: 1)
+            SKAction.wait(forDuration: 0.1)
         ])
         
         run(SKAction.repeat(countdownAction, count: Int(countdownTime)))
@@ -314,9 +295,6 @@ class GameScene1: SKScene {
                     winningPopup()
                     self.isPaused = true
                 }
-               
-                
-                
             }
         }
     }
@@ -329,8 +307,6 @@ class GameScene1: SKScene {
             pesanan?.zPosition = 10
             addChild(pesanan!)
             pesanans.append(pesanan!)
-            
-          
         }
     }
     
@@ -353,15 +329,10 @@ class GameScene1: SKScene {
             let sequence = SKAction.sequence([delayAction, moveToCenter])
             char.run(sequence) { [weak self] in
                 self?.showPesanan(for: char)
-              
             }
 
             previousPosition = CGPoint(x: previousPosition.x - char.size.width / 2 - distanceApart, y: char.position.y)
         }
-        
-//        if currentCharIndex >= 3 {
-//            isWinning = true
-//        }
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -445,6 +416,7 @@ class GameScene1: SKScene {
                         }
                         
                     }
+                    
                 case 1:
                     for node in alreadyDragNodes {
                         if node.name == "brokoli" {
@@ -484,6 +456,7 @@ class GameScene1: SKScene {
                         }
                         
                     }
+                    
                 case 2:
                     for node in alreadyDragNodes {
                         if node.name == "ikan" {
@@ -523,6 +496,7 @@ class GameScene1: SKScene {
                         }
                         
                     }
+                    
                 case 3:
                     for node in alreadyDragNodes {
                         if node.name == "telur" {
@@ -563,6 +537,7 @@ class GameScene1: SKScene {
                         }
                         
                     }
+                    
                 case 4:
                     for node in alreadyDragNodes {
                         if node.name == "selada" {
@@ -602,10 +577,10 @@ class GameScene1: SKScene {
                         }
                         
                     }
+                    
                 default:
                     print()
                 }
-                
                 
                 if isOrderCorrect1 && isOrderCorrect2 && isOrderCorrect3 && isOrderCorrect4 && isOrderCorrect5{
                     
@@ -780,5 +755,4 @@ class GameScene1: SKScene {
             winningPopup()
         }
     }
-
 }
