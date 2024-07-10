@@ -15,23 +15,17 @@ class LevelViewController: UIViewController {
     var level = 1
     var name = "-"
         
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            print("levelViewController \(self.name)")
-            
-            
-            
-            if let storedName = UserDefaults.standard.string(forKey: "USER_NAME") {
-                Username.text = "Welcome " + storedName
-            }
-            
-            // Do any additional setup after loading the view.
-        }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print("levelViewController \(self.name)")
         
-        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            
+        if let storedName = UserDefaults.standard.string(forKey: "USER_NAME") {
+            Username.text = "Welcome " + storedName
         }
+        AudioManager.shared.playBackgroundMusic(fileName: "bgmusic", fileType: "wav")
+    }
     
+
     
     
     @IBAction func Next(_ sender: Any) {
@@ -62,12 +56,13 @@ class LevelViewController: UIViewController {
     }
     
     
+
     @IBAction func goHomePage(_ sender: Any) {
+        AudioManager.shared.playBackgroundMusic(fileName: "click", fileType: "wav")
         dismiss(animated: true, completion: nil)
     }
-    
+
     // branch test
-    
     
     /*
     // MARK: - Navigation
@@ -78,5 +73,4 @@ class LevelViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }

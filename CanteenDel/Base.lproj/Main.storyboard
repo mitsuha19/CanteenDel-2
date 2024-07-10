@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vy9-4k-Phf">
+
+
     <device id="retina6_12" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
@@ -22,6 +25,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lSX-1J-ZsB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+
             <point key="canvasLocation" x="867" y="-1073"/>
         </scene>
         <!--Level View Controller-->
@@ -106,7 +110,9 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
+
             <point key="canvasLocation" x="866.90140845070425" y="-2005.3435114503816"/>
+
         </scene>
         <!--Home Page View Controller-->
         <scene sceneID="PiK-qT-Hk1">
@@ -121,9 +127,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="5vX-hx-Xva">
-                                <rect key="frame" x="275" y="34" width="302" height="180"/>
+                                <rect key="frame" x="197" y="0.0" width="459" height="243"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kyx-Rj-HXf">
                                 <rect key="frame" x="379" y="302" width="97" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -133,6 +140,7 @@
                                     <backgroundConfiguration key="background" cornerRadius="5"/>
                                 </buttonConfiguration>
                             </button>
+
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fry-SO-11n">
                                 <rect key="frame" x="379" y="251" width="97" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -145,6 +153,14 @@
                                     <action selector="pressPlayButton:" destination="Mlv-Mm-kq2" eventType="touchUpInside" id="jrL-3b-fFw"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="btnOptions" translatesAutoresizingMaskIntoConstraints="NO" id="LZD-gc-vGT">
+                                <rect key="frame" x="372" y="294" width="108" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Zyr-y8-ekG" appends="YES" id="acK-SL-n6Q"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3Bd-lH-WJH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -155,8 +171,13 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6r9-gy-uPd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Zyr-y8-ekG">
+                    <connections>
+                        <segue destination="NaR-Pe-yEv" kind="show" id="9Wu-rJ-N65"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="47.887323943661976" y="-1457.2519083969464"/>
+            <point key="canvasLocation" x="-241" y="-448"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="xqM-ZG-2e0">
@@ -197,7 +218,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="47.887323943661976" y="-724.4274809160305"/>
+            <point key="canvasLocation" x="-908" y="-1457"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GS5-p7-0a2">
@@ -216,17 +237,24 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HpN-MN-ijR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="47.887323943661976" y="-2277.0992366412211"/>
+            <point key="canvasLocation" x="431" y="-2373"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="MT5-5L-WfP"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="HomePage" width="2868" height="1912"/>
         <image name="LandingPage" width="3776" height="1824"/>
+
         <image name="arrowshape.backward.fill" catalog="system" width="128" height="104"/>
         <image name="arrowshape.forward.fill" catalog="system" width="128" height="104"/>
         <image name="arrowshape.turn.up.left.circle.fill" catalog="system" width="128" height="123"/>
         <image name="level1" width="1782" height="1800"/>
+
         <image name="logo" width="964" height="796"/>
+        <image name="logo-bgsound" width="813" height="818"/>
+        <image name="logo-soundClick" width="820" height="818"/>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
