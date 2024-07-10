@@ -1,4 +1,5 @@
 import SpriteKit
+import AudioToolbox
 
 class GameScene1: SKScene {
 
@@ -25,7 +26,26 @@ class GameScene1: SKScene {
     var omprengs = [SKSpriteNode]()
     var omprengPressed = false
     
-    var isGameOver = false
+    var pesanans = [SKSpriteNode]()
+    var pesanan: SKSpriteNode?
+    let forbidden1xRange: ClosedRange<CGFloat> = -125 ... -40
+    let forbidden1yRange: ClosedRange<CGFloat> = -150 ... -93
+    let forbidden2xRange: ClosedRange<CGFloat> = -40...120
+    let forbidden2yRange: ClosedRange<CGFloat> = -150 ... -93
+    let forbidden3xRange: ClosedRange<CGFloat> = -125 ... -70
+    let forbidden3yRange: ClosedRange<CGFloat> = -220 ... -160
+    let forbidden4xRange: ClosedRange<CGFloat> = 70 ... 130
+    let forbidden4yRange: ClosedRange<CGFloat> = -220 ... -160
+    let forbidden5xRange: ClosedRange<CGFloat> = -60 ... 60
+    let forbidden5yRange: ClosedRange<CGFloat> = -220 ... -130
+    
+    var isOrderCorrect1 = false;
+    var isOrderCorrect2 = false;
+    var isOrderCorrect3 = false;
+    var isOrderCorrect4 = false;
+    var isOrderCorrect5 = false;
+    
+    var isWinning = false
     var currentCharIndex = 0
     
     override func didMove(to view: SKView) {
@@ -60,6 +80,24 @@ class GameScene1: SKScene {
                 print("\(nodeName) node found")
             }
         }
+        
+        //winningGame()
+    }
+    
+    
+    
+    func winningGame () {
+        if currentCharIndex > 1 {
+            isWinning = true
+        }
+    }
+    
+    func resetOrder() {
+        isOrderCorrect1 = false;
+        isOrderCorrect2 = false;
+        isOrderCorrect3 = false;
+        isOrderCorrect4 = false;
+        isOrderCorrect5 = false;
     }
     
     func showStartPopup() {
@@ -100,7 +138,7 @@ class GameScene1: SKScene {
         background.position = CGPoint(x: frame.midX, y: frame.midY)
         background.zPosition = 100
         
-        let timeOverlabel = SKLabelNode(text: "Timer Over")
+        let timeOverlabel = SKLabelNode(text: "Times Over")
         timeOverlabel.fontSize = 20
         timeOverlabel.fontColor = SKColor.black
         timeOverlabel.position = CGPoint(x: 0, y: 70)
@@ -124,6 +162,35 @@ class GameScene1: SKScene {
         addChild(background)
     }
     
+    func winningPopup() {
+        let background = SKSpriteNode(color: SKColor.white, size: CGSize(width: 300, height: 200))
+        background.position = CGPoint(x: frame.midX, y: frame.midY)
+        background.zPosition = 100
+        
+        let winnerLabel = SKLabelNode(text: "Winner")
+        winnerLabel.fontSize = 20
+        winnerLabel.fontColor = SKColor.black
+        winnerLabel.position = CGPoint(x: 0, y: 70)
+        
+        let nextButton = SKLabelNode(text: "Next")
+        nextButton.fontColor = SKColor.black
+        nextButton.fontSize = 20
+        nextButton.name = "nextButton"
+        nextButton.position = CGPoint(x: -50, y: -80)
+        
+        let playAgainButton = SKLabelNode(text: "Play Again")
+        playAgainButton.fontColor = SKColor.black
+        playAgainButton.fontSize = 20
+        playAgainButton.name = "playAgainButton"
+        playAgainButton.position = CGPoint(x: 50, y: -80)
+        
+        background.addChild(winnerLabel)
+        background.addChild(playAgainButton)
+        background.addChild(nextButton)
+        
+        addChild(background)
+    }
+    
     func restartGame() {
         if let scene = SKScene(fileNamed: "GameScene1") {
             scene.scaleMode = .aspectFill
@@ -137,7 +204,7 @@ class GameScene1: SKScene {
         if let nodeTemplate = self.childNode(withName: "//\(name)") as? SKSpriteNode {
             let node = nodeTemplate.copy() as! SKSpriteNode
             node.position = initialPositions[nodeTemplate] ?? nodeTemplate.position
-            node.zPosition = 1
+            node.zPosition = 2
             node.name = name
             self.addChild(node)
             draggableNodes.append(node)
@@ -172,11 +239,34 @@ class GameScene1: SKScene {
             timeLabel.text = String(format: "%02d:%02d", minutes, seconds)
             
             if seconds == 0 {
-                isGameOver = true
-                gameOverPopup()
-                self.isPaused = true
+                if isWinning == false {
+                    gameOverPopup()
+                    self.isPaused = true
+                } else if isWinning == true {
+                    winningPopup()
+                    self.isPaused = true
+                }
+               
+                
+                
             }
         }
+    }
+    
+    func showPesanan(for character: SKSpriteNode) {
+        if pesanan == nil {
+            pesanan = SKSpriteNode(imageNamed: "pesanan\(currentCharIndex + 1)")
+            pesanan?.size = CGSize(width: 150, height: 150)
+            pesanan?.position = CGPoint(x: 80, y: 137.265)
+            pesanan?.zPosition = 10
+            addChild(pesanan!)
+            pesanans.append(pesanan!)
+        }
+    }
+    
+    func hidePesanan(){
+        pesanan?.removeFromParent()
+        pesanan = nil
     }
             
     func moveCharacterToCenter(characters: [SKSpriteNode], delayBetweenCharacters: TimeInterval = 1.0) {
@@ -191,10 +281,16 @@ class GameScene1: SKScene {
             let moveToCenter = SKAction.move(to: previousPosition, duration: 3.0)
             let delayAction = SKAction.wait(forDuration: delayDuration)
             let sequence = SKAction.sequence([delayAction, moveToCenter])
-            char.run(sequence)
+            char.run(sequence) { [weak self] in
+                self?.showPesanan(for: char)
+            }
 
             previousPosition = CGPoint(x: previousPosition.x - char.size.width / 2 - distanceApart, y: char.position.y)
         }
+        
+//        if currentCharIndex >= 3 {
+//            isWinning = true
+//        }
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -231,30 +327,203 @@ class GameScene1: SKScene {
             let characters = [char1, char2, char3, char4].compactMap { $0 }
 
             if currentCharIndex < characters.count && characters[currentCharIndex].contains(touchLocation) && omprengPressed {
-                for node in alreadyDragNodes {
-                    node.run(sequence1)
+                
+                switch currentCharIndex {
+                case 0:
+                    for node in alreadyDragNodes {
+                        if node.name == "selada" {
+                            if forbidden1xRange.contains(node.position.x) && forbidden1yRange.contains(node.position.y) {
+                                isOrderCorrect1 = true
+                            } else {
+                                isOrderCorrect1 = false
+                            }
+                        }
+                        if node.name == "ayam" {
+                            if forbidden2xRange.contains(node.position.x) && forbidden2yRange.contains(node.position.y) {
+                                isOrderCorrect2 = true
+                            } else {
+                                isOrderCorrect2 = false
+                            }
+                        }
+                        if node.name == "semangka" {
+                            if forbidden3xRange.contains(node.position.x) && forbidden3yRange.contains(node.position.y) {
+                                isOrderCorrect3 = true
+                            } else {
+                                isOrderCorrect3 = false
+                            }
+                        }
+                        if node.name == "telur" {
+                            if forbidden4xRange.contains(node.position.x) && forbidden4yRange.contains(node.position.y) {
+                                isOrderCorrect4 = true
+                            } else {
+                                isOrderCorrect4 = false
+                            }
+                        }
+                        if node.name == "nasi" {
+                            if forbidden5xRange.contains(node.position.x) && forbidden5yRange.contains(node.position.y) {
+                                isOrderCorrect5 = true
+                            } else {
+                                isOrderCorrect5 = false
+                            }
+                        }
+                        
+                    }
+                case 1:
+                    for node in alreadyDragNodes {
+                        if node.name == "brokoli" {
+                            if forbidden1xRange.contains(node.position.x) && forbidden1yRange.contains(node.position.y) {
+                                isOrderCorrect1 = true
+                            } else {
+                                isOrderCorrect1 = false
+                            }
+                        }
+                        if node.name == "ikan" {
+                            if forbidden2xRange.contains(node.position.x) && forbidden2yRange.contains(node.position.y) {
+                                isOrderCorrect2 = true
+                            } else {
+                                isOrderCorrect2 = false
+                            }
+                        }
+                        if node.name == "jeruk" {
+                            if forbidden3xRange.contains(node.position.x) && forbidden3yRange.contains(node.position.y) {
+                                isOrderCorrect3 = true
+                            } else {
+                                isOrderCorrect3 = false
+                            }
+                        }
+                        if node.name == "apel" {
+                            if forbidden4xRange.contains(node.position.x) && forbidden4yRange.contains(node.position.y) {
+                                isOrderCorrect4 = true
+                            } else {
+                                isOrderCorrect4 = false
+                            }
+                        }
+                        if node.name == "nasi" {
+                            if forbidden5xRange.contains(node.position.x) && forbidden5yRange.contains(node.position.y) {
+                                isOrderCorrect5 = true
+                            } else {
+                                isOrderCorrect5 = false
+                            }
+                        }
+                        
+                    }
+                case 2:
+                    for node in alreadyDragNodes {
+                        if node.name == "ikan" {
+                            if forbidden1xRange.contains(node.position.x) && forbidden1yRange.contains(node.position.y) {
+                                isOrderCorrect1 = true
+                            } else {
+                                isOrderCorrect1 = false
+                            }
+                        }
+                        if node.name == "ayam" {
+                            if forbidden2xRange.contains(node.position.x) && forbidden2yRange.contains(node.position.y) {
+                                isOrderCorrect2 = true
+                            } else {
+                                isOrderCorrect2 = false
+                            }
+                        }
+                        if node.name == "selada" {
+                            if forbidden3xRange.contains(node.position.x) && forbidden3yRange.contains(node.position.y) {
+                                isOrderCorrect3 = true
+                            } else {
+                                isOrderCorrect3 = false
+                            }
+                        }
+                        if node.name == "telur" {
+                            if forbidden4xRange.contains(node.position.x) && forbidden4yRange.contains(node.position.y) {
+                                isOrderCorrect4 = true
+                            } else {
+                                isOrderCorrect4 = false
+                            }
+                        }
+                        if node.name == "nasi" {
+                            if forbidden5xRange.contains(node.position.x) && forbidden5yRange.contains(node.position.y) {
+                                isOrderCorrect5 = true
+                            } else {
+                                isOrderCorrect5 = false
+                            }
+                        }
+                        
+                    }
+                case 3:
+                    for node in alreadyDragNodes {
+                        if node.name == "telur" {
+                            if forbidden1xRange.contains(node.position.x) && forbidden1yRange.contains(node.position.y) {
+                                isOrderCorrect1 = true
+                            } else {
+                                isOrderCorrect1 = false
+                            }
+                        }
+                        if node.name == "brokoli" {
+                            if forbidden2xRange.contains(node.position.x) && forbidden2yRange.contains(node.position.y) {
+                                isOrderCorrect2 = true
+                            } else {
+                                isOrderCorrect2 = false
+                            }
+                        }
+//                        if node.name == "jeruk" {
+//                            if forbidden3xRange.contains(node.position.x) && forbidden3yRange.contains(node.position.y) {
+//                                isOrderCorrect3 = true
+//                            } else {
+//                                isOrderCorrect3 = false
+//                            }
+//                        }
+                        isOrderCorrect3 = true
+                        if node.name == "apel" {
+                            if forbidden4xRange.contains(node.position.x) && forbidden4yRange.contains(node.position.y) {
+                                isOrderCorrect4 = true
+                            } else {
+                                isOrderCorrect4 = false
+                            }
+                        }
+                        if node.name == "nasi" {
+                            if forbidden5xRange.contains(node.position.x) && forbidden5yRange.contains(node.position.y) {
+                                isOrderCorrect5 = true
+                            } else {
+                                isOrderCorrect5 = false
+                            }
+                        }
+                        
+                    }
+                default:
+                    print()
                 }
                 
-                if !omprengs.isEmpty {
-                    let firstOmpreng = omprengs[0]
-                    omprengs.remove(at: 0)
-                    firstOmpreng.run(sequence)
-                    omprengPressed = false
+                
+                if isOrderCorrect1 && isOrderCorrect2 && isOrderCorrect3 && isOrderCorrect4 && isOrderCorrect5{
                     
-                    // Move current character to the right after receiving ompreng
-                    let moveRight = SKAction.moveBy(x: 750, y: 0, duration: 5.0)
+                    resetOrder()
                     
-                    // Delay before moving the current character to the right
-                    let delayAction = SKAction.wait(forDuration: 1.5) // Ubah durasi jeda sesuai kebutuhan
+                    for node in alreadyDragNodes {
+                        node.run(sequence1)
+                    }
                     
-                    characters[currentCharIndex].run(SKAction.sequence([delayAction, moveRight]))
+                    hidePesanan()
                     
-                    // Move next character to the center with delay
-                       if currentCharIndex + 1 < characters.count {
-                           moveCharacterToCenter(characters: Array(characters[(currentCharIndex + 1)...]), delayBetweenCharacters: 3.0)
-                       }
+                    if !omprengs.isEmpty {
+                        let firstOmpreng = omprengs[0]
+                        omprengs.remove(at: 0)
+                        firstOmpreng.run(sequence)
+                        omprengPressed = false
+                        
+                        // Move current character to the right after receiving ompreng
+                        let moveRight = SKAction.moveBy(x: 750, y: 0, duration: 5.0)
+                        
+                        // Delay before moving the current character to the right
+                        let delayAction = SKAction.wait(forDuration: 1.5) // Ubah durasi jeda sesuai kebutuhan
+                        
+                        characters[currentCharIndex].run(SKAction.sequence([delayAction, moveRight]))
+                        
+                        // Move next character to the center with delay
+                           if currentCharIndex + 1 < characters.count {
+                               moveCharacterToCenter(characters: Array(characters[(currentCharIndex + 1)...]), delayBetweenCharacters: 3.0)
+                           }
 
-                       currentCharIndex += 1
+                           currentCharIndex += 1
+                    }
+                } else {
+                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
                 }
             }
             
@@ -276,7 +545,7 @@ class GameScene1: SKScene {
                 }
                 
                 if touchedNode.name == "cancelButton" {
-                    touchedNode.parent?.removeFromParent()
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GoToLevelScreen"), object: nil)
                     isTouchHandled = true
                 }
                 
@@ -335,6 +604,8 @@ class GameScene1: SKScene {
     }
 
     override func update(_ currentTime: TimeInterval) {
+        winningGame()
+        
         if reverseTimeEnabled {
             for (node, initialPosition) in initialPositions {
                 node.position = CGPoint(
