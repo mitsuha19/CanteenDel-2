@@ -291,7 +291,7 @@ class GameScene1: SKScene {
                 self?.updateCountdown()
             },
 
-            SKAction.wait(forDuration: 0.001)
+            SKAction.wait(forDuration: 1.0)
         ])
         
         run(SKAction.repeat(countdownAction, count: Int(countdownTime)))
@@ -320,8 +320,8 @@ class GameScene1: SKScene {
     func showPesanan(for character: SKSpriteNode) {
         if pesanan == nil {
             pesanan = SKSpriteNode(imageNamed: "pesanan\(currentCharIndex + 1)")
-            pesanan?.size = CGSize(width: 150, height: 150)
-            pesanan?.position = CGPoint(x: 80, y: 137.265)
+            pesanan?.size = CGSize(width: 300, height: 225)
+            pesanan?.position = CGPoint(x: 180, y: 150)
             pesanan?.zPosition = 10
             addChild(pesanan!)
             pesanans.append(pesanan!)
