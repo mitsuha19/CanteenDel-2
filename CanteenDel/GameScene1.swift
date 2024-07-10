@@ -22,6 +22,12 @@ class GameScene1: SKScene {
     var char2: SKSpriteNode?
     var char3: SKSpriteNode?
     var char4: SKSpriteNode?
+    
+    var targetCount: Int = 4
+    var currentTargetCount: Int = 0
+    var targetLabel: SKLabelNode!
+
+
 
     var omprengs = [SKSpriteNode]()
     var omprengPressed = false
@@ -64,6 +70,14 @@ class GameScene1: SKScene {
         timeLabel.position = CGPoint(x: 0, y: 270)
         timeLabel.zPosition = 10
         addChild(timeLabel)
+        
+        
+        targetLabel = SKLabelNode(text: " Target : \(currentTargetCount)/\(targetCount)")
+           targetLabel.fontSize = 36
+           targetLabel.fontColor = .black
+           targetLabel.position = CGPoint(x: -600, y: 270)
+           targetLabel.zPosition = 10
+           addChild(targetLabel)
         
         if let omprengNode = self.childNode(withName: "//ompreng") as? SKSpriteNode {
             omprengs.append(omprengNode)
@@ -108,7 +122,7 @@ class GameScene1: SKScene {
         background.position = CGPoint(x: frame.midX, y: frame.midY)
         background.zPosition = 100
         
-        let label = SKLabelNode(text: "Target 8 Mahasiswa")
+        let label = SKLabelNode(text: "Target 6 Mahasiswa")
         label.fontSize = 20
         label.fontColor = SKColor.black
         label.position = CGPoint(x: 0, y: 20)
@@ -261,6 +275,8 @@ class GameScene1: SKScene {
             pesanan?.zPosition = 10
             addChild(pesanan!)
             pesanans.append(pesanan!)
+            
+          
         }
     }
     
@@ -283,6 +299,7 @@ class GameScene1: SKScene {
             let sequence = SKAction.sequence([delayAction, moveToCenter])
             char.run(sequence) { [weak self] in
                 self?.showPesanan(for: char)
+              
             }
 
             previousPosition = CGPoint(x: previousPosition.x - char.size.width / 2 - distanceApart, y: char.position.y)
@@ -521,6 +538,8 @@ class GameScene1: SKScene {
                            }
 
                            currentCharIndex += 1
+                        // Tambahkan target setelah ompreng diberikan
+                              updateTargetCount()
                     }
                 } else {
                     AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
@@ -615,4 +634,15 @@ class GameScene1: SKScene {
             }
         }
     }
+    
+    func updateTargetCount() {
+        currentTargetCount += 1
+        targetLabel.text = " Target : \(currentTargetCount)/\(targetCount)"
+
+        if currentTargetCount >= targetCount {
+            winningPopup()
+            self.isPaused = true
+        }
+    }
+
 }
