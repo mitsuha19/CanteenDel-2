@@ -1,10 +1,3 @@
-//
-//  HomePageViewController.swift
-//  Sotargoda**
-//
-//  Created by Foundation-022 on 01/07/24.
-//
-
 import UIKit
 
 class HomePageViewController: UIViewController {
@@ -12,11 +5,8 @@ class HomePageViewController: UIViewController {
     var name = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
-
     func alertWithTF(){
             let alert = UIAlertController(title: "Input Your Name", message: "", preferredStyle:UIAlertController.Style.alert)
             
@@ -50,7 +40,6 @@ class HomePageViewController: UIViewController {
 
         }
         
-    
     @IBAction func pressPlayButton(_ sender: Any) {
         alertWithTF()
     }
@@ -62,14 +51,4 @@ class HomePageViewController: UIViewController {
             }
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
