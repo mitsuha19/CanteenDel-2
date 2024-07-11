@@ -16,6 +16,10 @@
 		81B5DF9B2C33AC6B003F6B1F /* GameScene1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 81B5DF9A2C33AC6B003F6B1F /* GameScene1.sks */; };
 		81B5DF9F2C33AD29003F6B1F /* GameScene1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B5DF9E2C33AD29003F6B1F /* GameScene1.swift */; };
 		81B5DFA12C33AD7D003F6B1F /* GameScene1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B5DFA02C33AD7D003F6B1F /* GameScene1ViewController.swift */; };
+		8DD46F412C3FB9A300503115 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD46F402C3FB9A300503115 /* OptionsViewController.swift */; };
+		8DD46F432C3FBA4400503115 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD46F422C3FBA4400503115 /* AudioManager.swift */; };
+		8DD46F452C3FBA5C00503115 /* bgmusic.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8DD46F442C3FBA5C00503115 /* bgmusic.wav */; };
+		8DD46F472C3FBA6D00503115 /* click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8DD46F462C3FBA6D00503115 /* click.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +33,10 @@
 		81B5DF9A2C33AC6B003F6B1F /* GameScene1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene1.sks; sourceTree = "<group>"; };
 		81B5DF9E2C33AD29003F6B1F /* GameScene1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene1.swift; sourceTree = "<group>"; };
 		81B5DFA02C33AD7D003F6B1F /* GameScene1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene1ViewController.swift; sourceTree = "<group>"; };
+		8DD46F402C3FB9A300503115 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
+		8DD46F422C3FBA4400503115 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		8DD46F442C3FBA5C00503115 /* bgmusic.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bgmusic.wav; path = ../../../../Downloads/bgmusic.wav; sourceTree = "<group>"; };
+		8DD46F462C3FBA6D00503115 /* click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = click.wav; path = "../../CrashCar-Foundation-main/CrashCar-Foundation/click.wav"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,12 +72,16 @@
 				81B5DF7F2C33A83B003F6B1F /* AppDelegate.swift */,
 				81B5DF892C33A83B003F6B1F /* Main.storyboard */,
 				81B5DF8C2C33A83C003F6B1F /* Assets.xcassets */,
+				8DD46F442C3FBA5C00503115 /* bgmusic.wav */,
+				8DD46F462C3FBA6D00503115 /* click.wav */,
 				81B5DF8E2C33A83C003F6B1F /* LaunchScreen.storyboard */,
 				81B5DF962C33AAC6003F6B1F /* HomePageViewController.swift */,
 				81B5DF982C33AB29003F6B1F /* LevelViewController.swift */,
 				81B5DF9A2C33AC6B003F6B1F /* GameScene1.sks */,
 				81B5DF9E2C33AD29003F6B1F /* GameScene1.swift */,
 				81B5DFA02C33AD7D003F6B1F /* GameScene1ViewController.swift */,
+				8DD46F402C3FB9A300503115 /* OptionsViewController.swift */,
+				8DD46F422C3FBA4400503115 /* AudioManager.swift */,
 			);
 			path = CanteenDel;
 			sourceTree = "<group>";
@@ -135,6 +147,8 @@
 				81B5DF8B2C33A83B003F6B1F /* Base in Resources */,
 				81B5DF8D2C33A83C003F6B1F /* Assets.xcassets in Resources */,
 				81B5DF9B2C33AC6B003F6B1F /* GameScene1.sks in Resources */,
+				8DD46F472C3FBA6D00503115 /* click.wav in Resources */,
+				8DD46F452C3FBA5C00503115 /* bgmusic.wav in Resources */,
 				81B5DF902C33A83C003F6B1F /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,8 +161,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				81B5DF9F2C33AD29003F6B1F /* GameScene1.swift in Sources */,
+				8DD46F432C3FBA4400503115 /* AudioManager.swift in Sources */,
 				81B5DFA12C33AD7D003F6B1F /* GameScene1ViewController.swift in Sources */,
 				81B5DF992C33AB29003F6B1F /* LevelViewController.swift in Sources */,
+				8DD46F412C3FB9A300503115 /* OptionsViewController.swift in Sources */,
 				81B5DF972C33AAC6003F6B1F /* HomePageViewController.swift in Sources */,
 				81B5DF802C33A83B003F6B1F /* AppDelegate.swift in Sources */,
 			);
