@@ -11,6 +11,8 @@ class HomePageViewController: UIViewController {
     func alertWithTF(){
             let alert = UIAlertController(title: "Input Your Name", message: "", preferredStyle:UIAlertController.Style.alert)
             
+            let cancel = UIAlertAction(title: "Cancel", style: .default) { (alertAction) in }
+
             let save = UIAlertAction(title: "Ok", style: .default) {(alertAction) in
                 let textField = alert.textFields![0] as UITextField
                 
@@ -30,15 +32,10 @@ class HomePageViewController: UIViewController {
                 textField.textColor = .black
             }
             
-            alert.addAction(save)
-            // cancel
-            let cancel = UIAlertAction(title: "Cancel", style: .default) { (alertAction) in }
             alert.addAction(cancel)
-            //OR single line action
-            //alert.addAction(UIAlertAction(title: "Cancel",style: .default) { (alertAction) in })
+            alert.addAction(save)
 
             self.present(alert, animated:true, completion: nil)
-
         }
         
     @IBAction func pressPlayButton(_ sender: Any) {
