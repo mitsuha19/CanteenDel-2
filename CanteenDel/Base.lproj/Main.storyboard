@@ -108,6 +108,64 @@
             </objects>
             <point key="canvasLocation" x="866.90140845070425" y="-2005.3435114503816"/>
         </scene>
+        <!--Options View Controller-->
+        <scene sceneID="DU5-f7-sLM">
+            <objects>
+                <viewController id="3Dn-OE-nUk" customClass="OptionsViewController" customModule="CanteenDel" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dOQ-yp-AWj">
+                        <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bgsettings" translatesAutoresizingMaskIntoConstraints="NO" id="pZJ-bT-LGq">
+                                <rect key="frame" x="-15" y="0.0" width="876" height="410"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="lghome" translatesAutoresizingMaskIntoConstraints="NO" id="A0b-g4-QHk">
+                                <rect key="frame" x="28" y="8" width="91" height="91"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="9Ty-Bp-UYx" appends="YES" id="1YJ-LH-ugw"/>
+                                </connections>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo-bgsound" translatesAutoresizingMaskIntoConstraints="NO" id="fb5-cJ-Z2O">
+                                <rect key="frame" x="163" y="116" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo-soundClick" translatesAutoresizingMaskIntoConstraints="NO" id="lFA-4H-XJi">
+                                <rect key="frame" x="163" y="217" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="wAP-oc-jmg">
+                                <rect key="frame" x="276" y="141" width="299" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="DrQ-FS-o6R">
+                                <rect key="frame" x="276" y="242" width="299" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </slider>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rGK-S2-Wgj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Y8d-ei-Pfq"/>
+                    <connections>
+                        <outlet property="btnBackToHome" destination="A0b-g4-QHk" id="oTb-XX-JWa"/>
+                        <outlet property="muteBgSound" destination="fb5-cJ-Z2O" id="Tn9-3i-BIw"/>
+                        <outlet property="muteClickSound" destination="lFA-4H-XJi" id="gmb-0X-Cwa"/>
+                        <outlet property="volumeBgSoundSlider" destination="wAP-oc-jmg" id="h23-L6-f6Q"/>
+                        <outlet property="volumeClickSoundSlider" destination="DrQ-FS-o6R" id="CWn-CF-wAq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bdf-YZ-aEd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="9Ty-Bp-UYx">
+                    <connections>
+                        <segue destination="Mlv-Mm-kq2" kind="show" id="jPG-Oz-v8z"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-939.43661971830988" y="-1446.5648854961833"/>
+        </scene>
         <!--Home Page View Controller-->
         <scene sceneID="PiK-qT-Hk1">
             <objects>
@@ -124,15 +182,6 @@
                                 <rect key="frame" x="275" y="34" width="302" height="180"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kyx-Rj-HXf">
-                                <rect key="frame" x="379" y="302" width="97" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="OPTIONS">
-                                    <backgroundConfiguration key="background" cornerRadius="5"/>
-                                </buttonConfiguration>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fry-SO-11n">
                                 <rect key="frame" x="379" y="251" width="97" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -145,6 +194,14 @@
                                     <action selector="pressPlayButton:" destination="Mlv-Mm-kq2" eventType="touchUpInside" id="jrL-3b-fFw"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="btnOptions" translatesAutoresizingMaskIntoConstraints="NO" id="0Fz-jU-n38">
+                                <rect key="frame" x="378" y="301" width="101" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="vUj-28-kU1" appends="YES" id="ccy-Jx-Ost"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3Bd-lH-WJH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -155,6 +212,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6r9-gy-uPd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="vUj-28-kU1">
+                    <connections>
+                        <segue destination="3Dn-OE-nUk" kind="show" id="LAP-Gz-dLl"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="47.887323943661976" y="-1457.2519083969464"/>
         </scene>
@@ -219,14 +281,22 @@
             <point key="canvasLocation" x="47.887323943661976" y="-2277.0992366412211"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="jPG-Oz-v8z"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="HomePage" width="2868" height="1912"/>
         <image name="LandingPage" width="3776" height="1824"/>
         <image name="arrowshape.backward.fill" catalog="system" width="128" height="104"/>
         <image name="arrowshape.forward.fill" catalog="system" width="128" height="104"/>
         <image name="arrowshape.turn.up.left.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="bgsettings" width="861" height="404"/>
+        <image name="btnOptions" width="803" height="311"/>
         <image name="level1" width="820" height="840"/>
+        <image name="lghome" width="244" height="236"/>
         <image name="logo" width="964" height="796"/>
+        <image name="logo-bgsound" width="813" height="818"/>
+        <image name="logo-soundClick" width="820" height="818"/>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
