@@ -5,6 +5,7 @@ class HomePageViewController: UIViewController {
     var name = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        AudioManager.shared.playBackgroundMusic()
     }
     
     func alertWithTF(){
