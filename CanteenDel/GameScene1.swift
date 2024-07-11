@@ -247,21 +247,24 @@ class GameScene1: SKScene {
         background.zPosition = 100
 
         let winnerLabel = SKLabelNode(text: "Winner")
+        winnerLabel.fontName = "Helvetica-bold"
         winnerLabel.fontSize = 20
         winnerLabel.fontColor = SKColor.black
         winnerLabel.position = CGPoint(x: 0, y: 70)
 
         let nextButton = SKLabelNode(text: "Next")
-        nextButton.fontColor = SKColor.black
+        nextButton.fontName = "Helvetica-bold"
+        nextButton.fontColor = SKColor.blue
         nextButton.fontSize = 20
         nextButton.name = "nextButton"
-        nextButton.position = CGPoint(x: -50, y: -80)
+        nextButton.position = CGPoint(x: 50, y: -80)
 
         let playAgainButton = SKLabelNode(text: "Play Again")
-        playAgainButton.fontColor = SKColor.black
+        playAgainButton.fontName = "Helvetica-bold"
+        playAgainButton.fontColor = SKColor.red
         playAgainButton.fontSize = 20
         playAgainButton.name = "playAgainButton"
-        playAgainButton.position = CGPoint(x: 50, y: -80)
+        playAgainButton.position = CGPoint(x: -50, y: -80)
 
         // Tambahkan bintang-bintang berdasarkan jumlah target yang tercapai
         let star1 = SKSpriteNode(imageNamed: coloredStarCount >= 1 ? "coloredStar" : "bintangKosong1")
@@ -277,6 +280,7 @@ class GameScene1: SKScene {
         star3.position = CGPoint(x: 50, y: 30)
 
         let scoreButton = SKLabelNode(text: "Score: \(score)")
+        scoreButton.fontName = "Helvetica-bold"
         scoreButton.fontColor = SKColor.black
         scoreButton.fontSize = 20
         scoreButton.name = "scoreButton"
@@ -326,7 +330,7 @@ class GameScene1: SKScene {
                 self?.updateCountdown()
             },
 
-            SKAction.wait(forDuration: 0.01)
+            SKAction.wait(forDuration: 1.0)
         ])
         
         run(SKAction.repeat(countdownAction, count: Int(countdownTime)))
@@ -334,7 +338,10 @@ class GameScene1: SKScene {
 
     func updateCountdown() {
         if countdownTime > 0 {
-            countdownTime -= 1
+            
+            if isWinning == false {
+                countdownTime -= 1
+            }
             
             let minutes = Int(countdownTime) / 60
             let seconds = Int(countdownTime) % 60
@@ -724,6 +731,12 @@ class GameScene1: SKScene {
                 if touchedNode.name == "homeButton" {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GoToLevelScreen"), object: nil)
                     isTouchHandled = true
+                }
+                
+                if touchedNode.name == "nextButton" {
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GoToLevelScreen"), object: nil)
+                    isTouchHandled = true
+                
                 }
             }
         }
