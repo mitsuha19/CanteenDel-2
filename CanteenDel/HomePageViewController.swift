@@ -3,6 +3,7 @@ import UIKit
 class HomePageViewController: UIViewController {
 
     var name = ""
+    var isNameReady = false
     override func viewDidLoad() {
         super.viewDidLoad()
         AudioManager.shared.playBackgroundMusic()
@@ -25,6 +26,7 @@ class HomePageViewController: UIViewController {
                 // Logic Segue
                 self.performSegue(withIdentifier: "goToLevel", sender: self)
                 
+                self.isNameReady = true
             }
             
             alert.addTextField {
@@ -35,11 +37,20 @@ class HomePageViewController: UIViewController {
             alert.addAction(cancel)
             alert.addAction(save)
 
-            self.present(alert, animated:true, completion: nil)
+        self.present(alert, animated:true) {
+            AudioManager.shared.isMuted = false
         }
         
+    }
+        
     @IBAction func pressPlayButton(_ sender: Any) {
-        alertWithTF()
+        AudioManager.shared.isMuted = true
+        
+        if isNameReady == false {
+            alertWithTF()
+        } else {
+            self.performSegue(withIdentifier: "goToLevel", sender: self)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

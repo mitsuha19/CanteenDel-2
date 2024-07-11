@@ -10,7 +10,6 @@ class LevelViewController: UIViewController {
         
         override func viewDidLoad() {
             super.viewDidLoad()
-            NotificationCenter.default.addObserver(self, selector: #selector(goToLevelScreen), name: NSNotification.Name(rawValue: "GoToLevelScreen"), object: nil)
             
             print("levelViewController \(self.name)")
             
@@ -51,8 +50,4 @@ class LevelViewController: UIViewController {
     @IBAction func goHomePage(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
-    @objc func goToLevelScreen() {
-            navigationController?.popViewController(animated: true)
-        }
 }
