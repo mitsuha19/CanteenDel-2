@@ -45,12 +45,9 @@ class HomePageViewController: UIViewController {
         }
         
             alert.addAction(cancel)
-       
-            //OR single line action
-            //alert.addAction(UIAlertAction(title: "Cancel",style: .default) { (alertAction) in })
+            alert.addAction(save)
 
             self.present(alert, animated:true, completion: nil)
-
         }
         
     @IBAction func pressPlayButton(_ sender: Any) {

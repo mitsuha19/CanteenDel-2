@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8180CFFE2C3FC0DE005AA257 /* click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8180CFFC2C3FC0DE005AA257 /* click.wav */; };
+		8180CFFF2C3FC0DE005AA257 /* bgmusic.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8180CFFD2C3FC0DE005AA257 /* bgmusic.wav */; };
 		81B5DF802C33A83B003F6B1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B5DF7F2C33A83B003F6B1F /* AppDelegate.swift */; };
 		81B5DF8B2C33A83B003F6B1F /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 81B5DF8A2C33A83B003F6B1F /* Base */; };
 		81B5DF8D2C33A83C003F6B1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81B5DF8C2C33A83C003F6B1F /* Assets.xcassets */; };
@@ -33,6 +35,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8180CFFC2C3FC0DE005AA257 /* click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click.wav; sourceTree = "<group>"; };
+		8180CFFD2C3FC0DE005AA257 /* bgmusic.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgmusic.wav; sourceTree = "<group>"; };
 		81B5DF7C2C33A83B003F6B1F /* CanteenDel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CanteenDel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81B5DF7F2C33A83B003F6B1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81B5DF8A2C33A83B003F6B1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 				8DD46F592C3FD49E00503115 /* musikClick.wav in Resources */,
 				8DD46F632C41098400503115 /* musikKalah.wav in Resources */,
 				81B5DF902C33A83C003F6B1F /* Base in Resources */,
+				8180CFFF2C3FC0DE005AA257 /* bgmusic.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
