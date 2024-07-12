@@ -19,9 +19,6 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="Xrf-78-K78"/>
-                    <connections>
-                        <segue destination="1L8-tT-RAo" kind="presentation" identifier="ComingSoon" modalTransitionStyle="crossDissolve" id="f0g-Ya-sGN"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lSX-1J-ZsB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
