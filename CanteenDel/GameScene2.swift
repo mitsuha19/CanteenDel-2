@@ -24,6 +24,13 @@ class GameScene2: SKScene {
     var char3: SKSpriteNode?
     var char4: SKSpriteNode?
     var char5: SKSpriteNode?
+    var char6: SKSpriteNode?
+    var char7: SKSpriteNode?
+    var char8: SKSpriteNode?
+    var char9: SKSpriteNode?
+    var char10: SKSpriteNode?
+    
+    
     
     // Tabel Target Mahasiswa
     var targetCount: Int = 5
@@ -53,7 +60,7 @@ class GameScene2: SKScene {
     var isOrderCorrect4 = false;
     var isOrderCorrect5 = false;
     
-    let price = [25000, 18000, 30000,15000, 25000 ]
+    let price = [25000, 18000, 30000,15000, 25000, 18000, 30000, 15000, 25000,25000 ]
     var profitLabel: SKLabelNode!
     var score: Int = 0
     
@@ -69,6 +76,11 @@ class GameScene2: SKScene {
         char3 = self.childNode(withName: "//char3") as? SKSpriteNode
         char4 = self.childNode(withName: "//char4") as? SKSpriteNode
         char5 = self.childNode(withName: "//char5") as? SKSpriteNode
+        char6 = self.childNode(withName: "//char6") as? SKSpriteNode
+        char7 = self.childNode(withName: "//char7") as? SKSpriteNode
+        char8 = self.childNode(withName: "//char8") as? SKSpriteNode
+        char9 = self.childNode(withName: "//char9") as? SKSpriteNode
+        char10 = self.childNode(withName: "//char10") as? SKSpriteNode
         
         
         showStartPopup()
@@ -300,7 +312,7 @@ class GameScene2: SKScene {
     }
 
     func restartGame() {
-        if let scene = SKScene(fileNamed: "GameScene1") {
+        if let scene = SKScene(fileNamed: "GameScene2") {
             scene.scaleMode = .aspectFill
             
             let transition = SKTransition.fade(with: .white, duration: 1)
@@ -434,7 +446,7 @@ class GameScene2: SKScene {
             let sequence = SKAction.sequence([movetoYAction, scaleAction])
             let sequence1 = SKAction.sequence([movetoYAction, scaleAction, deleteAction])
             
-            let characters = [char1, char2, char3, char4, char5].compactMap { $0 }
+            let characters = [char1, char2, char3, char4, char5, char6, char7, char8, char9, char10].compactMap { $0 }
 
             if currentCharIndex < characters.count && characters[currentCharIndex].contains(touchLocation) && omprengPressed {
                 
@@ -638,6 +650,207 @@ class GameScene2: SKScene {
                             }
                         }
                         
+                        
+                        
+                    }
+                case 5:
+                    for node in alreadyDragNodes {
+                        if node.name == "brokoli" {
+                            if forbidden1xRange.contains(node.position.x) && forbidden1yRange.contains(node.position.y) {
+                                isOrderCorrect1 = true
+                            } else {
+                                isOrderCorrect1 = false
+                            }
+                        }
+                        if node.name == "ikan" {
+                            if forbidden2xRange.contains(node.position.x) && forbidden2yRange.contains(node.position.y) {
+                                isOrderCorrect2 = true
+                            } else {
+                                isOrderCorrect2 = false
+                            }
+                        }
+                        if node.name == "jeruk" {
+                            if forbidden3xRange.contains(node.position.x) && forbidden3yRange.contains(node.position.y) {
+                                isOrderCorrect3 = true
+                            } else {
+                                isOrderCorrect3 = false
+                            }
+                        }
+                        if node.name == "apel" {
+                            if forbidden4xRange.contains(node.position.x) && forbidden4yRange.contains(node.position.y) {
+                                isOrderCorrect4 = true
+                            } else {
+                                isOrderCorrect4 = false
+                            }
+                        }
+                        if node.name == "nasi" {
+                            if forbidden5xRange.contains(node.position.x) && forbidden5yRange.contains(node.position.y) {
+                                isOrderCorrect5 = true
+                            } else {
+                                isOrderCorrect5 = false
+                            }
+                        }
+                        
+                    }
+                    
+                case 6:
+                    for node in alreadyDragNodes {
+                        if node.name == "ikan" {
+                            if forbidden1xRange.contains(node.position.x) && forbidden1yRange.contains(node.position.y) {
+                                isOrderCorrect1 = true
+                            } else {
+                                isOrderCorrect1 = false
+                            }
+                        }
+                        if node.name == "ayam" {
+                            if forbidden2xRange.contains(node.position.x) && forbidden2yRange.contains(node.position.y) {
+                                isOrderCorrect2 = true
+                            } else {
+                                isOrderCorrect2 = false
+                            }
+                        }
+                        if node.name == "selada" {
+                            if forbidden3xRange.contains(node.position.x) && forbidden3yRange.contains(node.position.y) {
+                                isOrderCorrect3 = true
+                            } else {
+                                isOrderCorrect3 = false
+                            }
+                        }
+                        if node.name == "telur" {
+                            if forbidden4xRange.contains(node.position.x) && forbidden4yRange.contains(node.position.y) {
+                                isOrderCorrect4 = true
+                            } else {
+                                isOrderCorrect4 = false
+                            }
+                        }
+                        if node.name == "nasi" {
+                            if forbidden5xRange.contains(node.position.x) && forbidden5yRange.contains(node.position.y) {
+                                isOrderCorrect5 = true
+                            } else {
+                                isOrderCorrect5 = false
+                            }
+                        }
+                        
+                    }
+                    
+                case 7:
+                    for node in alreadyDragNodes {
+                        if node.name == "telur" {
+                            if forbidden1xRange.contains(node.position.x) && forbidden1yRange.contains(node.position.y) {
+                                isOrderCorrect1 = true
+                            } else {
+                                isOrderCorrect1 = false
+                            }
+                        }
+                        if node.name == "brokoli" {
+                            if forbidden2xRange.contains(node.position.x) && forbidden2yRange.contains(node.position.y) {
+                                isOrderCorrect2 = true
+                            } else {
+                                isOrderCorrect2 = false
+                            }
+                        }
+//                        if node.name == "jeruk" {
+//                            if forbidden3xRange.contains(node.position.x) && forbidden3yRange.contains(node.position.y) {
+//                                isOrderCorrect3 = true
+//                            } else {
+//                                isOrderCorrect3 = false
+//                            }
+//                        }
+                        isOrderCorrect3 = true
+                        if node.name == "apel" {
+                            if forbidden4xRange.contains(node.position.x) && forbidden4yRange.contains(node.position.y) {
+                                isOrderCorrect4 = true
+                            } else {
+                                isOrderCorrect4 = false
+                            }
+                        }
+                        if node.name == "nasi" {
+                            if forbidden5xRange.contains(node.position.x) && forbidden5yRange.contains(node.position.y) {
+                                isOrderCorrect5 = true
+                            } else {
+                                isOrderCorrect5 = false
+                            }
+                        }
+                        
+                    }
+                    
+                case 8:
+                    for node in alreadyDragNodes {
+                        if node.name == "selada" {
+                            if forbidden1xRange.contains(node.position.x) && forbidden1yRange.contains(node.position.y) {
+                                isOrderCorrect1 = true
+                            } else {
+                                isOrderCorrect1 = false
+                            }
+                        }
+                        if node.name == "ayam" {
+                            if forbidden2xRange.contains(node.position.x) && forbidden2yRange.contains(node.position.y) {
+                                isOrderCorrect2 = true
+                            } else {
+                                isOrderCorrect2 = false
+                            }
+                        }
+                        if node.name == "semangka" {
+                            if forbidden3xRange.contains(node.position.x) && forbidden3yRange.contains(node.position.y) {
+                                isOrderCorrect3 = true
+                            } else {
+                                isOrderCorrect3 = false
+                            }
+                        }
+                        if node.name == "telur" {
+                            if forbidden4xRange.contains(node.position.x) && forbidden4yRange.contains(node.position.y) {
+                                isOrderCorrect4 = true
+                            } else {
+                                isOrderCorrect4 = false
+                            }
+                        }
+                        if node.name == "nasi" {
+                            if forbidden5xRange.contains(node.position.x) && forbidden5yRange.contains(node.position.y) {
+                                isOrderCorrect5 = true
+                            } else {
+                                isOrderCorrect5 = false
+                            }
+                        }
+                    }
+                    
+                case 9:
+                    for node in alreadyDragNodes {
+                        if node.name == "selada" {
+                            if forbidden1xRange.contains(node.position.x) && forbidden1yRange.contains(node.position.y) {
+                                isOrderCorrect1 = true
+                            } else {
+                                isOrderCorrect1 = false
+                            }
+                        }
+                        if node.name == "ayam" {
+                            if forbidden2xRange.contains(node.position.x) && forbidden2yRange.contains(node.position.y) {
+                                isOrderCorrect2 = true
+                            } else {
+                                isOrderCorrect2 = false
+                            }
+                        }
+                        if node.name == "semangka" {
+                            if forbidden3xRange.contains(node.position.x) && forbidden3yRange.contains(node.position.y) {
+                                isOrderCorrect3 = true
+                            } else {
+                                isOrderCorrect3 = false
+                            }
+                        }
+                        if node.name == "telur" {
+                            if forbidden4xRange.contains(node.position.x) && forbidden4yRange.contains(node.position.y) {
+                                isOrderCorrect4 = true
+                            } else {
+                                isOrderCorrect4 = false
+                            }
+                        }
+                        if node.name == "nasi" {
+                            if forbidden5xRange.contains(node.position.x) && forbidden5yRange.contains(node.position.y) {
+                                isOrderCorrect5 = true
+                            } else {
+                                isOrderCorrect5 = false
+                            }
+                        }
+                        
                     }
                     
                 default:
@@ -713,8 +926,8 @@ class GameScene2: SKScene {
                         popup.removeFromParent()
                     }
                     
-                    if let char1 = char1, let char2 = char2, let char3 = char3 , let char4 = char4 , let char5 = char5{
-                        let characters = [char1, char2, char3, char4, char5]
+                    if let char1 = char1, let char2 = char2, let char3 = char3 , let char4 = char4 , let char5 = char5, let char6 = char6, let char7 = char7, let char8 = char8, let char9 = char9, let char10 = char10{
+                        let characters = [char1, char2, char3, char4, char5,char6,char7,char8,char9,char10]
                         moveCharacterToCenter(characters: characters)
                     }
                     
