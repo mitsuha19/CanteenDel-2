@@ -3,10 +3,17 @@ import UIKit
 class HomePageViewController: UIViewController {
 
     var name = ""
-    var isNameReady = false
+    var ismusikBackground = true;
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        AudioManager.shared.playBackgroundMusic()
+        
+        if ismusikBackground {
+            AudioManager.shared.playBackgroundMusic()
+            ismusikBackground = false
+        } else {
+            AudioManager.shared.stopBgMusicScene()
+        }
     }
     
     func alertWithTF(){
@@ -16,6 +23,7 @@ class HomePageViewController: UIViewController {
 
             let save = UIAlertAction(title: "Ok", style: .default) {(alertAction) in
                 let textField = alert.textFields![0] as UITextField
+                AudioManager.shared.playClickSound()
                 
                 self.name = textField.text ?? ""
                 
@@ -34,23 +42,23 @@ class HomePageViewController: UIViewController {
                 textField.textColor = .black
             }
             
+
+            // cancel
+        let cancel = UIAlertAction(title: "Cancel", style: .default) { (alertAction) in
+            AudioManager.shared.playClickSound()
+        }
+        
             alert.addAction(cancel)
             alert.addAction(save)
 
-        self.present(alert, animated:true) {
-            AudioManager.shared.isMuted = false
+            self.present(alert, animated:true, completion: nil)
         }
         
     }
         
     @IBAction func pressPlayButton(_ sender: Any) {
-        AudioManager.shared.isMuted = true
-        
-        if isNameReady == false {
-            alertWithTF()
-        } else {
-            self.performSegue(withIdentifier: "goToLevel", sender: self)
-        }
+        alertWithTF()
+        AudioManager.shared.playClickSound()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

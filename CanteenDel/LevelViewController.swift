@@ -10,6 +10,10 @@ class LevelViewController: UIViewController {
         
         override func viewDidLoad() {
             super.viewDidLoad()
+            AudioManager.shared.stopBgMusicScene()
+            AudioManager.shared.playBackgroundMusic()
+            NotificationCenter.default.addObserver(self, selector: #selector(goToLevelScreen), name: NSNotification.Name(rawValue: "GoToLevelScreen"), object: nil)
+
             
             print("levelViewController \(self.name)")
             
@@ -22,6 +26,7 @@ class LevelViewController: UIViewController {
         }
         
     @IBAction func Next(_ sender: Any) {
+        AudioManager.shared.playClickSound()
         if level == 1 {
             ImageView.image = UIImage(named: "level2lock")
             level = 2
@@ -30,6 +35,7 @@ class LevelViewController: UIViewController {
     }
     
     @IBAction func Back(_ sender: Any) {
+        AudioManager.shared.playClickSound()
         if level == 2 {
             ImageView.image = UIImage(named: "level1")
             level = 1
@@ -49,5 +55,11 @@ class LevelViewController: UIViewController {
     
     @IBAction func goHomePage(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+        AudioManager.shared.playClickSound()
     }
+    
+    @objc func goToLevelScreen() {
+            navigationController?.popViewController(animated: true)
+        AudioManager.shared.playClickSound()
+        }
 }

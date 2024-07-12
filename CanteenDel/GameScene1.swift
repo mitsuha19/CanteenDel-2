@@ -62,7 +62,8 @@ class GameScene1: SKScene {
     
     override func didMove(to view: SKView) {
         super.didMove(to: view)
-                
+        AudioManager.shared.stopBgMusic()
+        AudioManager.shared.playBackgroundMusicScene()
         char1 = self.childNode(withName: "//char1") as? SKSpriteNode
         char2 = self.childNode(withName: "//char2") as? SKSpriteNode
         char3 = self.childNode(withName: "//char3") as? SKSpriteNode
@@ -237,6 +238,7 @@ class GameScene1: SKScene {
         background.addChild(star2)
         background.addChild(star3)
         background.addChild(scoreButton)
+        AudioManager.shared.playMusicLose()
         
         addChild(background)
     }
@@ -657,6 +659,8 @@ class GameScene1: SKScene {
                     scoreLabel.position = CGPoint(x: 0, y: 0)
                     self.addChild(scoreLabel)
                     
+                    AudioManager.shared.playMusicOrederFinished()
+                    
                     let scaleUpAction = SKAction.scale(to: 1.5, duration: 0.3)
                     let waitAction = SKAction.wait(forDuration: 1)
                     let scaleDownAction = SKAction.scale(to: 0, duration: 0.3)
@@ -721,6 +725,8 @@ class GameScene1: SKScene {
                 if touchedNode.name == "cancelButton" {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GoToLevelScreen"), object: nil)
                     isTouchHandled = true
+                    AudioManager.shared.stopBgMusicScene()
+                    AudioManager.shared.playBackgroundMusic()
                 }
                 
                 if touchedNode.name == "playAgainButton" {
@@ -731,6 +737,14 @@ class GameScene1: SKScene {
                 if touchedNode.name == "homeButton" {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GoToLevelScreen"), object: nil)
                     isTouchHandled = true
+                    AudioManager.shared.stopBgMusicScene()
+                    AudioManager.shared.playBackgroundMusic()
+                }
+                
+                if touchedNode.name == "nextButton" {
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GoToComingSoon"), object: nil)
+                    isTouchHandled = true
+                
                 }
                 
                 if touchedNode.name == "nextButton" {

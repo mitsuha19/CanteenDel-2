@@ -20,6 +20,16 @@
 		81B5DFA12C33AD7D003F6B1F /* GameScene1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B5DFA02C33AD7D003F6B1F /* GameScene1ViewController.swift */; };
 		8DD46F412C3FB9A300503115 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD46F402C3FB9A300503115 /* OptionsViewController.swift */; };
 		8DD46F432C3FBA4400503115 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD46F422C3FBA4400503115 /* AudioManager.swift */; };
+		8DD46F592C3FD49E00503115 /* musikClick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8DD46F582C3FD49E00503115 /* musikClick.wav */; };
+		8DD46F5B2C3FD50900503115 /* musikOnBoarding.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8DD46F5A2C3FD50900503115 /* musikOnBoarding.wav */; };
+		8DD46F5D2C3FD7B600503115 /* musikGameScene.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8DD46F5C2C3FD7B600503115 /* musikGameScene.wav */; };
+		8DD46F5F2C3FD86400503115 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD46F5E2C3FD86400503115 /* OnBoardingViewController.swift */; };
+		8DD46F612C3FE93400503115 /* musikOrdered.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8DD46F602C3FE93400503115 /* musikOrdered.wav */; };
+		8DD46F632C41098400503115 /* musikKalah.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8DD46F622C41098400503115 /* musikKalah.wav */; };
+		8DD46F652C4109A600503115 /* musikMenang.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8DD46F642C4109A600503115 /* musikMenang.wav */; };
+		8DD46F672C410B6100503115 /* GameScene2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8DD46F662C410B6100503115 /* GameScene2.sks */; };
+		8DD46F692C410B7B00503115 /* GameScene2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD46F682C410B7B00503115 /* GameScene2.swift */; };
+		8DD46F6B2C410BD300503115 /* GameScene2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD46F6A2C410BD300503115 /* GameScene2ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +47,16 @@
 		81B5DFA02C33AD7D003F6B1F /* GameScene1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene1ViewController.swift; sourceTree = "<group>"; };
 		8DD46F402C3FB9A300503115 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		8DD46F422C3FBA4400503115 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		8DD46F582C3FD49E00503115 /* musikClick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = musikClick.wav; sourceTree = "<group>"; };
+		8DD46F5A2C3FD50900503115 /* musikOnBoarding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = musikOnBoarding.wav; sourceTree = "<group>"; };
+		8DD46F5C2C3FD7B600503115 /* musikGameScene.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = musikGameScene.wav; sourceTree = "<group>"; };
+		8DD46F5E2C3FD86400503115 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
+		8DD46F602C3FE93400503115 /* musikOrdered.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = musikOrdered.wav; sourceTree = "<group>"; };
+		8DD46F622C41098400503115 /* musikKalah.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = musikKalah.wav; sourceTree = "<group>"; };
+		8DD46F642C4109A600503115 /* musikMenang.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = musikMenang.wav; sourceTree = "<group>"; };
+		8DD46F662C410B6100503115 /* GameScene2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene2.sks; sourceTree = "<group>"; };
+		8DD46F682C410B7B00503115 /* GameScene2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene2.swift; sourceTree = "<group>"; };
+		8DD46F6A2C410BD300503115 /* GameScene2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene2ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,8 +92,12 @@
 				81B5DF7F2C33A83B003F6B1F /* AppDelegate.swift */,
 				81B5DF892C33A83B003F6B1F /* Main.storyboard */,
 				81B5DF8C2C33A83C003F6B1F /* Assets.xcassets */,
-				8180CFFD2C3FC0DE005AA257 /* bgmusic.wav */,
-				8180CFFC2C3FC0DE005AA257 /* click.wav */,
+				8DD46F582C3FD49E00503115 /* musikClick.wav */,
+				8DD46F5A2C3FD50900503115 /* musikOnBoarding.wav */,
+				8DD46F5C2C3FD7B600503115 /* musikGameScene.wav */,
+				8DD46F602C3FE93400503115 /* musikOrdered.wav */,
+				8DD46F622C41098400503115 /* musikKalah.wav */,
+				8DD46F642C4109A600503115 /* musikMenang.wav */,
 				81B5DF8E2C33A83C003F6B1F /* LaunchScreen.storyboard */,
 				81B5DF962C33AAC6003F6B1F /* HomePageViewController.swift */,
 				81B5DF982C33AB29003F6B1F /* LevelViewController.swift */,
@@ -82,6 +106,10 @@
 				81B5DFA02C33AD7D003F6B1F /* GameScene1ViewController.swift */,
 				8DD46F402C3FB9A300503115 /* OptionsViewController.swift */,
 				8DD46F422C3FBA4400503115 /* AudioManager.swift */,
+				8DD46F5E2C3FD86400503115 /* OnBoardingViewController.swift */,
+				8DD46F662C410B6100503115 /* GameScene2.sks */,
+				8DD46F682C410B7B00503115 /* GameScene2.swift */,
+				8DD46F6A2C410BD300503115 /* GameScene2ViewController.swift */,
 			);
 			path = CanteenDel;
 			sourceTree = "<group>";
@@ -145,9 +173,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				81B5DF8B2C33A83B003F6B1F /* Base in Resources */,
+				8DD46F5D2C3FD7B600503115 /* musikGameScene.wav in Resources */,
 				81B5DF8D2C33A83C003F6B1F /* Assets.xcassets in Resources */,
-				8180CFFE2C3FC0DE005AA257 /* click.wav in Resources */,
+				8DD46F672C410B6100503115 /* GameScene2.sks in Resources */,
 				81B5DF9B2C33AC6B003F6B1F /* GameScene1.sks in Resources */,
+				8DD46F612C3FE93400503115 /* musikOrdered.wav in Resources */,
+				8DD46F5B2C3FD50900503115 /* musikOnBoarding.wav in Resources */,
+				8DD46F652C4109A600503115 /* musikMenang.wav in Resources */,
+				8DD46F592C3FD49E00503115 /* musikClick.wav in Resources */,
+				8DD46F632C41098400503115 /* musikKalah.wav in Resources */,
 				81B5DF902C33A83C003F6B1F /* Base in Resources */,
 				8180CFFF2C3FC0DE005AA257 /* bgmusic.wav in Resources */,
 			);
@@ -160,9 +194,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DD46F6B2C410BD300503115 /* GameScene2ViewController.swift in Sources */,
 				81B5DF9F2C33AD29003F6B1F /* GameScene1.swift in Sources */,
 				8DD46F432C3FBA4400503115 /* AudioManager.swift in Sources */,
 				81B5DFA12C33AD7D003F6B1F /* GameScene1ViewController.swift in Sources */,
+				8DD46F692C410B7B00503115 /* GameScene2.swift in Sources */,
+				8DD46F5F2C3FD86400503115 /* OnBoardingViewController.swift in Sources */,
 				81B5DF992C33AB29003F6B1F /* LevelViewController.swift in Sources */,
 				8DD46F412C3FB9A300503115 /* OptionsViewController.swift in Sources */,
 				81B5DF972C33AAC6003F6B1F /* HomePageViewController.swift in Sources */,
