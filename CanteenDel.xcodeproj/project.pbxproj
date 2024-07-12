@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8180CFFE2C3FC0DE005AA257 /* click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8180CFFC2C3FC0DE005AA257 /* click.wav */; };
-		8180CFFF2C3FC0DE005AA257 /* bgmusic.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8180CFFD2C3FC0DE005AA257 /* bgmusic.wav */; };
 		81B5DF802C33A83B003F6B1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B5DF7F2C33A83B003F6B1F /* AppDelegate.swift */; };
 		81B5DF8B2C33A83B003F6B1F /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 81B5DF8A2C33A83B003F6B1F /* Base */; };
 		81B5DF8D2C33A83C003F6B1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81B5DF8C2C33A83C003F6B1F /* Assets.xcassets */; };
@@ -20,8 +18,6 @@
 		81B5DFA12C33AD7D003F6B1F /* GameScene1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B5DFA02C33AD7D003F6B1F /* GameScene1ViewController.swift */; };
 		8DD46F412C3FB9A300503115 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD46F402C3FB9A300503115 /* OptionsViewController.swift */; };
 		8DD46F432C3FBA4400503115 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD46F422C3FBA4400503115 /* AudioManager.swift */; };
-		8DD46F452C3FBA5C00503115 /* bgmusic.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8DD46F442C3FBA5C00503115 /* bgmusic.wav */; };
-		8DD46F472C3FBA6D00503115 /* click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8DD46F462C3FBA6D00503115 /* click.wav */; };
 		8DD46F592C3FD49E00503115 /* musikClick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8DD46F582C3FD49E00503115 /* musikClick.wav */; };
 		8DD46F5B2C3FD50900503115 /* musikOnBoarding.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8DD46F5A2C3FD50900503115 /* musikOnBoarding.wav */; };
 		8DD46F5D2C3FD7B600503115 /* musikGameScene.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8DD46F5C2C3FD7B600503115 /* musikGameScene.wav */; };
@@ -35,8 +31,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8180CFFC2C3FC0DE005AA257 /* click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click.wav; sourceTree = "<group>"; };
-		8180CFFD2C3FC0DE005AA257 /* bgmusic.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgmusic.wav; sourceTree = "<group>"; };
 		81B5DF7C2C33A83B003F6B1F /* CanteenDel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CanteenDel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81B5DF7F2C33A83B003F6B1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81B5DF8A2C33A83B003F6B1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -49,8 +43,6 @@
 		81B5DFA02C33AD7D003F6B1F /* GameScene1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene1ViewController.swift; sourceTree = "<group>"; };
 		8DD46F402C3FB9A300503115 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		8DD46F422C3FBA4400503115 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
-		8DD46F442C3FBA5C00503115 /* bgmusic.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bgmusic.wav; path = ../../../../Downloads/bgmusic.wav; sourceTree = "<group>"; };
-		8DD46F462C3FBA6D00503115 /* click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = click.wav; path = "../../CrashCar-Foundation-main/CrashCar-Foundation/click.wav"; sourceTree = "<group>"; };
 		8DD46F582C3FD49E00503115 /* musikClick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = musikClick.wav; sourceTree = "<group>"; };
 		8DD46F5A2C3FD50900503115 /* musikOnBoarding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = musikOnBoarding.wav; sourceTree = "<group>"; };
 		8DD46F5C2C3FD7B600503115 /* musikGameScene.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = musikGameScene.wav; sourceTree = "<group>"; };
@@ -96,8 +88,6 @@
 				81B5DF7F2C33A83B003F6B1F /* AppDelegate.swift */,
 				81B5DF892C33A83B003F6B1F /* Main.storyboard */,
 				81B5DF8C2C33A83C003F6B1F /* Assets.xcassets */,
-				8DD46F442C3FBA5C00503115 /* bgmusic.wav */,
-				8DD46F462C3FBA6D00503115 /* click.wav */,
 				8DD46F582C3FD49E00503115 /* musikClick.wav */,
 				8DD46F5A2C3FD50900503115 /* musikOnBoarding.wav */,
 				8DD46F5C2C3FD7B600503115 /* musikGameScene.wav */,
@@ -186,12 +176,9 @@
 				8DD46F612C3FE93400503115 /* musikOrdered.wav in Resources */,
 				8DD46F5B2C3FD50900503115 /* musikOnBoarding.wav in Resources */,
 				8DD46F652C4109A600503115 /* musikMenang.wav in Resources */,
-				8DD46F472C3FBA6D00503115 /* click.wav in Resources */,
-				8DD46F452C3FBA5C00503115 /* bgmusic.wav in Resources */,
 				8DD46F592C3FD49E00503115 /* musikClick.wav in Resources */,
 				8DD46F632C41098400503115 /* musikKalah.wav in Resources */,
 				81B5DF902C33A83C003F6B1F /* Base in Resources */,
-				8180CFFF2C3FC0DE005AA257 /* bgmusic.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
