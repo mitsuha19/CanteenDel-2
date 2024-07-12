@@ -3,9 +3,16 @@ import UIKit
 class HomePageViewController: UIViewController {
 
     var name = ""
+    var ismusikBackground = true;
     override func viewDidLoad() {
         super.viewDidLoad()
-        AudioManager.shared.playBackgroundMusic()
+        
+        if ismusikBackground {
+            AudioManager.shared.playBackgroundMusic()
+            ismusikBackground = false
+        } else {
+            AudioManager.shared.stopBgMusicScene()
+        }
     }
     
     func alertWithTF(){
@@ -13,6 +20,7 @@ class HomePageViewController: UIViewController {
             
             let save = UIAlertAction(title: "Ok", style: .default) {(alertAction) in
                 let textField = alert.textFields![0] as UITextField
+                AudioManager.shared.playClickSound()
                 
                 self.name = textField.text ?? ""
                 
@@ -32,8 +40,12 @@ class HomePageViewController: UIViewController {
             
             alert.addAction(save)
             // cancel
-            let cancel = UIAlertAction(title: "Cancel", style: .default) { (alertAction) in }
+        let cancel = UIAlertAction(title: "Cancel", style: .default) { (alertAction) in
+            AudioManager.shared.playClickSound()
+        }
+        
             alert.addAction(cancel)
+       
             //OR single line action
             //alert.addAction(UIAlertAction(title: "Cancel",style: .default) { (alertAction) in })
 
@@ -43,6 +55,7 @@ class HomePageViewController: UIViewController {
         
     @IBAction func pressPlayButton(_ sender: Any) {
         alertWithTF()
+        AudioManager.shared.playClickSound()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

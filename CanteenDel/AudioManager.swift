@@ -4,7 +4,15 @@ class AudioManager {
     static let shared = AudioManager()
     
     var backgroundMusicPlayer: AVAudioPlayer?
+    var backgroundMusicScene: AVAudioPlayer?
+    var backgroundOrderedFinished: AVAudioPlayer?
+    var backgroundLose: AVAudioPlayer?
+    
+    
     private var isPlayingBackgroundMusic = false
+    private var isPlayingBackgroundMusicScene = false
+    private var isPlayingMusicOrederedFinished = false
+    private var isPlayingMusicLose = false
     private var clickSoundPlayer: AVAudioPlayer?
     
     var isMuted: Bool {
@@ -60,11 +68,13 @@ class AudioManager {
         }
     }
     
+    
+    
     private init() {}
     
     func playBackgroundMusic() {
         if !isPlayingBackgroundMusic {
-            if let path = Bundle.main.path(forResource: "bgmusic", ofType: "wav") {
+            if let path = Bundle.main.path(forResource: "musikOnBoarding", ofType: "wav") {
                 let url = URL(fileURLWithPath: path)
                 do {
                     backgroundMusicPlayer = try AVAudioPlayer(contentsOf: url)
@@ -81,6 +91,56 @@ class AudioManager {
         }
     }
     
+    func playBackgroundMusicScene() {
+        if !isPlayingBackgroundMusic {
+            if let path = Bundle.main.path(forResource: "musikGameScene", ofType: "wav") {
+                let url = URL(fileURLWithPath: path)
+                do {
+                    backgroundMusicScene = try AVAudioPlayer(contentsOf: url)
+                    backgroundMusicScene?.numberOfLoops = -1
+                    backgroundMusicScene?.volume = isMuted ? 0 : volume
+                    backgroundMusicScene?.play()
+                    isPlayingBackgroundMusicScene = true
+                } catch {
+                    print("Error playing background music: \(error)")
+                }
+            }
+        } else {
+            backgroundMusicScene?.volume = isMuted ? 0 : volume
+        }
+    }
+    
+    func playMusicOrederFinished() {
+        if !isClickSoundMuted {
+            if let path = Bundle.main.path(forResource: "musikOrdered", ofType: "wav") {
+                let url = URL(fileURLWithPath: path)
+                do {
+                    backgroundOrderedFinished = try AVAudioPlayer(contentsOf: url)
+                    backgroundOrderedFinished?.play()
+                } catch {
+                    print("Error playing click sound: \(error)")
+                }
+            }
+        }
+    }
+    
+    func playMusicLose() {
+        if !isPlayingMusicLose {
+            if let path = Bundle.main.path(forResource: "musikKalah", ofType: "wav") {
+                let url = URL(fileURLWithPath: path)
+                do {
+                    backgroundLose = try AVAudioPlayer(contentsOf: url)
+                    backgroundLose?.play()
+                } catch {
+                    print("Error playing click sound: \(error)")
+                }
+            }
+        }
+    }
+    
+    
+    
+    
     func setVolume(_ volume: Float) {
         self.volume = volume
     }
@@ -91,7 +151,7 @@ class AudioManager {
     
     func playSoundEffect() {
         if !isClickSoundMuted {
-            if let path = Bundle.main.path(forResource: "click", ofType: "wav") {
+            if let path = Bundle.main.path(forResource: "musikClick", ofType: "mp3") {
                 let url = URL(fileURLWithPath: path)
                 do {
                     let soundEffectPlayer = try AVAudioPlayer(contentsOf: url)
@@ -105,7 +165,7 @@ class AudioManager {
     
     func playClickSound() {
         if !isClickSoundMuted {
-            if let path = Bundle.main.path(forResource: "click", ofType: "wav") {
+            if let path = Bundle.main.path(forResource: "musikClick", ofType: "wav") {
                 let url = URL(fileURLWithPath: path)
                 do {
                     clickSoundPlayer = try AVAudioPlayer(contentsOf: url)
@@ -116,5 +176,15 @@ class AudioManager {
                 }
             }
         }
+    }
+    
+    func stopBgMusic(){
+        isPlayingBackgroundMusic = false
+        backgroundMusicPlayer = nil
+    }
+    
+    func stopBgMusicScene(){
+        isPlayingBackgroundMusicScene = false
+        backgroundMusicScene = nil
     }
 }

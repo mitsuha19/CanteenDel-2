@@ -14,6 +14,7 @@ class OptionsViewController: UIViewController {
         super.viewDidLoad()
         setupVolumeSlider()
         updateMuteIcons()
+        AudioManager.shared.stopBgMusicScene()
         
         let bgSoundTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(muteBgSoundTapped(_:)))
         muteBgSound.isUserInteractionEnabled = true
