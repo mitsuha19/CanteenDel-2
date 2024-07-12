@@ -19,8 +19,6 @@ class HomePageViewController: UIViewController {
     func alertWithTF(){
             let alert = UIAlertController(title: "Input Your Name", message: "", preferredStyle:UIAlertController.Style.alert)
             
-            let cancel = UIAlertAction(title: "Cancel", style: .default) { (alertAction) in }
-
             let save = UIAlertAction(title: "Ok", style: .default) {(alertAction) in
                 let textField = alert.textFields![0] as UITextField
                 AudioManager.shared.playClickSound()
@@ -34,7 +32,7 @@ class HomePageViewController: UIViewController {
                 // Logic Segue
                 self.performSegue(withIdentifier: "goToLevel", sender: self)
                 
-                self.isNameReady = true
+//                self.isNameReady = true
             }
             
             alert.addTextField {
@@ -52,7 +50,7 @@ class HomePageViewController: UIViewController {
             alert.addAction(save)
 
             self.present(alert, animated:true, completion: nil)
-        }
+        
         
     }
         
