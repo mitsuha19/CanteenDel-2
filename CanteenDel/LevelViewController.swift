@@ -13,6 +13,7 @@ class LevelViewController: UIViewController {
             AudioManager.shared.stopBgMusicScene()
             AudioManager.shared.playBackgroundMusic()
             NotificationCenter.default.addObserver(self, selector: #selector(goToLevelScreen), name: NSNotification.Name(rawValue: "GoToLevelScreen"), object: nil)
+
             
             print("levelViewController \(self.name)")
             

@@ -746,6 +746,12 @@ class GameScene1: SKScene {
                     isTouchHandled = true
                 
                 }
+                
+                if touchedNode.name == "nextButton" {
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GoToComingSoon"), object: nil)
+                    isTouchHandled = true
+                
+                }
             }
         }
     }
