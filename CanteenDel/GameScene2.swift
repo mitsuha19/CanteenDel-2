@@ -16,7 +16,7 @@ class GameScene2: SKScene {
     var reverseDuration: TimeInterval = 5.0
     var timeLabel: SKLabelNode!
     
-    var countdownTime: TimeInterval = 60
+    var countdownTime: TimeInterval = 90
     var countdownAction: SKAction!
     
     var char1: SKSpriteNode?
@@ -158,7 +158,7 @@ class GameScene2: SKScene {
         title.fontColor = SKColor.black
         title.position = CGPoint(x: 0, y: 40)
         
-        let label = SKLabelNode(text: "5 Mahasiswa")
+        let label = SKLabelNode(text: "10 Mahasiswa")
         label.fontSize = 20
         label.fontName = "Helvetica-Bold"
         label.fontColor = SKColor.black
@@ -959,12 +959,6 @@ class GameScene2: SKScene {
                     isTouchHandled = true
                 
                 }
-                
-                if touchedNode.name == "nextButton" {
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GoToComingSoon"), object: nil)
-                    isTouchHandled = true
-                
-                }
             }
         }
     }
@@ -1052,19 +1046,19 @@ class GameScene2: SKScene {
         currentTargetCount += 1
         targetLabel.text = " Target : \(currentTargetCount)"
 
-        if currentTargetCount >= 3 {
+        if currentTargetCount >= 5 {
             coloredStarCount = 1
         }
-        if currentTargetCount >= 4 {
+        if currentTargetCount >= 7 {
             coloredStarCount = 2
         }
-        if currentTargetCount >= 5{
+        if currentTargetCount >= 10{
             coloredStarCount = 3
         }
     }
     
     func winningGame () {
-        if currentCharIndex > 4 {
+        if currentCharIndex > 9 {
             isWinning = true
             winningPopup()
         }

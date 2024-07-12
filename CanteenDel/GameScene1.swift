@@ -742,15 +742,15 @@ class GameScene1: SKScene {
                 }
                 
                 if touchedNode.name == "nextButton" {
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GoToComingSoon"), object: nil)
+                    if let gameOverScane = SKScene(fileNamed: "GameScene2") {
+                        gameOverScane.scaleMode = .aspectFill
+                        gameOverScane.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+                        
+                        let transition = SKTransition.reveal(with: .down, duration: 1)
+                        
+                        view?.presentScene(gameOverScane, transition: transition)
+                    }
                     isTouchHandled = true
-                
-                }
-                
-                if touchedNode.name == "nextButton" {
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GoToComingSoon"), object: nil)
-                    isTouchHandled = true
-                
                 }
             }
         }
@@ -851,7 +851,7 @@ class GameScene1: SKScene {
     }
     
     func winningGame () {
-        if currentCharIndex > 4 {
+        if currentCharIndex > 0 {
             isWinning = true
             winningPopup()
         }
