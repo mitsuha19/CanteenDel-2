@@ -7,12 +7,14 @@ class AudioManager {
     var backgroundMusicScene: AVAudioPlayer?
     var backgroundOrderedFinished: AVAudioPlayer?
     var backgroundLose: AVAudioPlayer?
+    var backgroundWin: AVAudioPlayer?
     
     
     private var isPlayingBackgroundMusic = false
     private var isPlayingBackgroundMusicScene = false
     private var isPlayingMusicOrederedFinished = false
     private var isPlayingMusicLose = false
+    private var isPlayingMusicWin = false
     private var clickSoundPlayer: AVAudioPlayer?
     
     var isMuted: Bool {
@@ -138,8 +140,20 @@ class AudioManager {
         }
     }
     
-    
-    
+    func playMusicWin() {
+        if !isPlayingMusicWin {
+            if let path = Bundle.main.path(forResource: "musikMenang", ofType: "wav") {
+                let url = URL(fileURLWithPath: path)
+                do {
+                    backgroundWin = try AVAudioPlayer(contentsOf: url)
+                    backgroundWin?.play()
+                    print("Musik WIn")
+                } catch {
+                    print("Error playing click sound: \(error)")
+                }
+            }
+        }
+    }
     
     func setVolume(_ volume: Float) {
         self.volume = volume

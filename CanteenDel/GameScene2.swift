@@ -85,7 +85,7 @@ class GameScene2: SKScene {
         
         showStartPopup()
         
-        timeLabel = SKLabelNode(text: "01:00")
+        timeLabel = SKLabelNode(text: "01:30")
         timeLabel.fontName = "Helvetica-bold"
         timeLabel.fontSize = 36
         timeLabel.fontColor = .black
@@ -307,6 +307,8 @@ class GameScene2: SKScene {
         background.addChild(star2)
         background.addChild(star3)
         background.addChild(scoreButton)
+        AudioManager.shared.playMusicWin()
+        currentCharIndex = 0
 
         addChild(background)
     }
