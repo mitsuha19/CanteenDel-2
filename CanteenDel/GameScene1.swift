@@ -804,6 +804,25 @@ class GameScene1: SKScene {
                     if forbiddenxSampahRange.contains(Int(dropLocation.x)) && forbiddenySampahRange.contains(Int(dropLocation.y)) {
                         if alreadyDragNodes.contains(node) {
                             node.removeFromParent()
+                            
+                            let scoreText = "- 5000"
+                            let scoreLabel = SKLabelNode(text: scoreText)
+                            scoreLabel.fontSize = 20
+                            scoreLabel.fontColor = SKColor.red
+                            scoreLabel.fontName = "Helvetica-Bold"
+                            scoreLabel.position = CGPoint(x: 0, y: 0)
+                            self.addChild(scoreLabel)
+                            
+                            let scaleUpAction = SKAction.scale(to: 1.5, duration: 0.3)
+                            let waitAction = SKAction.wait(forDuration: 1)
+                            let scaleDownAction = SKAction.scale(to: 0, duration: 0.3)
+                            let removeAction = SKAction.removeFromParent()
+                            let sequenceLabel = SKAction.sequence([scaleUpAction, waitAction, scaleDownAction, removeAction])
+                            
+                            scoreLabel.run(sequenceLabel)
+                            
+                            score -= 5000
+                            profitLabel.text = "Profit: Rp.\(score)"
                         }
                     }
                     activeTouches.removeValue(forKey: touch)
