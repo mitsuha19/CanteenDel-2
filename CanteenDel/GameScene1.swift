@@ -295,6 +295,8 @@ class GameScene1: SKScene {
         background.addChild(star2)
         background.addChild(star3)
         background.addChild(scoreButton)
+        AudioManager.shared.playMusicWin()
+        currentCharIndex = 0
 
         addChild(background)
     }
@@ -851,7 +853,7 @@ class GameScene1: SKScene {
     }
     
     func winningGame () {
-        if currentCharIndex > 0 {
+        if currentCharIndex > 4 {
             isWinning = true
             winningPopup()
         }
