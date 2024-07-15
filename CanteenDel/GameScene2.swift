@@ -172,18 +172,18 @@ class GameScene2: SKScene {
         okButton.position = CGPoint(x: 50, y: -80)
         okButton.zPosition = 102
         
-        let cancelButton = SKLabelNode(text: "Cancel")
-        cancelButton.fontColor = SKColor.red
-        cancelButton.fontSize = 20
-        cancelButton.fontName = "Helvetica-Bold"
-        cancelButton.name = "cancelButton"
-        cancelButton.position = CGPoint(x: -50, y: -80)
-        cancelButton.zPosition = 103
+        let homeButton = SKLabelNode(text: "Home")
+        homeButton.fontColor = SKColor.blue
+        homeButton.fontName = "Helvetica-Bold"
+        homeButton.fontSize = 20
+        homeButton.name = "homeButton"
+        homeButton.position = CGPoint(x: 50, y: 80)
+        homeButton.zPosition = 103
         
         popupContainer.addChild(background)
         background.addChild(label)
         background.addChild(okButton)
-        background.addChild(cancelButton)
+        background.addChild(homeButton)
         background.addChild(outline)
         background.addChild(title)
         
@@ -266,12 +266,13 @@ class GameScene2: SKScene {
         winnerLabel.fontColor = SKColor.black
         winnerLabel.position = CGPoint(x: 0, y: 70)
 
-        let nextButton = SKLabelNode(text: "Next")
-        nextButton.fontName = "Helvetica-bold"
-        nextButton.fontColor = SKColor.blue
-        nextButton.fontSize = 20
-        nextButton.name = "nextButton"
-        nextButton.position = CGPoint(x: 50, y: -80)
+        let homeButton = SKLabelNode(text: "Home")
+        homeButton.fontColor = SKColor.blue
+        homeButton.fontName = "Helvetica-Bold"
+        homeButton.fontSize = 20
+        homeButton.name = "homeButton"
+        homeButton.position = CGPoint(x: 50, y: -80)
+        homeButton.zPosition = 103
 
         let playAgainButton = SKLabelNode(text: "Play Again")
         playAgainButton.fontName = "Helvetica-bold"
@@ -302,13 +303,15 @@ class GameScene2: SKScene {
 
         background.addChild(winnerLabel)
         background.addChild(playAgainButton)
-        background.addChild(nextButton)
+        background.addChild(homeButton)
         background.addChild(star1)
         background.addChild(star2)
         background.addChild(star3)
         background.addChild(scoreButton)
         AudioManager.shared.playMusicWin()
         currentCharIndex = 0
+        
+        UserDefaults.standard.set(true, forKey: "Level2Won")
 
         addChild(background)
     }

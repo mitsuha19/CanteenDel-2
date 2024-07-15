@@ -15,11 +15,11 @@ class LevelViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(goToLevelScreen), name: NSNotification.Name(rawValue: "GoToLevelScreen"), object: nil)
         
         
-        print("levelViewController \(self.name)")
+//        print("levelViewController \(self.name)")
         
-        if let storedName = UserDefaults.standard.string(forKey: "USER_NAME") {
-            Username.text = "Welcome " + storedName
-        }
+//        if let storedName = UserDefaults.standard.string(forKey: "USER_NAME") {
+//            Username.text = "Welcome " + storedName
+//        }
     }
         
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -36,8 +36,13 @@ class LevelViewController: UIViewController {
                 level = 2
             }
         } else if level == 2 {
-            ImageView.image = UIImage(named: "level3")
-            level = 3
+            if UserDefaults.standard.bool(forKey: "Level2Won") {
+                ImageView.image = UIImage(named: "level3")
+                level = 3
+            } else {
+                ImageView.image = UIImage(named: "level3lock")
+                level = 3
+            }
         }
     }
     
@@ -52,8 +57,8 @@ class LevelViewController: UIViewController {
                 level = 2
             }
         } else if level == 2 {
-            ImageView.image = UIImage(named: "level1")
-            level = 1
+                ImageView.image = UIImage(named: "level1")
+                level = 1
         }
     }
     
@@ -69,9 +74,12 @@ class LevelViewController: UIViewController {
                 AudioManager.shared.playClickSound()
             }
         } else if level == 3 {
-            AudioManager.shared.playClickSound()
-            self.performSegue(withIdentifier: "goToGameLevel3", sender: self)
-
+            if UserDefaults.standard.bool(forKey: "Level2Won") {
+                AudioManager.shared.playClickSound()
+                self.performSegue(withIdentifier: "goToGameLevel3", sender: self)
+            } else {
+                AudioManager.shared.playClickSound()
+            }
         }
     }
     

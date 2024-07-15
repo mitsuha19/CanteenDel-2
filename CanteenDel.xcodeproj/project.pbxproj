@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8136EDD92C450F8C00019062 /* ComingSoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8136EDD82C450F8C00019062 /* ComingSoonViewController.swift */; };
 		81B5DF802C33A83B003F6B1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B5DF7F2C33A83B003F6B1F /* AppDelegate.swift */; };
 		81B5DF8B2C33A83B003F6B1F /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 81B5DF8A2C33A83B003F6B1F /* Base */; };
 		81B5DF8D2C33A83C003F6B1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81B5DF8C2C33A83C003F6B1F /* Assets.xcassets */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8136EDD82C450F8C00019062 /* ComingSoonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComingSoonViewController.swift; sourceTree = "<group>"; };
 		81B5DF7C2C33A83B003F6B1F /* CanteenDel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CanteenDel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81B5DF7F2C33A83B003F6B1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81B5DF8A2C33A83B003F6B1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				8DD46F662C410B6100503115 /* GameScene2.sks */,
 				8DD46F682C410B7B00503115 /* GameScene2.swift */,
 				8DD46F6A2C410BD300503115 /* GameScene2ViewController.swift */,
+				8136EDD82C450F8C00019062 /* ComingSoonViewController.swift */,
 			);
 			path = CanteenDel;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 				81B5DF992C33AB29003F6B1F /* LevelViewController.swift in Sources */,
 				8DD46F412C3FB9A300503115 /* OptionsViewController.swift in Sources */,
 				81B5DF972C33AAC6003F6B1F /* HomePageViewController.swift in Sources */,
+				8136EDD92C450F8C00019062 /* ComingSoonViewController.swift in Sources */,
 				81B5DF802C33A83B003F6B1F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,7 +354,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UU938KLL3C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -363,7 +367,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rohittt.CanteenDel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wahyu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -378,7 +382,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UU938KLL3C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -391,7 +395,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rohittt.CanteenDel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wahyu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
