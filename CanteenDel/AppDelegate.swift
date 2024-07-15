@@ -16,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         UserDefaults.standard.set(false, forKey: "Level1Won")
+        
+        UserDefaults.standard.set(false, forKey: "Level2Won")
+        
         return true
     }
 

@@ -19,40 +19,41 @@ class HomePageViewController: UIViewController {
         setupOptionViewAsButton()
     }
     
-    func alertWithTF() {
-        let alert = UIAlertController(title: "Input Your Name", message: "", preferredStyle: UIAlertController.Style.alert)
-        
-        let save = UIAlertAction(title: "Ok", style: .default) { (alertAction) in
-            let textField = alert.textFields![0] as UITextField
-            AudioManager.shared.playClickSound()
-            
-            self.name = textField.text ?? ""
-            
-            print("HomeViewController \(self.name)")
-            // Simpan ke user default
-            UserDefaults.standard.set(self.name, forKey: "USER_NAME")
-            
-            // Logic Segue
-            self.performSegue(withIdentifier: "goToLevel", sender: self)
-        }
-        
-        alert.addTextField { (textField) in
-            textField.placeholder = ""
-            textField.textColor = .black
-        }
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .default) { (alertAction) in
-            AudioManager.shared.playClickSound()
-        }
-        
-        alert.addAction(cancel)
-        alert.addAction(save)
-
-        self.present(alert, animated: true, completion: nil)
-    }
+//    func alertWithTF() {
+//        let alert = UIAlertController(title: "Input Your Name", message: "", preferredStyle: UIAlertController.Style.alert)
+//        
+//        let save = UIAlertAction(title: "Ok", style: .default) { (alertAction) in
+//            let textField = alert.textFields![0] as UITextField
+//            AudioManager.shared.playClickSound()
+//            
+//            self.name = textField.text ?? ""
+//            
+//            print("HomeViewController \(self.name)")
+//            // Simpan ke user default
+//            UserDefaults.standard.set(self.name, forKey: "USER_NAME")
+//            
+//            // Logic Segue
+//            self.performSegue(withIdentifier: "goToLevel", sender: self)
+//        }
+//        
+//        alert.addTextField { (textField) in
+//            textField.placeholder = ""
+//            textField.textColor = .black
+//        }
+//        
+//        let cancel = UIAlertAction(title: "Cancel", style: .default) { (alertAction) in
+//            AudioManager.shared.playClickSound()
+//        }
+//        
+//        alert.addAction(cancel)
+//        alert.addAction(save)
+//
+//        self.present(alert, animated: true, completion: nil)
+//    }
     
     @IBAction func pressPlayButton(_ sender: Any) {
-        alertWithTF()
+        //alertWithTF()
+        performSegue(withIdentifier: "goToLevel", sender: self)
         AudioManager.shared.playClickSound()
     }
     
@@ -78,7 +79,8 @@ class HomePageViewController: UIViewController {
     
     
     @objc func imageTapped() {
-        alertWithTF()
+//        alertWithTF()
+        performSegue(withIdentifier: "goToLevel", sender: self)
         AudioManager.shared.playClickSound()
     }
     

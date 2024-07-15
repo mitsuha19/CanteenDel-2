@@ -52,7 +52,7 @@ class ComingSoonViewController: UIViewController {
     
     
     @IBAction func goBack(_ sender: Any) {
-        self.performSegue(withIdentifier: "goBackToLevel", sender: self)
+        self.performSegue(withIdentifier: "backToLevelView", sender: self)
     }
     
 }
