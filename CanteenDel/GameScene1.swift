@@ -70,8 +70,8 @@ class GameScene1: SKScene {
         char4 = self.childNode(withName: "//char4") as? SKSpriteNode
         char5 = self.childNode(withName: "//char5") as? SKSpriteNode
         
-        
-        showStartPopup()
+        // Menampilkan pop-up "Game Story" saat permainan dimulai
+           showGameStoryPopup()
         
         timeLabel = SKLabelNode(text: "01:00")
         timeLabel.fontName = "Helvetica-bold"
@@ -125,6 +125,282 @@ class GameScene1: SKScene {
         isOrderCorrect4 = false;
         isOrderCorrect5 = false;
     }
+    
+    func showGameStoryPopup() {
+        let popupContainer = SKNode()
+        popupContainer.name = "gameStoryPopup"
+        
+        let background = SKSpriteNode(color: SKColor.white, size: CGSize(width: 1010, height: 500))
+        background.position = CGPoint(x: frame.midX, y: frame.midY)
+        background.zPosition = 100
+        
+        let outline = SKShapeNode(rectOf: CGSize(width: 1010, height: 500))
+        outline.position = CGPoint(x: frame.midX, y: frame.midY)
+        outline.strokeColor = SKColor.black
+        outline.lineWidth = 2
+        outline.zPosition = 101
+        
+        
+        let nextButtonBackground = SKShapeNode(rectOf: CGSize(width: 100, height: 40), cornerRadius: 10)
+        nextButtonBackground.fillColor = SKColor.blue
+        nextButtonBackground.strokeColor = SKColor.blue
+        nextButtonBackground.position = CGPoint(x: 440, y: -225)
+        nextButtonBackground.name = "nextButtonGameStory"
+        nextButtonBackground.zPosition = 102
+        
+        let nextButtonLabel = SKLabelNode(text: "Next")
+        nextButtonLabel.fontColor = SKColor.white
+        nextButtonLabel.fontSize = 20
+        nextButtonLabel.fontName = "Helvetica-Bold"
+        nextButtonLabel.position = CGPoint(x: 0, y: -8)
+        nextButtonLabel.zPosition = 103
+        nextButtonLabel.name = "nextButtonGameStoryLabel"
+        
+        // Menambahkan gambar dari asset
+           let image = SKSpriteNode(imageNamed: "gamestory")
+           image.position = CGPoint(x: 0, y: 0)  // Sesuaikan posisi sesuai kebutuhan
+        image.size = CGSize(width: 1000, height: 490)
+           image.zPosition = 102
+        
+        
+        
+        nextButtonBackground.addChild(nextButtonLabel)
+        popupContainer.addChild(background)
+        background.addChild(image)
+//        background.addChild(story)
+        background.addChild(nextButtonBackground)
+        background.addChild(outline)
+//        background.addChild(title)
+        
+        addChild(popupContainer)
+    }
+
+    
+    func showCaraBermainPopup() {
+        let popupContainer = SKNode()
+        popupContainer.name = "caraBermainPopup"
+        
+        let background = SKSpriteNode(color: SKColor.white, size: CGSize(width: 1010, height: 500))
+        background.position = CGPoint(x: frame.midX, y: frame.midY)
+        background.zPosition = 100
+        
+        let outline = SKShapeNode(rectOf: CGSize(width: 1010, height: 500))
+        outline.position = CGPoint(x: frame.midX, y: frame.midY)
+        outline.strokeColor = SKColor.black
+        outline.lineWidth = 2
+        outline.zPosition = 101
+        
+        let title = SKLabelNode(text: "Cara Bermain")
+        title.fontSize = 40
+        title.fontName = "Helvetica-Bold"
+        title.fontColor = SKColor.black
+        title.position = CGPoint(x: 0, y: 200)
+        title.zPosition = 103
+    
+        
+        let okButtonBackground = SKShapeNode(rectOf: CGSize(width: 100, height: 40), cornerRadius: 10)
+            okButtonBackground.fillColor = SKColor.blue
+            okButtonBackground.strokeColor = SKColor.blue
+            okButtonBackground.position = CGPoint(x: 440, y: -225)
+            okButtonBackground.name = "okButtonCaraBermain"
+            okButtonBackground.zPosition = 103
+            
+            let okButtonLabel = SKLabelNode(text: "Next")
+            okButtonLabel.fontColor = SKColor.white
+            okButtonLabel.fontSize = 20
+            okButtonLabel.fontName = "Helvetica-Bold"
+            okButtonLabel.position = CGPoint(x: 0, y: -8)
+            okButtonLabel.zPosition = 103
+            okButtonLabel.name = "okButtonCaraBermainLabel"
+        
+        
+        // Menambahkan gambar dari asset
+           let image = SKSpriteNode(imageNamed: "carabermain1")
+           image.position = CGPoint(x: 0, y: 0)  // Sesuaikan posisi sesuai kebutuhan
+        image.size = CGSize(width: 1000, height: 490)
+           image.zPosition = 102
+        
+            
+            okButtonBackground.addChild(okButtonLabel)
+            
+            popupContainer.addChild(background)
+//            background.addChild(instructions)
+            background.addChild(okButtonBackground)
+            background.addChild(outline)
+            background.addChild(title)
+            background.addChild(image)
+            addChild(popupContainer)
+    }
+
+    
+    func showCaraBermainPopup2() {
+        let popupContainer = SKNode()
+        popupContainer.name = "caraBermainPopup2"
+        
+        let background = SKSpriteNode(color: SKColor.white, size: CGSize(width: 1010, height: 500))
+        background.position = CGPoint(x: frame.midX, y: frame.midY)
+        background.zPosition = 100
+        
+        let outline = SKShapeNode(rectOf: CGSize(width: 1010, height: 500))
+        outline.position = CGPoint(x: frame.midX, y: frame.midY)
+        outline.strokeColor = SKColor.black
+        outline.lineWidth = 2
+        outline.zPosition = 101
+        
+        let title = SKLabelNode(text: "Cara Bermain")
+        title.fontSize = 40
+        title.fontName = "Helvetica-Bold"
+        title.fontColor = SKColor.black
+        title.position = CGPoint(x: 0, y: 200)
+        title.zPosition = 103
+    
+        
+        let okButtonBackground = SKShapeNode(rectOf: CGSize(width: 100, height: 40), cornerRadius: 10)
+            okButtonBackground.fillColor = SKColor.blue
+            okButtonBackground.strokeColor = SKColor.blue
+            okButtonBackground.position = CGPoint(x: 440, y: -225)
+            okButtonBackground.name = "okButtonCaraBermain2"
+            okButtonBackground.zPosition = 103
+            
+            let okButtonLabel = SKLabelNode(text: "Next")
+            okButtonLabel.fontColor = SKColor.white
+            okButtonLabel.fontSize = 20
+            okButtonLabel.fontName = "Helvetica-Bold"
+            okButtonLabel.position = CGPoint(x: 0, y: -8)
+            okButtonLabel.zPosition = 103
+            okButtonLabel.name = "okButtonCaraBermainLabel2"
+        
+        
+        // Menambahkan gambar dari asset
+           let image = SKSpriteNode(imageNamed: "carabermain2")
+           image.position = CGPoint(x: 0, y: 0)  // Sesuaikan posisi sesuai kebutuhan
+        image.size = CGSize(width: 1000, height: 490)
+           image.zPosition = 102
+        
+            
+            okButtonBackground.addChild(okButtonLabel)
+            
+            popupContainer.addChild(background)
+//            background.addChild(instructions)
+            background.addChild(okButtonBackground)
+            background.addChild(outline)
+            background.addChild(title)
+            background.addChild(image)
+            addChild(popupContainer)
+    }
+    
+    func showCaraBermainPopup3() {
+        let popupContainer = SKNode()
+        popupContainer.name = "caraBermainPopup3"
+        
+        let background = SKSpriteNode(color: SKColor.white, size: CGSize(width: 1010, height: 500))
+        background.position = CGPoint(x: frame.midX, y: frame.midY)
+        background.zPosition = 100
+        
+        let outline = SKShapeNode(rectOf: CGSize(width: 1010, height: 500))
+        outline.position = CGPoint(x: frame.midX, y: frame.midY)
+        outline.strokeColor = SKColor.black
+        outline.lineWidth = 2
+        outline.zPosition = 101
+        
+        let title = SKLabelNode(text: "Cara Bermain")
+        title.fontSize = 40
+        title.fontName = "Helvetica-Bold"
+        title.fontColor = SKColor.black
+        title.position = CGPoint(x: 0, y: 200)
+        title.zPosition = 103
+    
+        
+        let okButtonBackground = SKShapeNode(rectOf: CGSize(width: 100, height: 40), cornerRadius: 10)
+            okButtonBackground.fillColor = SKColor.blue
+            okButtonBackground.strokeColor = SKColor.blue
+            okButtonBackground.position = CGPoint(x: 440, y: -225)
+            okButtonBackground.name = "okButtonCaraBermain3"
+            okButtonBackground.zPosition = 103
+            
+            let okButtonLabel = SKLabelNode(text: "Next")
+            okButtonLabel.fontColor = SKColor.white
+            okButtonLabel.fontSize = 20
+            okButtonLabel.fontName = "Helvetica-Bold"
+            okButtonLabel.position = CGPoint(x: 0, y: -8)
+            okButtonLabel.zPosition = 103
+            okButtonLabel.name = "okButtonCaraBermainLabel3"
+        
+        
+        // Menambahkan gambar dari asset
+           let image = SKSpriteNode(imageNamed: "carabermain3")
+           image.position = CGPoint(x: 0, y: 0)  // Sesuaikan posisi sesuai kebutuhan
+        image.size = CGSize(width: 1000, height: 490)
+           image.zPosition = 102
+        
+            
+            okButtonBackground.addChild(okButtonLabel)
+            
+            popupContainer.addChild(background)
+//            background.addChild(instructions)
+            background.addChild(okButtonBackground)
+            background.addChild(outline)
+            background.addChild(title)
+            background.addChild(image)
+            addChild(popupContainer)
+    }
+ 
+    func showCaraBermainPopup4() {
+        let popupContainer = SKNode()
+        popupContainer.name = "caraBermainPopup4"
+        
+        let background = SKSpriteNode(color: SKColor.white, size: CGSize(width: 1010, height: 500))
+        background.position = CGPoint(x: frame.midX, y: frame.midY)
+        background.zPosition = 100
+        
+        let outline = SKShapeNode(rectOf: CGSize(width: 1010, height: 500))
+        outline.position = CGPoint(x: frame.midX, y: frame.midY)
+        outline.strokeColor = SKColor.black
+        outline.lineWidth = 2
+        outline.zPosition = 101
+        
+        let title = SKLabelNode(text: "Cara Bermain")
+        title.fontSize = 40
+        title.fontName = "Helvetica-Bold"
+        title.fontColor = SKColor.black
+        title.position = CGPoint(x: 0, y: 200)
+        title.zPosition = 103
+    
+        
+        let okButtonBackground = SKShapeNode(rectOf: CGSize(width: 100, height: 40), cornerRadius: 10)
+            okButtonBackground.fillColor = SKColor.blue
+            okButtonBackground.strokeColor = SKColor.blue
+            okButtonBackground.position = CGPoint(x: 440, y: -225)
+            okButtonBackground.name = "okButtonCaraBermain4"
+            okButtonBackground.zPosition = 103
+            
+            let okButtonLabel = SKLabelNode(text: "Next")
+            okButtonLabel.fontColor = SKColor.white
+            okButtonLabel.fontSize = 20
+            okButtonLabel.fontName = "Helvetica-Bold"
+            okButtonLabel.position = CGPoint(x: 0, y: -8)
+            okButtonLabel.zPosition = 103
+            okButtonLabel.name = "okButtonCaraBermainLabel4"
+        
+        
+        // Menambahkan gambar dari asset
+           let image = SKSpriteNode(imageNamed: "carabermain4")
+           image.position = CGPoint(x: 0, y: 0)  // Sesuaikan posisi sesuai kebutuhan
+        image.size = CGSize(width: 1000, height: 490)
+           image.zPosition = 102
+        
+            
+            okButtonBackground.addChild(okButtonLabel)
+            
+            popupContainer.addChild(background)
+//            background.addChild(instructions)
+            background.addChild(okButtonBackground)
+            background.addChild(outline)
+            background.addChild(title)
+            background.addChild(image)
+            addChild(popupContainer)
+    }
+    
     
     func showStartPopup() {
         let popupContainer = SKNode()
@@ -713,26 +989,85 @@ class GameScene1: SKScene {
             if !isTouchHandled {
                 let touchedNode = atPoint(touchLocation)
                 
-                if touchedNode.name == "okButton" {
-                    if let popup = self.childNode(withName: "startPopup") {
-                        popup.removeFromParent()
+                if touchedNode.name == "nextButtonGameStory" || touchedNode.name == "nextButtonGameStoryLabel" {
+                        if let gameStoryPopup = self.childNode(withName: "gameStoryPopup") {
+                            gameStoryPopup.removeFromParent()
+                        }
+                        
+                        // Menampilkan pop-up "cara bermain"
+                        showCaraBermainPopup()
+                        
+                        isTouchHandled = true
+                    }
+                
+                    
+                    if touchedNode.name == "okButtonCaraBermain" || touchedNode.name == "okButtonCaraBermainLabel" {
+                        if let caraBermainPopup = self.childNode(withName: "caraBermainPopup") {
+                            caraBermainPopup.removeFromParent()
+                        }
+                        
+                        // Menampilkan startPopup
+                        showCaraBermainPopup2()
+                        
+                        isTouchHandled = true
+                    }
+                
+                if touchedNode.name == "okButtonCaraBermain2" || touchedNode.name == "okButtonCaraBermainLabel2" {
+                    if let caraBermainPopup = self.childNode(withName: "caraBermainPopup2") {
+                        caraBermainPopup.removeFromParent()
                     }
                     
-                    if let char1 = char1, let char2 = char2, let char3 = char3 , let char4 = char4 , let char5 = char5{
-                        let characters = [char1, char2, char3, char4, char5]
-                        moveCharacterToCenter(characters: characters)
+                  
+                    showCaraBermainPopup3()
+                    
+                   
+                    
+                    isTouchHandled = true
+                }
+                if touchedNode.name == "okButtonCaraBermain3" || touchedNode.name == "okButtonCaraBermainLabel3" {
+                    if let caraBermainPopup = self.childNode(withName: "caraBermainPopup3") {
+                        caraBermainPopup.removeFromParent()
                     }
                     
-                    startCountdown()
+                    showCaraBermainPopup4()
+                    
+                    isTouchHandled = true
+                }
+                if touchedNode.name == "okButtonCaraBermain4" || touchedNode.name == "okButtonCaraBermainLabel4" {
+                    if let caraBermainPopup = self.childNode(withName: "caraBermainPopup4") {
+                        caraBermainPopup.removeFromParent()
+                    }
+                    
+                    // Menampilkan startPopup
+                   showStartPopup()
+                    
                     isTouchHandled = true
                 }
                 
-                if touchedNode.name == "cancelButton" {
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GoToLevelScreen"), object: nil)
-                    isTouchHandled = true
-                    AudioManager.shared.stopBgMusicScene()
-                    AudioManager.shared.playBackgroundMusic()
-                }
+                    
+                
+                    
+                    if touchedNode.name == "okButton" {
+                        if let startPopup = self.childNode(withName: "startPopup") {
+                            startPopup.removeFromParent()
+                        }
+                        
+                        if let char1 = char1, let char2 = char2, let char3 = char3, let char4 = char4, let char5 = char5 {
+                            let characters = [char1, char2, char3, char4, char5]
+                            moveCharacterToCenter(characters: characters)
+                        }
+                        
+                        startCountdown()
+                        isTouchHandled = true
+                    }
+                    
+                    if touchedNode.name == "cancelButton" {
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GoToLevelScreen"), object: nil)
+                        isTouchHandled = true
+                        AudioManager.shared.stopBgMusicScene()
+                        AudioManager.shared.playBackgroundMusic()
+                    }
+                
                 
                 if touchedNode.name == "playAgainButton" {
                     restartGame()
@@ -881,3 +1216,4 @@ class GameScene1: SKScene {
         }
     }
 }
+
