@@ -96,13 +96,15 @@
                     <connections>
                         <outlet property="ImageView" destination="IlF-6o-fOQ" id="ATJ-tY-jRB"/>
                         <outlet property="Username" destination="Azh-IR-hWA" id="vwA-He-j5y"/>
+                        <segue destination="vy9-4k-Phf" kind="show" identifier="goToGameLevel1" animates="NO" id="lbN-gJ-tmw"/>
+                        <segue destination="YB8-4n-6HI" kind="show" identifier="goToGameLevel2" animates="NO" id="ZkL-2O-EFK"/>
+                        <segue destination="Fkj-cp-zgB" kind="show" identifier="goToGameLevel3" animates="NO" id="7Eh-24-2J3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xOT-EM-0nC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="EvU-IF-i2y">
                     <connections>
-                        <action selector="nor:" destination="gu5-pk-kYG" id="MST-kd-HwR"/>
-                        <segue destination="vy9-4k-Phf" kind="show" identifier="goGameLevel1" id="Pbl-ZO-1DH"/>
+                        <action selector="GoToGameLevel1:" destination="gu5-pk-kYG" id="rjP-0M-9kX"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -164,7 +166,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-791" y="-1457"/>
+            <point key="canvasLocation" x="219" y="-8"/>
         </scene>
         <!--Home Page View Controller-->
         <scene sceneID="PiK-qT-Hk1">
@@ -202,7 +204,7 @@
                     <connections>
                         <outlet property="presPlay" destination="3RT-0J-rA3" id="nXi-jg-V8w"/>
                         <outlet property="pressOptions" destination="0Fz-jU-n38" id="vNl-nA-zmN"/>
-                        <segue destination="TsI-RO-012" kind="show" identifier="goToLevel" id="9fw-rr-dEa"/>
+                        <segue destination="TsI-RO-012" kind="show" identifier="goToLevel" animates="NO" id="9fw-rr-dEa"/>
                         <segue destination="3Dn-OE-nUk" kind="show" identifier="gotoSetting" id="AI4-JF-lva"/>
                     </connections>
                 </viewController>
@@ -250,11 +252,11 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iRg-km-BGy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="Zxw-Uk-MBp">
                     <connections>
-                        <segue destination="Mlv-Mm-kq2" kind="show" id="xWf-ZG-tmj"/>
+                        <segue destination="Mlv-Mm-kq2" kind="show" animates="NO" id="xWf-ZG-tmj"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="47.887323943661976" y="-724.4274809160305"/>
+            <point key="canvasLocation" x="-673" y="-1457"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GS5-p7-0a2">
@@ -274,6 +276,42 @@
             </objects>
             <point key="canvasLocation" x="47.887323943661976" y="-2277.0992366412211"/>
         </scene>
+        <!--Coming Soon View Controller-->
+        <scene sceneID="fpn-aQ-bpi">
+            <objects>
+                <viewController id="Fkj-cp-zgB" customClass="ComingSoonViewController" customModule="CanteenDel" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oGK-4W-gR1">
+                        <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="HomePage" translatesAutoresizingMaskIntoConstraints="NO" id="iTo-hT-kew">
+                                <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aha-BF-V98">
+                                <rect key="frame" x="46" y="29" width="29" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrowshape.turn.up.left.circle.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="goBack:" destination="Fkj-cp-zgB" eventType="touchUpInside" id="HG8-6H-kHE"/>
+                                    <action selector="goHomePage:" destination="gu5-pk-kYG" eventType="touchUpInside" id="571-Rd-NWC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="D4c-ON-1Oq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="BC1-U1-obS"/>
+                    <connections>
+                        <segue destination="gu5-pk-kYG" kind="show" identifier="backToLevelView" animates="NO" id="QX8-zu-Ek0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IXp-79-doO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1623" y="-2005"/>
+        </scene>
         <!--Game Scene2 View Controller-->
         <scene sceneID="n1I-FS-g1j">
             <objects>
@@ -288,12 +326,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0LF-FY-VYY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1528" y="-1074"/>
+            <point key="canvasLocation" x="1527" y="-1098"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xWf-ZG-tmj"/>
-        <segue reference="AI4-JF-lva"/>
+        <segue reference="jPG-Oz-v8z"/>
+        <segue reference="LAP-Gz-dLl"/>
+        <segue reference="QX8-zu-Ek0"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="HomePage" width="2868" height="1912"/>
