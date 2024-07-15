@@ -298,6 +298,8 @@ class GameScene1: SKScene {
         AudioManager.shared.playMusicWin()
         currentCharIndex = 0
 
+        UserDefaults.standard.set(true, forKey: "Level1Won")
+        
         addChild(background)
         
         UserDefaults.standard.set(true, forKey: "Level1Won")
@@ -874,7 +876,8 @@ class GameScene1: SKScene {
     }
     
     func winningGame () {
-        if currentCharIndex > 0 {
+
+        if currentCharIndex > 1 {
             isWinning = true
             winningPopup()
         }
