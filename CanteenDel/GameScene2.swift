@@ -346,7 +346,7 @@ class GameScene2: SKScene {
                 self?.updateCountdown()
             },
 
-            SKAction.wait(forDuration: 1.0)
+            SKAction.wait(forDuration: 0.1)
         ])
         
         run(SKAction.repeat(countdownAction, count: Int(countdownTime)))
@@ -363,7 +363,7 @@ class GameScene2: SKScene {
             let seconds = Int(countdownTime) % 60
             timeLabel.text = String(format: "%02d:%02d", minutes, seconds)
             
-            if seconds == 0 {
+            if seconds == 0 && countdownTime < 1 {
                 if isWinning == false {
                     gameOverPopup()
                     self.isPaused = true
