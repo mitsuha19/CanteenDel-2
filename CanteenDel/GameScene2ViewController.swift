@@ -35,7 +35,7 @@ class GameScene2ViewController: UIViewController {
             transition.duration = 0.5
             transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
             transition.type = CATransitionType.fade
-            transition.subtype = CATransitionSubtype.fromRight
+            transition.subtype = CATransitionSubtype.fromBottom
             navigationController?.view.layer.add(transition, forKey: kCATransition)
             navigationController?.popViewController(animated: false)
     }
