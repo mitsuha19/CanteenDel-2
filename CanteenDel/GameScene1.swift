@@ -254,12 +254,13 @@ class GameScene1: SKScene {
         winnerLabel.fontColor = SKColor.black
         winnerLabel.position = CGPoint(x: 0, y: 70)
 
-        let nextButton = SKLabelNode(text: "Next")
-        nextButton.fontName = "Helvetica-bold"
-        nextButton.fontColor = SKColor.blue
-        nextButton.fontSize = 20
-        nextButton.name = "nextButton"
-        nextButton.position = CGPoint(x: 50, y: -80)
+        let homeButton = SKLabelNode(text: "Home")
+        homeButton.fontColor = SKColor.blue
+        homeButton.fontName = "Helvetica-Bold"
+        homeButton.fontSize = 20
+        homeButton.name = "homeButton"
+        homeButton.position = CGPoint(x: 50, y: -80)
+        homeButton.zPosition = 103
 
         let playAgainButton = SKLabelNode(text: "Play Again")
         playAgainButton.fontName = "Helvetica-bold"
@@ -290,7 +291,7 @@ class GameScene1: SKScene {
 
         background.addChild(winnerLabel)
         background.addChild(playAgainButton)
-        background.addChild(nextButton)
+        background.addChild(homeButton)
         background.addChild(star1)
         background.addChild(star2)
         background.addChild(star3)
@@ -874,7 +875,7 @@ class GameScene1: SKScene {
     }
     
     func winningGame () {
-        if currentCharIndex > 1 {
+        if currentCharIndex > 5 {
             isWinning = true
             winningPopup()
         }
