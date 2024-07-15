@@ -875,7 +875,7 @@ class GameScene1: SKScene {
     }
     
     func winningGame () {
-        if currentCharIndex > 5 {
+        if currentCharIndex > 4 {
             isWinning = true
             winningPopup()
         }

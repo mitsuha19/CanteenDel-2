@@ -173,11 +173,11 @@ class GameScene2: SKScene {
         okButton.zPosition = 102
         
         let homeButton = SKLabelNode(text: "Home")
-        homeButton.fontColor = SKColor.blue
+        homeButton.fontColor = SKColor.red
         homeButton.fontName = "Helvetica-Bold"
         homeButton.fontSize = 20
         homeButton.name = "homeButton"
-        homeButton.position = CGPoint(x: 50, y: 80)
+        homeButton.position = CGPoint(x: -50, y: -80)
         homeButton.zPosition = 103
         
         popupContainer.addChild(background)
