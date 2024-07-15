@@ -5,13 +5,9 @@ class LevelViewController: UIViewController {
     
     @IBOutlet weak var ImageView: UIImageView!
     @IBOutlet weak var Username: UILabel!
-    var level2Image = UIImage(named: "level2lock")
     var level = 1
     var name = "-"
         
-
-       
-
     override func viewDidLoad() {
         super.viewDidLoad()
         AudioManager.shared.stopBgMusicScene()
@@ -23,7 +19,6 @@ class LevelViewController: UIViewController {
         
         if let storedName = UserDefaults.standard.string(forKey: "USER_NAME") {
             Username.text = "Welcome " + storedName
-
         }
     }
         
@@ -31,25 +26,8 @@ class LevelViewController: UIViewController {
         }
         
     @IBAction func Next(_ sender: Any) {
-        
-        if UserDefaults.standard.bool(forKey: "Level1Won"){
-            level2Image = UIImage(named: "level2")
-            level = 2
-            ImageView.image = level2Image
-            ImageView.isUserInteractionEnabled = false
-        } else {
-            ImageView.image = UIImage(named: "level1")
-            level = 1
-            ImageView.isUserInteractionEnabled = true
-        }
-        
         AudioManager.shared.playClickSound()
         if level == 1 {
-
-            ImageView.image = level2Image
-            level = 2
-            ImageView.isUserInteractionEnabled = false
-
             if UserDefaults.standard.bool(forKey: "Level1Won") {
                 ImageView.image = UIImage(named: "level2")
                 level = 2
@@ -60,23 +38,10 @@ class LevelViewController: UIViewController {
         } else if level == 2 {
             ImageView.image = UIImage(named: "level3")
             level = 3
-
         }
     }
     
     @IBAction func Back(_ sender: Any) {
-        
-        if UserDefaults.standard.bool(forKey: "Level1Won"){
-            level2Image = UIImage(named: "level2")
-            level = 2
-            ImageView.image = level2Image
-            ImageView.isUserInteractionEnabled = false
-        } else {
-            ImageView.image = UIImage(named: "level1")
-            level = 1
-            ImageView.isUserInteractionEnabled = true
-        }
-        
         AudioManager.shared.playClickSound()
         if level == 3 {
             if UserDefaults.standard.bool(forKey: "Level1Won") {

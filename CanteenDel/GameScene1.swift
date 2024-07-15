@@ -301,8 +301,6 @@ class GameScene1: SKScene {
         UserDefaults.standard.set(true, forKey: "Level1Won")
         
         addChild(background)
-        
-        UserDefaults.standard.set(true, forKey: "Level1Won")
     }
 
     func restartGame() {
@@ -876,7 +874,6 @@ class GameScene1: SKScene {
     }
     
     func winningGame () {
-
         if currentCharIndex > 1 {
             isWinning = true
             winningPopup()
