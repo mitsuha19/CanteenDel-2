@@ -16,6 +16,12 @@ class OnBoardingViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    
+    @IBAction func gotohomepage(_ sender: Any) {
+        AudioManager.shared.playClickSound()
+        performSegue(withIdentifier: "onBoardingToHomePage", sender: self)
+    }
+    
 
     /*
     // MARK: - Navigation

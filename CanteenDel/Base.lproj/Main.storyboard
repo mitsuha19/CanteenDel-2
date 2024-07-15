@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vy9-4k-Phf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="89Y-97-R4H">
     <device id="retina6_12" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
@@ -157,7 +157,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bdf-YZ-aEd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="9Ty-Bp-UYx">
                     <connections>
-                        <segue destination="Mlv-Mm-kq2" kind="show" id="jPG-Oz-v8z"/>
+                        <segue destination="Mlv-Mm-kq2" kind="show" animates="NO" id="jPG-Oz-v8z"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -200,13 +200,13 @@
                         <outlet property="presPlay" destination="3RT-0J-rA3" id="nXi-jg-V8w"/>
                         <outlet property="pressOptions" destination="0Fz-jU-n38" id="vNl-nA-zmN"/>
                         <segue destination="TsI-RO-012" kind="show" identifier="goToLevel" animates="NO" id="9fw-rr-dEa"/>
-                        <segue destination="3Dn-OE-nUk" kind="show" identifier="gotoSetting" id="AI4-JF-lva"/>
+                        <segue destination="3Dn-OE-nUk" kind="show" identifier="gotoSetting" animates="NO" id="AI4-JF-lva"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6r9-gy-uPd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="vUj-28-kU1">
                     <connections>
-                        <segue destination="3Dn-OE-nUk" kind="show" identifier="gotoSetting" id="LAP-Gz-dLl"/>
+                        <segue destination="3Dn-OE-nUk" kind="show" identifier="gotoSetting" animates="NO" id="LAP-Gz-dLl"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -225,7 +225,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="Zxw-Uk-MBp" appends="YES" id="a8H-4N-MVB"/>
+                                    <outletCollection property="gestureRecognizers" destination="pPc-Mu-Tqx" appends="YES" id="P7u-0j-5Ik"/>
                                 </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tap To Play" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xa-h5-mzj">
@@ -243,11 +243,14 @@
                         <viewLayoutGuide key="safeArea" id="8uI-xU-VSU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <segue destination="Mlv-Mm-kq2" kind="show" identifier="onBoardingToHomePage" animates="NO" id="bQv-LZ-Dlm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iRg-km-BGy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Zxw-Uk-MBp">
+                <tapGestureRecognizer id="pPc-Mu-Tqx">
                     <connections>
-                        <segue destination="Mlv-Mm-kq2" kind="show" animates="NO" id="xWf-ZG-tmj"/>
+                        <action selector="gotohomepage:" destination="89Y-97-R4H" id="FQt-vt-yJV"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -326,7 +329,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="jPG-Oz-v8z"/>
-        <segue reference="LAP-Gz-dLl"/>
+        <segue reference="AI4-JF-lva"/>
         <segue reference="QX8-zu-Ek0"/>
     </inferredMetricsTieBreakers>
     <resources>
