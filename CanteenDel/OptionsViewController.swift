@@ -59,7 +59,7 @@ class OptionsViewController: UIViewController {
     
     @objc func backToHomeTapped(_ sender: UITapGestureRecognizer) {
         AudioManager.shared.playClickSound()
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: false, completion: nil)
     }
     
     func updateMuteIcons() {

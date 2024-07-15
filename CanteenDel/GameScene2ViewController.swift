@@ -24,9 +24,6 @@ class GameScene2ViewController: UIViewController {
                 view.presentScene(scane)
                 print("Scene Open")
             }
-            
-            view.showsNodeCount = true
-            view.showsFPS = true
         }
     }
     
