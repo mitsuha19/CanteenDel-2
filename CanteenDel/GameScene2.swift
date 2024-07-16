@@ -366,7 +366,7 @@ class GameScene2: SKScene {
             let seconds = Int(countdownTime) % 60
             timeLabel.text = String(format: "%02d:%02d", minutes, seconds)
             
-            if seconds == 0 && countdownTime < 1 {
+            if minutes == 0 && seconds == 0 {
                 if isWinning == false {
                     gameOverPopup()
                     self.isPaused = true

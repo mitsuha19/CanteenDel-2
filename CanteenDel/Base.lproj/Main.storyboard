@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vy9-4k-Phf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="89Y-97-R4H">
     <device id="retina6_12" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
@@ -113,8 +113,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bgsettings" translatesAutoresizingMaskIntoConstraints="NO" id="pZJ-bT-LGq">
-                                <rect key="frame" x="-15" y="0.0" width="876" height="410"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="HomePage" translatesAutoresizingMaskIntoConstraints="NO" id="FmS-GP-7Bz">
+                                <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo-bgsound" translatesAutoresizingMaskIntoConstraints="NO" id="fb5-cJ-Z2O">
@@ -157,11 +157,11 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bdf-YZ-aEd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="9Ty-Bp-UYx">
                     <connections>
-                        <segue destination="Mlv-Mm-kq2" kind="show" id="jPG-Oz-v8z"/>
+                        <segue destination="Mlv-Mm-kq2" kind="show" animates="NO" id="jPG-Oz-v8z"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="218.3098591549296" y="-8.3969465648854964"/>
+            <point key="canvasLocation" x="48" y="-650"/>
         </scene>
         <!--Home Page View Controller-->
         <scene sceneID="PiK-qT-Hk1">
@@ -173,10 +173,6 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="HomePage" translatesAutoresizingMaskIntoConstraints="NO" id="DEv-HH-eGW">
                                 <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="5vX-hx-Xva">
-                                <rect key="frame" x="275" y="34" width="302" height="180"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="optionsBtn" translatesAutoresizingMaskIntoConstraints="NO" id="0Fz-jU-n38">
@@ -191,6 +187,10 @@
                                 <rect key="frame" x="341" y="254" width="180" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="5vX-hx-Xva">
+                                <rect key="frame" x="272" y="22" width="318" height="212"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3Bd-lH-WJH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -200,13 +200,13 @@
                         <outlet property="presPlay" destination="3RT-0J-rA3" id="nXi-jg-V8w"/>
                         <outlet property="pressOptions" destination="0Fz-jU-n38" id="vNl-nA-zmN"/>
                         <segue destination="TsI-RO-012" kind="show" identifier="goToLevel" animates="NO" id="9fw-rr-dEa"/>
-                        <segue destination="3Dn-OE-nUk" kind="show" identifier="gotoSetting" id="AI4-JF-lva"/>
+                        <segue destination="3Dn-OE-nUk" kind="show" identifier="gotoSetting" animates="NO" id="AI4-JF-lva"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6r9-gy-uPd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="vUj-28-kU1">
                     <connections>
-                        <segue destination="3Dn-OE-nUk" kind="show" identifier="gotoSetting" id="LAP-Gz-dLl"/>
+                        <segue destination="3Dn-OE-nUk" kind="show" identifier="gotoSetting" animates="NO" id="LAP-Gz-dLl"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -225,7 +225,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="Zxw-Uk-MBp" appends="YES" id="a8H-4N-MVB"/>
+                                    <outletCollection property="gestureRecognizers" destination="pPc-Mu-Tqx" appends="YES" id="P7u-0j-5Ik"/>
                                 </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tap To Play" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xa-h5-mzj">
@@ -236,22 +236,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="uKB-fk-i0d">
-                                <rect key="frame" x="260" y="72" width="302" height="180"/>
+                                <rect key="frame" x="292" y="46" width="239" height="225"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8uI-xU-VSU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <segue destination="Mlv-Mm-kq2" kind="show" identifier="onBoardingToHomePage" animates="NO" id="bQv-LZ-Dlm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iRg-km-BGy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Zxw-Uk-MBp">
+                <tapGestureRecognizer id="pPc-Mu-Tqx">
                     <connections>
-                        <segue destination="Mlv-Mm-kq2" kind="show" animates="NO" id="xWf-ZG-tmj"/>
+                        <action selector="gotohomepage:" destination="89Y-97-R4H" id="FQt-vt-yJV"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-673" y="-1457"/>
+            <point key="canvasLocation" x="-673.23943661971839" y="-1457.2519083969464"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GS5-p7-0a2">
@@ -326,7 +329,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="jPG-Oz-v8z"/>
-        <segue reference="LAP-Gz-dLl"/>
+        <segue reference="AI4-JF-lva"/>
         <segue reference="QX8-zu-Ek0"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -335,10 +338,9 @@
         <image name="arrowshape.backward.fill" catalog="system" width="128" height="104"/>
         <image name="arrowshape.forward.fill" catalog="system" width="128" height="104"/>
         <image name="arrowshape.turn.up.left.circle.fill" catalog="system" width="128" height="123"/>
-        <image name="bgsettings" width="861" height="404"/>
         <image name="level1" width="820" height="840"/>
         <image name="lghome" width="244" height="236"/>
-        <image name="logo" width="964" height="796"/>
+        <image name="logo" width="2048" height="1918"/>
         <image name="logo-bgsound" width="813" height="818"/>
         <image name="logo-soundClick" width="820" height="818"/>
         <image name="optionsBtn" width="1252" height="302"/>
