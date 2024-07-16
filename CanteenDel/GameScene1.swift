@@ -82,7 +82,7 @@ class GameScene1: SKScene {
         addChild(timeLabel)
         
         
-        targetLabel = SKLabelNode(text: " Target : \(currentTargetCount)")
+        targetLabel = SKLabelNode(text: " Customer : \(currentTargetCount)")
         targetLabel.fontName = "Helvetica-Bold"
         targetLabel.fontSize = 25
         targetLabel.fontColor = .black
@@ -422,7 +422,7 @@ class GameScene1: SKScene {
         title.fontColor = SKColor.black
         title.position = CGPoint(x: 0, y: 40)
         
-        let label = SKLabelNode(text: "5 Mahasiswa")
+        let label = SKLabelNode(text: "Layani 5 Mahasiswa")
         label.fontSize = 20
         label.fontName = "Helvetica-Bold"
         label.fontColor = SKColor.black
