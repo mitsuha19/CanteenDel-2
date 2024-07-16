@@ -349,7 +349,7 @@ class GameScene2: SKScene {
                 self?.updateCountdown()
             },
 
-            SKAction.wait(forDuration: 1.0)
+            SKAction.wait(forDuration: 0.1)
         ])
         
         run(SKAction.repeat(countdownAction, count: Int(countdownTime)))
